@@ -16,7 +16,7 @@ function Banner() {
         <span className="text-[#DFDFDF] text-[1.25rem]">請儘速向幹部繳納</span>
       </div>
       {/* 分隔線 */}
-      <span class="mx-auto block w-11/12 bg-[#D7D7D7] h-[1px] col-span-2"></span>
+      <span className="mx-auto block w-11/12 bg-[#D7D7D7] h-[1px] col-span-2"></span>
       {/* 已訂餐天數 */}
       <div className=' h-full pt-4 pl-6 flex flex-col'>
         <div className='text-white text-2xl'>已訂餐天數</div>

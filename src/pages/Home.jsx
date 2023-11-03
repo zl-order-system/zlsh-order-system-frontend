@@ -1,3 +1,4 @@
+import Nav from "../components/Nav.jsx"
 function Banner() {
   const weekdays = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
   let month = 9;
@@ -82,9 +83,13 @@ function UtilButtons() {
 
 function Home() {
   return (
-   <div className="flex flex-col gap-12">
-    <Banner/>
-    <UtilButtons/>
+   <div>
+      <div className="flex flex-col gap-12 mb-[3.75rem]">
+        <Banner/>
+        <UtilButtons/>
+        <div className="h-[500px] bg-black"></div>
+      </div>
+      <Nav/>
    </div>
   )
 }

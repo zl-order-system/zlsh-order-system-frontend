@@ -1,4 +1,4 @@
-import Nav from "./components/Nav.jsx"
+import Nav from "../components/Nav.jsx"
 function Banner() {
   const weekdays = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
   let month = 9;
@@ -83,7 +83,7 @@ function UtilButtons() {
 function EachDay(){
   const orderItem=[]
   return(
-    <div className=" w-[9.7rem] h-[9.7rem] border-[1px] border-[#ACACAC] rounded-[1.3rem]">
+    <div className="w-[9.7rem] min-w-[9.7rem] h-[9.7rem] border-[1px] border-[#ACACAC] rounded-[1.3rem]">
       <div className=" text-black text-[1.3rem] font-[700] ml-[1rem]">8月</div>
       <div className=" text-black text-[2.8rem] font-[400] leading-[2.8rem] text-center">29</div>
       <div className=" text-[#6C6C6C] text-[1.3rem] font-[400] text-center">星期四</div>
@@ -93,7 +93,7 @@ function EachDay(){
 }
 function OrderPreveiw(){
   return(
-    <div className=" flex gap-[1rem] flex-col mx-[1.5rem]">
+    <div className="flex gap-[1rem] flex-col mx-[1.5rem]">
       <div className="flex justify-between">
         <div className="text-black text-[1.8rem] font-[700]">預覽</div>
         <button>
@@ -110,7 +110,7 @@ function OrderPreveiw(){
           </svg>
         </button>
       </div>
-      <div className=" flex justify-between flex-wrap gap-5">
+      <div className="flex flex-row justify-start flex-shrink-0 gap-5 overflow-hidden w-full">
         <EachDay/>
         <EachDay/>
         <EachDay/>
@@ -122,14 +122,11 @@ function OrderPreveiw(){
 
 function Home() {
   return (
-   <div className="mb-[5rem]">
-      <div className="flex flex-col gap-9">
+    <div className="flex flex-col gap-9 w-full h-full">
         <Banner/>
         <UtilButtons/>
         <OrderPreveiw/>
       </div>
-      <Nav/>
-   </div>
   )
 }
 

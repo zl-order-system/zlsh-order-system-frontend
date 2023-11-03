@@ -1,3 +1,4 @@
+import Nav from "../components/Nav.jsx"
 function Banner() {
   const weekdays = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
   let month = 9;
@@ -79,13 +80,53 @@ function UtilButtons() {
     </div>
   )
 }
+function EachDay(){
+  const orderItem=[]
+  return(
+    <div className="w-[9.7rem] min-w-[9.7rem] h-[9.7rem] border-[1px] border-[#ACACAC] rounded-[1.3rem]">
+      <div className=" text-black text-[1.3rem] font-[700] ml-[1rem]">8月</div>
+      <div className=" text-black text-[2.8rem] font-[400] leading-[2.8rem] text-center">29</div>
+      <div className=" text-[#6C6C6C] text-[1.3rem] font-[400] text-center">星期四</div>
+      <div className=" text-[#00C0CC] text-[1.6rem] font-[600] text-center">預定</div>
+    </div>
+  )
+}
+function OrderPreveiw(){
+  return(
+    <div className="flex gap-[1rem] flex-col mx-[1.5rem]">
+      <div className="flex justify-between">
+        <div className="text-black text-[1.8rem] font-[700]">預覽</div>
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+          <g clip-path="url(#clip0_58_99)">
+          <path d="M6.5625 35L28.4375 35C32.0556 35 35 32.0556 35 28.4375L35 6.5625C35 2.94437 32.0556 0 28.4375 0L6.5625 0C2.94437 0 0 2.94437 0 6.5625L0 28.4375C0 32.0556 2.94437 35 6.5625 35ZM1.45833 6.5625C1.45833 3.74792 3.74792 1.45833 6.5625 1.45833L28.4375 1.45833C31.2521 1.45833 33.5417 3.74792 33.5417 6.5625L33.5417 28.4375C33.5417 31.2521 31.2521 33.5417 28.4375 33.5417L6.5625 33.5417C3.74792 33.5417 1.45833 31.2521 1.45833 28.4375L1.45833 6.5625Z" fill="black"/>
+          <path d="M9.47912 18.2292L24.6516 18.2292C24.5598 18.4873 24.4256 18.7323 24.2331 18.9481C23.8452 19.3871 23.4645 19.8042 23.1875 20.0813L19.0633 24.2798C18.7804 24.5671 18.7848 25.0294 19.072 25.3123C19.3608 25.5938 19.8231 25.5909 20.1031 25.3036L24.2229 21.1094C24.5116 20.8206 24.9156 20.3802 25.3254 19.9165C26.546 18.5398 26.546 16.4631 25.3254 15.0865C24.9141 14.6227 24.5102 14.1809 24.2273 13.8979L20.1031 9.6994C19.9602 9.55356 19.772 9.48211 19.5839 9.48211C19.4002 9.48211 19.215 9.5521 19.072 9.69065C18.7848 9.97356 18.7804 10.4344 19.0633 10.7231L23.1918 14.9261C23.4645 15.1988 23.8452 15.6159 24.2345 16.0548C24.4256 16.2706 24.5612 16.5156 24.6516 16.7738L9.47912 16.7738C9.07662 16.7738 8.74996 17.1004 8.74996 17.5029C8.74996 17.9054 9.07662 18.2321 9.47912 18.2321V18.2292Z" fill="black"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_58_99">
+          <rect width="35" height="35" fill="white" transform="matrix(-1 0 0 -1 35 35)"/>
+          </clipPath>
+          </defs>
+          </svg>
+        </button>
+      </div>
+      <div className="flex flex-row justify-start flex-shrink-0 gap-5 overflow-hidden w-full">
+        <EachDay/>
+        <EachDay/>
+        <EachDay/>
+        <EachDay/>
+      </div>
+    </div>
+  )
+}
 
 function Home() {
   return (
-   <div className="flex flex-col gap-12">
-    <Banner/>
-    <UtilButtons/>
-   </div>
+    <div className="flex flex-col gap-9 w-full h-full">
+        <Banner/>
+        <UtilButtons/>
+        <OrderPreveiw/>
+      </div>
   )
 }
 

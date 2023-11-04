@@ -1,4 +1,8 @@
 import Nav from "../components/Nav.jsx"
+import { fetchOredrData } from "../../API/API.js";
+
+let orderData = fetchOredrData()  //取得使用者訂餐資料
+
 function Banner() {
   const weekdays = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
   let month = 9;
@@ -80,14 +84,19 @@ function UtilButtons() {
     </div>
   )
 }
-function EachDay(){
-  const orderItem=[]
+function EachDay({month,day,week,order}){
+  let orderHTML
+  if(order=="T"){
+    orderHTML = <div className=" text-[#525252] text-[1.6rem] font-[600] text-center">已預訂</div>
+  }else if(order=="F"){
+    orderHTML = <button className=" text-[#00C0CC] text-[1.6rem] font-[600] text-center -translate-x-[50%] left-[50%] relative">預訂</button>
+  }
   return(
     <div className="w-[9.7rem] min-w-[9.7rem] h-[9.7rem] border-[1px] border-[#ACACAC] rounded-[1.3rem]">
-      <div className=" text-black text-[1.3rem] font-[700] ml-[1rem]">8月</div>
-      <div className=" text-black text-[2.8rem] font-[400] leading-[2.8rem] text-center">29</div>
-      <div className=" text-[#6C6C6C] text-[1.3rem] font-[400] text-center">星期四</div>
-      <div className=" text-[#00C0CC] text-[1.6rem] font-[600] text-center">預定</div>
+      <div className=" text-black text-[1.3rem] font-[700] ml-[1rem]">{month}月</div>
+      <div className=" text-black text-[2.8rem] font-[400] leading-[2.8rem] text-center">{day}</div>
+      <div className=" text-[#6C6C6C] text-[1.3rem] font-[400] text-center">{week}</div>
+      {orderHTML}
     </div>
   )
 }
@@ -111,10 +120,9 @@ function OrderPreveiw(){
         </button>
       </div>
       <div className="flex flex-row justify-start flex-shrink-0 gap-5 overflow-hidden w-full">
-        <EachDay/>
-        <EachDay/>
-        <EachDay/>
-        <EachDay/>
+        {orderData.map( ( item,index )=>{
+          return <EachDay month={item["month"]} day={item["day"]} week={item["week"]} order={item["order"]} key={index}/>
+        })}
       </div>
     </div>
   )

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 function Nav() {
     return (
         <div className="w-full h-[4.3rem] bg-[#142C30F5] self-end">

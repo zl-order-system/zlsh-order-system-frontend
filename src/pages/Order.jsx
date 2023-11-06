@@ -1,8 +1,8 @@
 function Order(){
     return(
-        <div className=" mx-[1rem] my-[3rem] flex flex-col justify-between gap-[0.7rem] ">
+        <div className="px-[1rem] py-[3rem] flex flex-col justify-start gap-[0.7rem] pb-16">
             <div className=" flex  flex-row justify-between items-center">
-                <div className="text-[1.8rem] text-[black] font-[700]">預定</div>
+                <div className="text-[1.8rem] text-black font-bold">預定</div>
                 <a href="https://www.zlsh.tp.edu.tw/category/office/div_300/section_lunch/lunch1_list/"><div className="text-[1.2rem] text-[#00AEB9] underline font-[400]">查看菜單</div></a>
             </div>
             <div className=" border-[1px] border-[#ACACAC] rounded-[1.3rem] bg-[white]  shadow-[0px 4px 8px 0px rgba(90, 90, 90, 0.25)] py-[1.3rem] px-[1.9rem]  ">
@@ -14,7 +14,7 @@ function Order(){
 function Item(){
     return(
         <div>
-            <div className=" flex  flex-row justify-between items-center">
+            <div className=" flex flex-row justify-between items-center">
                 <div className="text-[1.7rem] text-[black] font-[700]">8月 29日</div>
                 <button className="rotate-0">
                     <div>

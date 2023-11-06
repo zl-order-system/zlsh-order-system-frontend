@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter} from 'react-router-dom';
 // components
 import Home from './pages/Home'
 import Nav from './components/Nav'
@@ -6,15 +6,15 @@ import Order from './pages/Order';
 
 function App() {
   return (
-    <div className='flex flex-col w-[100dvw] h-[100dvh]'>
+    <div className='grid grid-cols-1 grid-rows-[1fr_4.3rem] w-[100dvw] h-[100dvh]'>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/order" element={<Order />} />
         </Routes>
+        {/* 魔法span，防止Nav跑上去 */}
+        <Nav/>
       </Router>
-      {/* <Home/> */}
-      <Nav/>
     </div>
   )
 }

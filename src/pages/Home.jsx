@@ -130,7 +130,7 @@ function OrderPreveiw(){
 
 function Home() {
   return (
-    <div className="flex flex-col gap-9 w-full h-full">
+    <div className="flex flex-col gap-9 w-full h-full overflow-scroll pb-16">
         <Banner/>
         <UtilButtons/>
         <OrderPreveiw/>

@@ -1,3 +1,7 @@
+import { fetchOredrData } from "../../API/API.js";
+
+let orderData = fetchOredrData()  //取得使用者訂餐資料
+
 function Order(){
     return(
         <div className="px-[1rem] py-[3rem] flex flex-col justify-start gap-[0.7rem] pb-16">
@@ -8,14 +12,83 @@ function Order(){
             <div className=" border-[1px] border-[#ACACAC] rounded-[1.3rem] bg-[white]  shadow-[0px 4px 8px 0px rgba(90, 90, 90, 0.25)] py-[1.3rem] px-[1.9rem]  ">
                 <Item/>
             </div>
+            <div>
+
+            </div>
         </div>
     )
 }
 function Item(){
+    let html = []
+    orderData.map((item,index) => {
+        html.push(getItemHTML(item,index))
+    })
+    return html
+}
+
+function getItemOptionHTML(item,index){
+    let waySelect=[]
+    let numSelect = []
+    if (item["orderState"] == "T") {
+        if (item["orderData"]["way"] == "own") {
+            waySelect.push(
+                <select className=" w-[5rem] h-[1.8rem] text-[1.3rem] text-[#6C6C6C] font-[400]  rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] ">
+                    <option value="way">方式</option>
+                    <option value="own" selected>自備餐盒</option>
+                    <option value="school">學校餐盒</option>
+                </select>)
+        } else if (item["orderData"]["way"] == "school") {
+            waySelect.push(
+                <select className=" w-[5rem] h-[1.8rem] text-[1.3rem] text-[#6C6C6C] font-[400]  rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] ">
+                    <option value="way">方式</option>
+                    <option value="own">自備餐盒</option>
+                    <option value="school" selected>學校餐盒</option>
+                </select>)
+        }
+    } else if (item["orderState"] == "F") {
+        waySelect.push(
+            <select className=" w-[5rem] h-[1.8rem] text-[1.3rem] text-[#6C6C6C] font-[400]  rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] ">
+                <option value="way" selected>方式</option>
+                <option value="own">自備餐盒</option>
+                <option value="school">學校餐盒</option>
+            </select>)
+    }
+    item["allMealNumber"].map(num => {
+        if (item["orderState"] == "F") {
+            numSelect.push(<option value={num}>{num}</option>)
+        } else if (item["orderState"] == "T") {
+            if (item["orderData"]["number"] == num) {
+                numSelect.push(<option value={num} selected>{num}</option>)
+            } else {
+                numSelect.push(<option value={num}>{num}</option>)
+            }
+        }
+    })
+    numSelect=<select className=" w-[5rem] h-[1.8rem] text-[1.3rem] text-[#6C6C6C] font-[400]  rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] ">{numSelect}</select>
+    return [waySelect,numSelect]
+}
+
+function getItemHTML(item,index){
+    let textcolor
+    let money 
+    if(item["orderState"]=="T"){
+        textcolor=<div className=" text-[1.625rem] text-[#9C9C9C] font-[600] ">已預定</div>
+    }else if(item["orderState"]=="F"){
+        textcolor=<div className=" text-[1.625rem] text-[#00C0CC] font-[600] ">預定</div>
+    }
+    if(item["orderState"]=="T"){
+        if(item["orderData"]["way"]=="own"){
+            money="65"
+        }else if(item["orderData"]["way"]=="school"){
+            money="70"
+        }
+    }else if(item["orderState"]=="F"){
+        money = "--"
+    }
     return(
-        <div>
+        <div key={index}>
             <div className=" flex flex-row justify-between items-center">
-                <div className="text-[1.7rem] text-[black] font-[700]">8月 29日</div>
+                <div className="text-[1.7rem] text-[black] font-[700]">{item['month']}月 {item['day']}日</div>
                 <button className="rotate-0">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47" fill="none">
@@ -26,28 +99,13 @@ function Item(){
             </div>
             <div className="flex flex-row justify-between items-center">
                 <div className="flex flex-row gap-[0.3rem]">
-                    <select className=" w-[5rem] h-[1.8rem] text-[1.3rem] text-[#6C6C6C] font-[400]  rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] ">
-                        <option value="">方式</option>
-                        <option value="own">自備餐盒</option>
-                        <option value="school">學校餐盒</option>
-                    </select>
-                    <select className=" w-[5rem] h-[1.8rem] text-[1.3rem] text-[#6C6C6C] font-[400] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] ">
-                        <option value="mealNum">餐號</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                    <div className="  translate-y-[0.5rem] text-[1rem] text-[#6C6C6C] font-[400] ">65元</div>
+                    {getItemOptionHTML(item,index)}
+                    <div className="  translate-y-[0.5rem] text-[1rem] text-[#6C6C6C] font-[400] ">{money}元</div>
                 </div>
-                <button><div className=" text-[1.625rem] text-[#00C0CC] font-[600] ">預定</div></button>
+                <button>{textcolor}</button>
             </div>
         </div>
     )
-}
-function getItemHTML(orderData){
-    let html = ""
-    orderData
-
 }
 
 export default Order

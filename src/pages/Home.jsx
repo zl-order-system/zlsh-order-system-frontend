@@ -1,4 +1,3 @@
-import Nav from "../components/Nav.jsx"
 import { fetchOredrData } from "../../API/API.js";
 import { Link } from 'react-router-dom';
 

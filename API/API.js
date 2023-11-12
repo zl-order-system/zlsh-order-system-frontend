@@ -1,7 +1,7 @@
 const orderDataURL = "URL"
 
 
-export function fetchOredrData(){
+export function fetchOrderData(){
     return [{
         "month":"8",
         "day":"30",

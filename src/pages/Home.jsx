@@ -1,7 +1,7 @@
-import { fetchOredrData } from "../../API/API.js";
+import { fetchOrderData } from "../../API/API.js";
 import { Link } from 'react-router-dom';
 
-let orderData = fetchOredrData()  //取得使用者訂餐資料
+let orderData = fetchOrderData()  //取得使用者訂餐資料
 
 function Banner() {
   const weekdays = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];

@@ -1,6 +1,11 @@
-import { fetchOredrData } from "../../API/API.js";
+import { fetchOrderData } from "../../API/API.js";
+import { useState } from "react";
 
-let orderData = fetchOredrData()  //取得使用者訂餐資料
+let orderData = fetchOrderData()//取得使用者訂餐資料
+
+
+
+
 
 function Order(){
     return(
@@ -9,7 +14,7 @@ function Order(){
                 <div className="text-[1.8rem] text-black font-bold">預定</div>
                 <a href="https://www.zlsh.tp.edu.tw/category/office/div_300/section_lunch/lunch1_list/"><div className="text-[1.2rem] text-[#00AEB9] underline font-[400]">查看菜單</div></a>
             </div>
-            <div className=" border-[1px] border-[#ACACAC] rounded-[1.3rem] bg-[white]  shadow-[0px 4px 8px 0px rgba(90, 90, 90, 0.25)] py-[1.3rem] px-[1.9rem]  ">
+            <div className=" border-[1px] border-[#ACACAC] rounded-[1.3rem] bg-[white]  shadow-[0px_4px_8px_0px_rgba(90,90,90,0.25)] py-[1.3rem] px-[1.9rem]  ">
                 <Item/>
             </div>
             <div>
@@ -86,8 +91,8 @@ function getItemHTML(item,index){
         money = "--"
     }
     return(
-        <div key={index}>
-            <div className=" flex flex-row justify-between items-center">
+        <div className="mb-[1.3rem]" key={index}>
+            <div className=" flex flex-row justify-between items-center">{/* onclick */}
                 <div className="text-[1.7rem] text-[black] font-[700]">{item['month']}月 {item['day']}日</div>
                 <button className="rotate-0">
                     <div>

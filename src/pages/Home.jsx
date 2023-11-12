@@ -1,9 +1,12 @@
 import { fetchOrderData } from "../../API/API.js";
 import { Link } from 'react-router-dom';
+import { useState,useEffect } from "react";
 
-let orderData = fetchOrderData()  //取得使用者訂餐資料
+// let orderData = fetchOrderData()  //取得使用者訂餐資料
 
-function Banner() {
+function Banner({orderData}) {
+  if(orderData==null)return
+
   const weekdays = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
   let month = 9;
   let date = 29;
@@ -36,7 +39,9 @@ function Banner() {
   )
 }
 
-function UtilButtons() {
+function UtilButtons({orderData}) {
+  if(orderData==null)return
+
   return (
     <div className="flex justify-evenly">
       <button className='flex flex-col justify-center items-center'>
@@ -100,7 +105,9 @@ function EachDay({month,day,week,orderState}){
     </div>
   )
 }
-function OrderPreveiw(){
+function OrderPreveiw({orderData}){
+  if(orderData==null)return
+
   return(
     <div className="flex gap-[1rem] flex-col mx-[1.5rem]">
       <div className="flex justify-between">
@@ -129,11 +136,20 @@ function OrderPreveiw(){
 }
 
 function Home() {
+  const [orderData,setOrderData] = useState(null) //取得使用者訂餐資料
+    useEffect(()=>{
+        fetchOrderData().then((value)=>{
+            setOrderData(value)
+        })
+    },[])
+    // useEffect(() => {   搞死人的異步
+    //     console.log(orderData)
+    //   }, [orderData]);
   return (
     <div className="flex flex-col gap-9 w-full h-full overflow-scroll pb-16">
-        <Banner/>
-        <UtilButtons/>
-        <OrderPreveiw/>
+        <Banner orderData={orderData}/>
+        <UtilButtons orderData={orderData}/>
+        <OrderPreveiw orderData={orderData}/>
       </div>
   )
 }

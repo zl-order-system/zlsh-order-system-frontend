@@ -1,45 +1,22 @@
-import { useState } from "react";
+// 測試頁面不要管
+import { useState,useEffect } from "react";
+import { fetchOrderData } from "../../API/API.js";
 
-function Test() {
-    const [className, change] = useState("");
-
-    const handleClick = () => {
-        console.log("s")
-        change("animate-spin");
-    };
-
-    return <div className={"fixed top-[50%] left-[50%] bg-black w-28 h-28 " + className} onClick={handleClick}></div>;
+function c(){
+  const [orderData,setOrderData] = useState(null) //取得使用者訂餐資料
+  useEffect(()=>{
+      fetchOrderData().then((value)=>{
+          setOrderData(value)
+      })
+  },[])
+  // useEffect(() => {    搞死人的異步
+  //   console.log(orderData);
+  // }, [orderData]);
+  return <E r={orderData}/>
 }
-
-export default MyComponent;
-// animate-slideIn
-
-
-function MyComponent() {
-    const [divList, setDivList] = useState([
-      { id: 1, content: 'Div 1' },
-      { id: 2, content: 'Div 2' },
-      { id: 3, content: 'Div 3' },
-    ]);
-  
-    const updateDivContent = (key, newContent) => {
-      setDivList((prevList) =>
-        prevList.map((item) =>
-          item.id === key ? { ...item, content: newContent } : item
-        )
-      );
-    };
-  
-    return (
-      <div>
-        {divList.map((item) => (
-          <div key={item.id}>
-            {item.content}
-            <button onClick={() => updateDivContent(item.id, 'New Content')}>
-              Update
-            </button>
-          </div>
-        ))}
-      </div>
-    );
-  }
+function E({r}){
+  console.log(r)
+  if(r==null) return
+  return <div>{r[0]["month"]}</div>
+}
+export default c

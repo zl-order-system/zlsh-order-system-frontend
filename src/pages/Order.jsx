@@ -1,13 +1,18 @@
 import { fetchOrderData } from "../../API/API.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-let orderData = fetchOrderData()//取得使用者訂餐資料
-
-
-
-
+// let orderData = fetchOrderData()
 
 function Order(){
+    const [orderData,setOrderData] = useState(null) //取得使用者訂餐資料
+    useEffect(()=>{
+        fetchOrderData().then((value)=>{
+            setOrderData(value)
+        })
+    },[])
+    // useEffect(() => {       搞死人的異步
+    //     console.log(orderData)
+    //   }, [orderData]);
     return(
         <div className="px-[1rem] py-[3rem] flex flex-col justify-start gap-[0.7rem] pb-16">
             <div className=" flex  flex-row justify-between items-center">
@@ -15,7 +20,7 @@ function Order(){
                 <a href="https://www.zlsh.tp.edu.tw/category/office/div_300/section_lunch/lunch1_list/"><div className="text-[1.2rem] text-[#00AEB9] underline font-[400]">查看菜單</div></a>
             </div>
             <div className=" border-[1px] border-[#ACACAC] rounded-[1.3rem] bg-[white]  shadow-[0px_4px_8px_0px_rgba(90,90,90,0.25)] py-[1.3rem] px-[1.9rem]  ">
-                <Item/>
+                <Item orderData={orderData} />
             </div>
             <div>
 
@@ -23,8 +28,9 @@ function Order(){
         </div>
     )
 }
-function Item(){
+function Item({orderData}){
     let html = []
+    if(orderData == null) return
     orderData.map((item,index) => {
         html.push(getItemHTML(item,index))
     })

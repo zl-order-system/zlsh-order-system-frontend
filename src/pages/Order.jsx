@@ -1,7 +1,6 @@
 import { fetchOrderData } from "../../API/API.js";
 import { useEffect, useState } from "react";
 
-// let orderData = fetchOrderData()
 
 function Order(){
     const [orderData,setOrderData] = useState(null) //取得使用者訂餐資料
@@ -30,6 +29,9 @@ function Item({orderData}){
     if(orderData == null) return
     orderData.map((item,index) => {
         html.push(getItemHTML(item,index,orderData.length))
+        if(index != orderData.length-1){
+            html.push(<div className=" my-[0.5rem] mx-[0.3rem] w-[100%] bg-[#B6B6B6] h-[1px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25)]"></div>)
+        }
     })
     return html
 }

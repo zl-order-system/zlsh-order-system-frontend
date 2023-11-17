@@ -37,6 +37,18 @@ export async function fetchOrderData(){
             "orderState":"F",
             "allMealNumber":[1,2,3],
             "orderData":"NULL"
+        },
+        {
+            "month":"9",
+            "day":"6",
+            "week":"星期三",
+            "orderState":"F",
+            "allMealNumber":[1,2,3],
+            "orderData":{
+                "number":"1",
+                "way":"school",
+                "money":"70"
+            }
         }]
     
     fetch(orderDataURL).then(res=>{

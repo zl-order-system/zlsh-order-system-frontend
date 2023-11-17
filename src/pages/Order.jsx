@@ -10,9 +10,6 @@ function Order(){
             setOrderData(value)
         })
     },[])
-    // useEffect(() => {       搞死人的異步
-    //     console.log(orderData)
-    //   }, [orderData]);
     return(
         <div className="px-[1rem] py-[3rem] flex flex-col justify-start gap-[0.7rem] pb-16">
             <div className=" flex  flex-row justify-between items-center">
@@ -20,7 +17,7 @@ function Order(){
                 <a href="https://www.zlsh.tp.edu.tw/category/office/div_300/section_lunch/lunch1_list/"><div className="text-[1.2rem] text-[#00AEB9] underline font-[400]">查看菜單</div></a>
             </div>
             <div className=" border-[1px] border-[#ACACAC] rounded-[1.3rem] bg-[white]  shadow-[0px_4px_8px_0px_rgba(90,90,90,0.25)] py-[1.3rem] px-[1.9rem]  ">
-                <Item orderData={orderData} />
+                {<Item orderData={orderData} />}
             </div>
             <div>
 

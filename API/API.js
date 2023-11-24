@@ -10,7 +10,7 @@ export async function fetchOrderData(){
             "allMealNumber":[1,2,3],
             "orderData":{
                 "number":"2",
-                "way":"own",
+                "lunchBox":"own",
                 "money":"65"
             }
         },
@@ -46,12 +46,12 @@ export async function fetchOrderData(){
             "allMealNumber":[1,2,3],
             "orderData":{
                 "number":"1",
-                "way":"school",
+                "lunchBox":"school",
                 "money":"70"
             }
         }]
-    
+
     fetch(orderDataURL).then(res=>{
       return JSON.parse(res)
-    }) 
+    })
 }

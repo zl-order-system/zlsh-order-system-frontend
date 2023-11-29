@@ -12,12 +12,12 @@ function Order(){
 
     return (
         <div className="px-[1rem] py-[3rem] flex flex-col justify-start gap-[0.7rem] pb-16">
-            <div className=" flex  flex-row justify-between items-center">
+            <div className="flex flex-row justify-between items-center">
                 <div className="text-[1.8rem] text-black font-bold">預定</div>
                 <a href="https://www.zlsh.tp.edu.tw/category/office/div_300/section_lunch/lunch1_list/"><div className="text-[1.2rem] text-[#00AEB9] underline font-[400]">查看菜單</div></a>
             </div>
-            <div className=" border-[1px] border-[#ACACAC] rounded-[1.3rem] bg-[white]  shadow-[0px_4px_8px_0px_rgba(90,90,90,0.25)] py-[1.3rem] px-[1.9rem]  ">
-                {<Items orderData={orderData} />}
+            <div className="border-[1px] border-[#ACACAC] rounded-[1.3rem] bg-[white] shadow-[0px_4px_8px_0px_rgba(90,90,90,0.25)] py-[1.3rem] px-[1.9rem]">
+                <Items orderData={orderData} />
             </div>
             <div>
 
@@ -35,7 +35,7 @@ function Items({orderData}){
         items.push(<Item item={item} index={index} total={orderData.length}/>);
         // Insert divider if the current item is not the last item
         if(index != orderData.length - 1){
-            items.push(<div className=" my-[0.5rem] mx-[0.3rem] w-[100%] bg-[#B6B6B6] h-[1px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25)]"></div>);
+            items.push(<div className="my-2 mx-[0.3rem] bg-[#B6B6B6] h-[1px] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25)]"></div>);
         }
     });
 
@@ -85,9 +85,9 @@ function Item({item, index, total}){
                 </button>
             </div>
             <div className="flex flex-row justify-between items-center">
-                <div className="flex flex-row gap-[0.3rem]">
-                    {<Option item={item}/>}
-                    <div className="translate-y-[0.5rem] text-[1rem] text-[#6C6C6C] font-[400]">{price}元</div>
+                <div className="flex flex-row gap-2">
+                    <Option item={item}/>
+                    <div className="translate-y-[0.25rem] text-[1.25rem] text-[#6C6C6C] font-[400]">{price}元</div>
                 </div>
                 <button>{buttonText}</button>
             </div>
@@ -97,25 +97,19 @@ function Item({item, index, total}){
 
 function Option({item}){
     let numSelect = []
-    item["allMealNumber"].map(num => {
-        if (item["orderState"] == "F") {
-            numSelect.push(<option value={num}>{num}</option>)
-        } else if (item["orderState"] == "T") {
-            if (item["orderData"]["number"] == num) {
-                numSelect.push(<option value={num} selected>{num}</option>)
-            } else {
-                numSelect.push(<option value={num}>{num}</option>)
-            }
-        }
+    item["availableMeals"].map(num => {
+        numSelect.push(<option value={num}>{num}</option>)
     })
 
     return (
         <>
-            <select defaultValue={item["orderData"]["lunchBox"]} className="w-[5rem] h-[1.8rem] text-[1.3rem] text-[#6C6C6C] font-[400] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%]">
+            <select defaultValue={item["orderData"]["lunchBox"]} className="py-0.5 px-1 h-fit text-[1.2rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
                 <option value="own">自備餐盒</option>
                 <option value="school">學校餐盒</option>
             </select>
-            <select className="w-[5rem] h-[1.8rem] text-[1.3rem] text-[#6C6C6C] font-[400] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%]">{numSelect}</select>
+            <select defaultValue={item["orderData"]["mealID"]} className="py-0.5 px-1 text-[1.2rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
+                {numSelect}
+            </select>
         </>
     );
 }

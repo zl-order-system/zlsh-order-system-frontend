@@ -8,7 +8,7 @@ import Account from './pages/Account';
 
 function App() {
   return (
-    <div className='grid grid-cols-1 grid-rows-[1fr_4.3rem] w-[100dvw] h-[100dvh]'>
+    <div className='grid grid-cols-1 grid-rows-[1fr_4.3rem] w-[100dvw] h-[100dvh] min-w-[260px]'>
       <Router>
         <Routes>
           <Route path="/" element={<Home/>} />

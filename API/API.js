@@ -7,10 +7,10 @@ export async function fetchOrderData(){
             "day":"30",
             "week":"星期四",
             "orderState":"T",
-            "allMealNumber":[1,2,3],
+            "availableMeals":[1,2,3],
             "orderData":{
-                "number":"2",
-                "way":"own",
+                "mealID":"2",
+                "lunchBox":"own",
                 "money":"65"
             }
         },
@@ -19,7 +19,7 @@ export async function fetchOrderData(){
             "day":"1",
             "week":"星期五",
             "orderState":"F",
-            "allMealNumber":[1,2,3],
+            "availableMeals":[1,2,3],
             "orderData":"NULL"
         },
         {
@@ -27,7 +27,7 @@ export async function fetchOrderData(){
             "day":"4",
             "week":"星期一",
             "orderState":"F",
-            "allMealNumber":[1,2,3],
+            "availableMeals":[1,2,3],
             "orderData":"NULL"
         },
         {
@@ -35,7 +35,7 @@ export async function fetchOrderData(){
             "day":"5",
             "week":"星期二",
             "orderState":"F",
-            "allMealNumber":[1,2,3],
+            "availableMeals":[1,2,3],
             "orderData":"NULL"
         },
         {
@@ -43,15 +43,15 @@ export async function fetchOrderData(){
             "day":"6",
             "week":"星期三",
             "orderState":"F",
-            "allMealNumber":[1,2,3],
+            "availableMeals":[1,2,3],
             "orderData":{
-                "number":"1",
-                "way":"school",
+                "mealID":"1",
+                "lunchBox":"school",
                 "money":"70"
             }
         }]
-    
+
     fetch(orderDataURL).then(res=>{
       return JSON.parse(res)
-    }) 
+    })
 }

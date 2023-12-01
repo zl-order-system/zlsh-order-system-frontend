@@ -72,6 +72,7 @@ function UtilButtons({orderData}) {
         </svg>
         <span className='font-bold text-center py-0.5'>查看菜單</span>
       </button>
+      <Link to={"/manage"}>
       <button className='flex flex-col justify-center items-center'>
         <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="36" cy="36" r="36" fill="#D5EFF9"/>
@@ -86,6 +87,7 @@ function UtilButtons({orderData}) {
         </svg>
         <span className='font-bold text-center py-0.5'>訂單管理</span>
       </button>
+      </Link>
     </div>
   )
 }

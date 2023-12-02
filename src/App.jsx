@@ -5,6 +5,8 @@ import Nav from './components/Nav'
 import Order from './pages/Order';
 import Test from './pages/Test';
 import Account from './pages/Account';
+import Login from './pages/Login';
+import Manage from './pages/Manage';
 
 function App() {
   return (
@@ -13,10 +15,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/order" element={<Order/>} />
+          <Route path="/manage" element={<Manage/>} />
           <Route path="/test" element={<Test/>} />
           <Route path="/account" element={<Account/>} />
+          <Route path="/login" element={<Login/>} />
         </Routes>
-        <Nav/>
+        {window.location.pathname !== '/login' && <Nav />}
       </Router>
     </div>
   )

@@ -5,8 +5,8 @@ import Nav from './components/Nav'
 import Order from './pages/Order';
 import Test from './pages/Test';
 import Account from './pages/Account';
-import Login from './pages/login';
-import Manage from './pages/manage';
+import Login from './pages/Login';
+import Manage from './pages/Manage';
 
 function App() {
   return (

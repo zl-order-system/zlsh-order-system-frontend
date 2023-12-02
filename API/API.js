@@ -1,4 +1,5 @@
 const orderDataURL = "URL"
+const manageDataURL = "URL"
 
 
 export async function fetchOrderData(){
@@ -50,8 +51,49 @@ export async function fetchOrderData(){
                 "money":"70"
             }
         }]
-
-    fetch(orderDataURL).then(res=>{
-      return JSON.parse(res)
+    
+    let result
+    await fetch(orderDataURL).then(res=>{
+      result = JSON.parse(res)
     })
+    return result
+}
+
+export async function fetchManageData(){
+    return {
+        "headerPreviews":{
+            "paid":"500",
+            "unpaid":"140",
+            "NotOrderedDays":"3",
+        },
+        "barChart":{},
+        "item":[{
+            "date":"8/29 週一",
+            "stateOfPreviewText":"已繳費",
+            "mealNumber":"1",
+            "lunchBox":"自備餐盒",
+            "cost":"65",
+        },
+        {
+            "date":"8/30 週二",
+            "stateOfPreviewText":"未繳費",
+            "mealNumber":"4",
+            "lunchBox":"學校餐盒",
+            "cost":"70",
+        },
+        {
+            "date":"8/31 週三",
+            "stateOfPreviewText":"未訂餐",
+            "mealNumber":"-",
+            "lunchBox":"-",
+            "cost":"-",
+        }
+        ]
+    }
+
+    let result
+    await fetch(manageDataURL).then(res=>{
+      result = JSON.parse(res)
+    })
+    return result
 }

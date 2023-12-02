@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react"
-import { fetchManageData } from "../../API/API"
+import { fetchManageData } from "../API/API"
 import { Link } from 'react-router-dom';
 
 

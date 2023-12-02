@@ -1,4 +1,4 @@
-import { fetchOrderData } from "../../API/API.js";
+import { fetchOrderData } from "../API/API.js";
 import { Link } from 'react-router-dom';
 import { useState,useEffect } from "react";
 

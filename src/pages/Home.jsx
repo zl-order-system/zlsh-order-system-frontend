@@ -98,7 +98,7 @@ function EachDay({month,day,week,orderState}){
   if(orderState=="T"){
     orderHTML = <div className=" text-[#525252] text-[1.6rem] font-[600] text-center">已預訂</div>
   }else if(orderState=="F"){
-    orderHTML = <button className=" text-[#00C0CC] text-[1.6rem] font-[600] text-center -translate-x-[50%] left-[50%] relative">預訂</button>
+    orderHTML = <Link to={"/manage"}><button className=" text-[#00C0CC] text-[1.6rem] font-[600] text-center -translate-x-[50%] left-[50%] relative">預訂</button></Link>
   }
   return(
     <div className="w-[9.7rem] min-w-[9.7rem] h-[9.7rem] border-[1px] border-[#ACACAC] rounded-[1.3rem]">
@@ -116,7 +116,7 @@ function OrderPreveiw({orderData}){
     <div className="flex gap-[1rem] flex-col mx-[1.5rem]">
       <div className="flex justify-between">
         <div className="text-black text-[1.8rem] font-[700]">預覽</div>
-        <Link to={"/order"}>
+        <Link to={"/manage"}>
           <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
           <g clipPath="url(#clip0_58_99)">
           <path d="M6.5625 35L28.4375 35C32.0556 35 35 32.0556 35 28.4375L35 6.5625C35 2.94437 32.0556 0 28.4375 0L6.5625 0C2.94437 0 0 2.94437 0 6.5625L0 28.4375C0 32.0556 2.94437 35 6.5625 35ZM1.45833 6.5625C1.45833 3.74792 3.74792 1.45833 6.5625 1.45833L28.4375 1.45833C31.2521 1.45833 33.5417 3.74792 33.5417 6.5625L33.5417 28.4375C33.5417 31.2521 31.2521 33.5417 28.4375 33.5417L6.5625 33.5417C3.74792 33.5417 1.45833 31.2521 1.45833 28.4375L1.45833 6.5625Z" fill="black"/>
@@ -146,9 +146,6 @@ function Home() {
             setOrderData(value)
         })
     },[])
-    // useEffect(() => {   搞死人的異步
-    //     console.log(orderData)
-    //   }, [orderData]);
   return (
     <div className="flex flex-col gap-9 w-full h-full overflow-scroll pb-16">
         <Banner orderData={orderData}/>

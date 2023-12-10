@@ -1,3 +1,4 @@
+import Information from "./information.json"
 const orderDataURL = "URL"
 const manageDataURL = "URL"
 
@@ -73,11 +74,11 @@ export async function fetchManageData() {
         "barChart": {},
         "item": [{
             "date": "8/29 週一",
-            "stateOfPreviewText": "已繳費",
+            "stateOfPreviewText": "已繳費", //已繳費0 未繳費1 未訂餐2
             "mealNumber": "1",
             "lunchBox": "自備餐盒",
             "cost": "65",
-            "allMealNumber": [1, 2, 3, 4, 5]
+            "allMealNumber": [1, 2, 3, 4, 5],
         },
         {
             "date": "8/30 週二",
@@ -111,4 +112,32 @@ export async function fetchManageData() {
         result = JSON.parse(res)
     })
     return result
+}
+export function checkOrderState(stateCode){ //訂餐狀態碼012轉換為中文
+    switch (stateCode) {    //已繳費0 未繳費1 未訂餐2
+        case "0":
+            return "已繳費"
+        case "1":
+            return "未繳費"
+        case "2":
+            return "未訂餐"
+        default:
+            return "error"
+    }
+}
+export function getCost(lunchBox){ //取得餐盒對應的錢
+    let info = Information
+    switch (lunchBox) {
+        case "自備餐盒":
+            return info["mealCost"]["自備餐盒"]
+        case "學校餐盒":
+            return info["mealCost"]["學校餐盒"]
+        case "-":
+            return info["mealCost"]["自備餐盒"]
+        default:
+            break;
+    }
+}
+export function postOrder(postData){    //修改或新增訂單
+    
 }

@@ -71,6 +71,7 @@ function creatData(value){
 function Manage() {
     const [data, setData] = useState(null);
     const [HTML, setHTML] = useState(<div>Loding...</div>); //到時候useState()裡放loading HTML
+    // Use effect 在 component 被 mount 的時候會執行喔
     useEffect(() => {
         fetchManageData().then(value => {
             originData = value

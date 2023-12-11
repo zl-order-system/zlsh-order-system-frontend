@@ -71,7 +71,6 @@ export async function fetchManageData() {
             "unpaid": "140",
             "NotOrderedDays": "3",
         },
-        "barChart": {},
         "item": [{
             "date": "8/29 週一",
             "stateOfPreviewText": "已繳費", //已繳費0 未繳費1 未訂餐2
@@ -106,7 +105,7 @@ export async function fetchManageData() {
         }
         ]
     }
-    
+
     let result
     await fetch(manageDataURL).then(res => {
         result = JSON.parse(res)
@@ -139,5 +138,5 @@ export function getCost(lunchBox){ //取得餐盒對應的錢
     }
 }
 export function postOrder(postData){    //修改或新增訂單
-    
+
 }

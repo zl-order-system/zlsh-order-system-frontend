@@ -131,7 +131,7 @@ function OrderPreveiw({orderData}){
         </Link>
       </div>
       <div className="flex flex-row justify-start flex-shrink-0 gap-5 overflow-scroll w-full py-4">
-        {orderData.map( ( item,index )=>{
+        {orderData.map((item, index) => {
           return <EachDay month={item["month"]} day={item["day"]} week={item["week"]} orderState={item["orderState"]} key={index}/>
         })}
       </div>

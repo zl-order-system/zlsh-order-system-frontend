@@ -187,11 +187,9 @@ function Items({itemsData}){
                             <option value="學校餐盒">學校餐盒</option>
                         </select>
                         <select defaultValue={element["mealNumber"]} onChange={(event)=>{handleSelectChange(event,index,"num")}} className="py-0.5 px-1 text-[0.9rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
-                            {
-                                element["allMealNumber"].map((element, index)=>{
-                                    return <option value={element} key={index}>{element}</option>
-                                })
-                            }
+                            {element["allMealNumber"].map((element, index) => {
+                                return <option value={element} key={index}>{element}</option>
+                            })}
                         </select>
                         <div className="text-[#565656] text-[1rem] font-[400] flex flex-row justify-start gap-[1.5rem] ml-1">{element["cost"]}元</div>
                     </div>

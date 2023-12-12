@@ -124,7 +124,6 @@ function Manage() {
 }
 
 function Items({itemsData}){
-    let html = [];
     const [newItemData, setNewItemData] = useState(firstSetNewItemData())
     function firstSetNewItemData(){
         let o = [...itemsData]
@@ -142,6 +141,7 @@ function Items({itemsData}){
         })
         return o
     }
+
     let handleSelectChange = (event, index, value) => {
         let o = [...newItemData]
         if(value=="box"){
@@ -163,11 +163,13 @@ function Items({itemsData}){
             o[index]["css"]["cursorOfButton"] = "cursor-default"
         }
     };
+
     let handleButtonClick = (event, index) => {
         console.log(selectedValue); //取得使用者所更改選取的index與更改的value
     };
-    newItemData.forEach((element, index) => {
-        html.push(
+
+    return newItemData.map((element, index) => {
+        return (
             <div className=" flex flex-col w-full my-[0.75rem]" key={index}>
                 <div className=" flex flex-row justify-between">
                     <div className=" text-black text-[1.5rem] font-[700]">{element["date"]}</div>
@@ -187,19 +189,16 @@ function Items({itemsData}){
                             <option value="學校餐盒">學校餐盒</option>
                         </select>
                         <select defaultValue={element["mealNumber"]} onChange={(event)=>{handleSelectChange(event,index,"num")}} className="py-0.5 px-1 text-[0.9rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
-                            {element["allMealNumber"].map((element, index) => {
-                                return <option value={element} key={index}>{element}</option>
-                            })}
+                            {element["allMealNumber"].map((element, index) => <option value={element} key={index}>{element}</option>)}
                         </select>
                         <div className="text-[#565656] text-[1rem] font-[400] flex flex-row justify-start gap-[1.5rem] ml-1">{element["cost"]}元</div>
                     </div>
                     <button className={`text-[#35B1E2] text-[1rem] font-[600] ${element["css"]["displayOfOrderButton"]} ${element["css"]["opacityOfButton"]} ${element["css"]["cursorOfButton"]}`}>預定</button>
-                    <button onClick={(event)=>{handleButtonClick(event,index)}} className={`${element["css"]["displayOfOrderEditButton"]} ${element["css"]["opacityOfButton"]} ${element["css"]["cursorOfButton"]}`}><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none"><path opacity="0.5" fillRule="evenodd" clipRule="evenodd" d="M2.84375 19.25C2.84375 18.8876 3.13757 18.5938 3.5 18.5938H17.5C17.8624 18.5938 18.1563 18.8876 18.1563 19.25C18.1563 19.6124 17.8624 19.9062 17.5 19.9062H3.5C3.13757 19.9062 2.84375 19.6124 2.84375 19.25Z" fill="#323232"/><path opacity="0.5" d="M16.6956 6.45017C17.7708 5.37494 17.7708 3.63165 16.6956 2.55642C15.6204 1.48119 13.8771 1.48119 12.8019 2.55642L12.1808 3.17749C12.1893 3.20317 12.1981 3.22921 12.2073 3.25558C12.4349 3.91172 12.8644 4.77187 13.6724 5.57986C14.4804 6.38784 15.3405 6.81735 15.9967 7.04499C16.0229 7.0541 16.0488 7.06289 16.0744 7.07136L16.6956 6.45017Z" fill="#323232"/><path d="M12.2072 3.14966L12.1804 3.1764C12.189 3.20208 12.1978 3.22812 12.2069 3.25449C12.4346 3.91064 12.8641 4.77078 13.672 5.57877C14.4801 6.38675 15.3402 6.81627 15.9964 7.04391C16.0224 7.05294 16.0481 7.06165 16.0734 7.07004L10.0798 13.0637C9.67575 13.4677 9.47362 13.6699 9.25084 13.8436C8.98808 14.0486 8.70372 14.2243 8.40285 14.3677C8.14779 14.4892 7.87671 14.5796 7.33455 14.7604L4.4756 15.7133C4.20879 15.8022 3.91464 15.7328 3.71578 15.534C3.51692 15.3351 3.44748 15.041 3.53641 14.7741L4.48939 11.9151C4.67012 11.373 4.76048 11.1019 4.88203 10.8468C5.02542 10.546 5.20115 10.2616 5.40613 9.99888C5.57989 9.77611 5.78194 9.57407 6.18599 9.17L12.2072 3.14966Z" fill="#323232"/></svg></button>
+                    <button onClick={(event) => {handleButtonClick(event, index)}} className={`${element["css"]["displayOfOrderEditButton"]} ${element["css"]["opacityOfButton"]} ${element["css"]["cursorOfButton"]}`}><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none"><path opacity="0.5" fillRule="evenodd" clipRule="evenodd" d="M2.84375 19.25C2.84375 18.8876 3.13757 18.5938 3.5 18.5938H17.5C17.8624 18.5938 18.1563 18.8876 18.1563 19.25C18.1563 19.6124 17.8624 19.9062 17.5 19.9062H3.5C3.13757 19.9062 2.84375 19.6124 2.84375 19.25Z" fill="#323232"/><path opacity="0.5" d="M16.6956 6.45017C17.7708 5.37494 17.7708 3.63165 16.6956 2.55642C15.6204 1.48119 13.8771 1.48119 12.8019 2.55642L12.1808 3.17749C12.1893 3.20317 12.1981 3.22921 12.2073 3.25558C12.4349 3.91172 12.8644 4.77187 13.6724 5.57986C14.4804 6.38784 15.3405 6.81735 15.9967 7.04499C16.0229 7.0541 16.0488 7.06289 16.0744 7.07136L16.6956 6.45017Z" fill="#323232"/><path d="M12.2072 3.14966L12.1804 3.1764C12.189 3.20208 12.1978 3.22812 12.2069 3.25449C12.4346 3.91064 12.8641 4.77078 13.672 5.57877C14.4801 6.38675 15.3402 6.81627 15.9964 7.04391C16.0224 7.05294 16.0481 7.06165 16.0734 7.07004L10.0798 13.0637C9.67575 13.4677 9.47362 13.6699 9.25084 13.8436C8.98808 14.0486 8.70372 14.2243 8.40285 14.3677C8.14779 14.4892 7.87671 14.5796 7.33455 14.7604L4.4756 15.7133C4.20879 15.8022 3.91464 15.7328 3.71578 15.534C3.51692 15.3351 3.44748 15.041 3.53641 14.7741L4.48939 11.9151C4.67012 11.373 4.76048 11.1019 4.88203 10.8468C5.02542 10.546 5.20115 10.2616 5.40613 9.99888C5.57989 9.77611 5.78194 9.57407 6.18599 9.17L12.2072 3.14966Z" fill="#323232"/></svg></button>
                 </div>
             </div>
-        )
+        );
     });
-    return html;
 }
 
 export default Manage;

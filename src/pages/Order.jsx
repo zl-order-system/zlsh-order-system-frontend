@@ -96,19 +96,14 @@ function Item({item, index, total}){
 }
 
 function Option({item}){
-    let numSelect = []
-    item["availableMeals"].map(num => {
-        numSelect.push(<option value={num}>{num}</option>)
-    })
-
-    return (
+        return (
         <>
             <select defaultValue={item["orderData"]["lunchBox"]} className="py-0.5 px-1 h-fit text-[1.2rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
                 <option value="own">自備餐盒</option>
                 <option value="school">學校餐盒</option>
             </select>
             <select defaultValue={item["orderData"]["mealID"]} className="py-0.5 px-1 text-[1.2rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
-                {numSelect}
+                {item["availableMeals"].map(num => <option value={num}>{num}</option>)}
             </select>
         </>
     );

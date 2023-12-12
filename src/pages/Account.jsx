@@ -19,15 +19,15 @@ export default function Account() {
           <p className="pl-2 text-black text-xl font-normal font-['Roboto Mono for Powerline']">s11230155@zlsh.tp.edu.tw</p>
         </div>
         <div>
-          <label for="class" className="block text-neutral-400 text-xl font-bold font-['Roboto Slab']">班級</label>
+          <label htmlFor="class" className="block text-neutral-400 text-xl font-bold font-['Roboto Slab']">班級</label>
           <input name="class" type="text" className="pl-2 outline-none border-b-2 border-b-neutral-400 text-black text-2xl font-normal font-['Roboto Mono for Powerline']"></input>
         </div>
         <div>
-          <label for="seat" className="block text-neutral-400 text-xl font-bold font-['Roboto Slab']">座號</label>
+          <label htmlFor="seat" className="block text-neutral-400 text-xl font-bold font-['Roboto Slab']">座號</label>
           <input name="seat" type="text" className="pl-2 outline-none border-b-2 border-b-neutral-400 text-black text-2xl font-normal font-['Roboto Mono for Powerline']"></input>
         </div>
         <div className="grid place-content-center pt-4">
-          <button class="text-center text-sky-400 text-2xl font-bold">送出</button>
+          <button className="text-center text-sky-400 text-2xl font-bold">送出</button>
         </div>
       </div>
     </div>

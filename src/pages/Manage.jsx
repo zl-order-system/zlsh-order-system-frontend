@@ -1,7 +1,5 @@
 import { useState,useEffect } from "react"
 import { fetchManageData, getCost} from "../API/API"
-import { Link } from 'react-router-dom';
-import Information from '../API/information.json'
 
 let originData;
 
@@ -73,6 +71,7 @@ function Manage() {
     const [HTML, setHTML] = useState(<div>Loding...</div>); //到時候useState()裡放loading HTML
     // Use effect 在 component 被 mount 的時候會執行喔
     useEffect(() => {
+        console.log("Manage.jsx useEffect executed!");
         fetchManageData().then(value => {
             originData = value
             console.log(originData);
@@ -118,7 +117,7 @@ function Manage() {
                 </div>
             );
         }
-    }, data);
+    }, [data]); // 這邊上次寫錯了
 
     return HTML;
 }

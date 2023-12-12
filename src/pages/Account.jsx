@@ -1,6 +1,6 @@
 export default function Account() {
   return (
-    <div className="w-full h-full flex flex-col items-center py-10 gap-10">
+    <div className="w-full h-full overflow-scroll pb-16 flex flex-col items-center py-10 gap-10">
       <div className="flex flex-col items-center gap-8">
         <img className="w-48 h-48 rounded-full border-4 border-teal-900" src="https://via.placeholder.com/192x192"></img>
         <h1 className="text-black text-4xl font-bold font-['Roboto Slab']">周奕宇</h1>

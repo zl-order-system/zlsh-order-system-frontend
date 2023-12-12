@@ -1,15 +1,6 @@
-enum OrderState {
-    PAID = "已繳費",
-    UNPAID = "未繳費",
-    UNORDERED = "未訂餐",
-}
+import { OrderState, lunchBoxType } from "./Enums"
 
-enum lunchBoxType {
-    SCHOOL = "學校餐盒",
-    PERSONAL = "自備餐盒",
-}
-
-type manageDataResponse = {
+type getManageDataResponse = {
     headerData: {
         paid: number,
         owed: number,
@@ -17,22 +8,17 @@ type manageDataResponse = {
     },
     bodyData: [
         {
-            // If state == PAID || UNPAID
             state: OrderState,
-
             date: Date,
             displayDate: string,
-            id: string,
-            lunchBox: lunchBoxType,
-            mealOptions: [number],
-            selectedMeal: string,
-        } | {
-            // If state == UNORDERED
-            state: OrderState,
-
-            date: Date,
-            displayDate: string,
-            mealOptions: [number]
+            id: string | undefined,
+            lunchBox: lunchBoxType | "-",
+            price: 65 | 70 | "-",
+            selectedMeal: string | "-",
+            mealOptions: [{
+                id: string,
+                name: string,
+            }]
         }
     ]
 }

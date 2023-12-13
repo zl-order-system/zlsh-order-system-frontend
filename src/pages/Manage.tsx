@@ -1,17 +1,45 @@
 import { useState,useEffect } from "react"
-import { fetchManageData, getCost} from "../API/API"
+import { FetchManageData, fetchManageData, getCost} from "../API/API"
 
 let originData;
 
-function creatData(value){
-    let returnData = {};
-    returnData["headerPreviews"] = {
-        "paid": value["headerPreviews"]["paid"],
-        "unpaid": value["headerPreviews"]["unpaid"],
-        "NotOrderedDays": value["headerPreviews"]["NotOrderedDays"],
-        "css": {}
+export type CreatData = {
+    headerPreviews: {
+        paid: string;
+        unpaid: string;
+        NotOrderedDays: string;
+        css: {}
     };
-    returnData["barChart"] = {}
+    "barChart": {};
+    item: {
+        date: string;
+        stateOfPreviewText: string;
+        mealNumber: string;
+        lunchBox: string;
+        cost: string;
+        allMealNumber: number[];
+        css: {
+            "displayOfOrderButton": string,  //hidden or block
+            "displayOfOrderEditButton": string,  //hidden or block
+            "stateOfPreviewTextColor": string, //#97D581-綠(已繳費) #E2473D-紅(未繳費) #9C9C9C-灰(未訂餐)
+            "displayOfOrderInformation": string, //hidden or block
+            "displayOfSelectBlock": string,
+            "opacityOfButton":string,
+            "cursorOfButton":string
+        },
+    }[];
+}
+function creatData(value: FetchManageData){
+    let returnData: CreatData = {
+        "headerPreviews": {
+            "paid": value["headerPreviews"]["paid"],
+            "unpaid": value["headerPreviews"]["unpaid"],
+            "NotOrderedDays": value["headerPreviews"]["NotOrderedDays"],
+            "css": {}
+        },
+        "barChart": {},
+
+    };
     returnData["item"] = value["item"]
     value["item"].forEach((element, index) => {
         let displayOfOrderButton;

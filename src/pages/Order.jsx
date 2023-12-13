@@ -1,4 +1,4 @@
-import { fetchOrderData } from "../API/API.js";
+import { fetchOrderData } from "../API/API.ts";
 import { useEffect, useState } from "react";
 
 

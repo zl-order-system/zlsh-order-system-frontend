@@ -1,11 +1,31 @@
 import Information from "./information.json"
-const orderDataURL = "URL"
-const manageDataURL = "URL"
 
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+export type OrderDataItem = {
+    "month": string;
+    "day": string;
+    "week": string;
+    "orderState": string;
+    "availableMeals": number[];
+    "orderData": {
+        "mealID": string;
+        "lunchBox": string;
+        "money": string;
+    };
+} | {
+    "month": string;
+    "day": string;
+    "week": string;
+    "orderState": string;
+    "availableMeals": number[];
+    "orderData": string;
+}
+
+export type FetchOrderData = OrderDataItem[] | undefined | null
 
 export async function fetchOrderData() {
-    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-    await delay()
+    await delay(0)
     return [{
         "month": "8",
         "day": "30",
@@ -54,17 +74,26 @@ export async function fetchOrderData() {
             "money": "70"
         }
     }]
-
-    let result
-    await fetch(orderDataURL).then(res => {
-        result = JSON.parse(res)
-    })
-    return result
 }
 
-export async function fetchManageData() {
-    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-    await delay()
+export type FetchManageData = {
+    headerPreviews: {
+        paid: string;
+        unpaid: string;
+        NotOrderedDays: string;
+    };
+    item: {
+        date: string;
+        stateOfPreviewText: string;
+        mealNumber: string;
+        lunchBox: string;
+        cost: string;
+        allMealNumber: number[];
+    }[];
+}
+
+export async function fetchManageData(): Promise<FetchManageData> {
+    await delay(0)
     return {
         "headerPreviews": {
             "paid": "500",
@@ -105,14 +134,8 @@ export async function fetchManageData() {
         }
         ]
     }
-
-    let result
-    await fetch(manageDataURL).then(res => {
-        result = JSON.parse(res)
-    })
-    return result
 }
-export function checkOrderState(stateCode){ //訂餐狀態碼012轉換為中文
+export function checkOrderState(stateCode: string) { //訂餐狀態碼012轉換為中文
     switch (stateCode) {    //已繳費0 未繳費1 未訂餐2
         case "0":
             return "已繳費"
@@ -124,7 +147,7 @@ export function checkOrderState(stateCode){ //訂餐狀態碼012轉換為中文
             return "error"
     }
 }
-export function getCost(lunchBox){ //取得餐盒對應的錢
+export function getCost(lunchBox: string) { //取得餐盒對應的錢
     let info = Information
     switch (lunchBox) {
         case "自備餐盒":
@@ -137,6 +160,6 @@ export function getCost(lunchBox){ //取得餐盒對應的錢
             break;
     }
 }
-export function postOrder(postData){    //修改或新增訂單
+export function postOrder(postData: string) {    //修改或新增訂單
 
 }

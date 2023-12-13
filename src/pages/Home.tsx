@@ -1,11 +1,11 @@
-import { fetchOrderData } from "../API/API.js";
+import { FetchOrderData, OrderDataItem, fetchOrderData } from "../API/API.ts";
 import { Link } from 'react-router-dom';
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // let orderData = fetchOrderData()  //取得使用者訂餐資料
 
-function Banner({orderData}) {
-  if(orderData==null)return
+function Banner({orderData}: {orderData: FetchOrderData}) {
+  if(orderData == null)return
 
   const weekdays = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
   let month = 9;
@@ -39,7 +39,7 @@ function Banner({orderData}) {
   )
 }
 
-function UtilButtons({orderData}) {
+function UtilButtons({orderData}: {orderData: FetchOrderData}) {
   if(orderData==null)return
 
   return (
@@ -93,11 +93,11 @@ function UtilButtons({orderData}) {
     </div>
   )
 }
-function EachDay({month,day,week,orderState}){
-  let orderHTML
-  if(orderState=="T"){
+function EachDay({month, day, week, orderState}: {month: string, day: string, week: string, orderState: string}){
+  let orderHTML: JSX.Element | undefined
+  if(orderState == "T"){
     orderHTML = <div className=" text-[#525252] text-[1.6rem] font-[600] text-center">已預訂</div>
-  }else if(orderState=="F"){
+  }else if(orderState == "F"){
     orderHTML = <Link to={"/manage"}><button className=" text-[#00C0CC] text-[1.6rem] font-[600] text-center -translate-x-[50%] left-[50%] relative">預訂</button></Link>
   }
   return(
@@ -109,8 +109,8 @@ function EachDay({month,day,week,orderState}){
     </div>
   )
 }
-function OrderPreveiw({orderData}){
-  if(orderData==null)return
+function OrderPreveiw({orderData}: {orderData: FetchOrderData}){
+  if(orderData == null) return;
 
   return(
     <div className="flex gap-[1rem] flex-col mx-[1.5rem]">
@@ -131,14 +131,14 @@ function OrderPreveiw({orderData}){
         </Link>
       </div>
       <div className="flex flex-row justify-start flex-shrink-0 gap-5 overflow-scroll w-full py-4">
-        {orderData.map((item, index) => <EachDay month={item["month"]} day={item["day"]} week={item["week"]} orderState={item["orderState"]} key={index}/>)}
+        {orderData.map((item: OrderDataItem, index: number) => <EachDay month={item["month"]} day={item["day"]} week={item["week"]} orderState={item["orderState"]} key={index}/>)}
       </div>
     </div>
   )
 }
 
 function Home() {
-  const [orderData,setOrderData] = useState(null) //取得使用者訂餐資料
+  const [orderData, setOrderData] = useState<FetchOrderData>() //取得使用者訂餐資料
     useEffect(()=>{
         fetchOrderData().then((value)=>{
             setOrderData(value)

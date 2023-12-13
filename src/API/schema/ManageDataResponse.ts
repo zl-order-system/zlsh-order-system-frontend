@@ -1,6 +1,6 @@
 import { OrderState, lunchBoxType } from "./Enums"
 
-type getManageDataResponse = {
+export type GetManageDataResponse = {
     headerData: {
         paid: number,
         owed: number,

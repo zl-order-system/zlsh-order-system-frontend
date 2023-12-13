@@ -8,7 +8,7 @@ function Login(){
                     <div className="w-[1.8rem] h-[1.8rem] ">
                         <img src="https://freesvg.org/img/1534129544.png" />
                     </div>
-                    <dir className=" text-black text-[1.2rem] font-[800] p-0">以Google帳號登入</dir>
+                    <div className=" text-black text-[1.2rem] font-[800] p-0">以Google帳號登入</div>
                 </button>
                 <div className="text-[#565656] text-[1rem] font-[500] ">為確保資料正確，請使用學校帳號登入</div>
               </div>

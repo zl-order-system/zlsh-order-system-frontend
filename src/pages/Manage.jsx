@@ -73,7 +73,7 @@ function Manage() {
     useEffect(() => {
         console.log("Manage.jsx useEffect executed!");
         fetchManageData().then(value => {
-            originData = value
+            originData = JSON.parse(JSON.stringify(value))
             console.log(originData);
             setData(creatData(value))
         });
@@ -118,7 +118,6 @@ function Manage() {
             );
         }
     }, [data]); // 這邊上次寫錯了
-
     return HTML;
 }
 

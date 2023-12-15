@@ -77,7 +77,7 @@ export async function fetchManageData() {
             "mealNumber": "1",
             "lunchBox": "自備餐盒",
             "cost": "65",
-            "allMealNumber": [1, 2, 3, 4, 5],
+            "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"],
         },
         {
             "date": "8/30 週二",
@@ -85,7 +85,7 @@ export async function fetchManageData() {
             "mealNumber": "4",
             "lunchBox": "學校餐盒",
             "cost": "70",
-            "allMealNumber": [1, 2, 3, 4, 5]
+            "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"]
         },
         {
             "date": "8/31 週三",
@@ -93,7 +93,7 @@ export async function fetchManageData() {
             "mealNumber": "-",
             "lunchBox": "-",
             "cost": "-",
-            "allMealNumber": [1, 2, 3, 4, 5]
+            "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"]
         },
         {
             "date": "9/1 週四",
@@ -101,7 +101,7 @@ export async function fetchManageData() {
             "mealNumber": "1",
             "lunchBox": "學校餐盒",
             "cost": "70",
-            "allMealNumber": [1, 2, 3]
+            "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"]
         }
         ]
     }

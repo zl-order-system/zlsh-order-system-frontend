@@ -75,6 +75,7 @@ export async function fetchManageData() {
             "date": "8/29 週一",
             "stateOfPreviewText": "已繳費", //已繳費0 未繳費1 未訂餐2
             "mealNumber": "1",
+            "mealName":"小王子",
             "lunchBox": "自備餐盒",
             "cost": "65",
             "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"],
@@ -82,7 +83,8 @@ export async function fetchManageData() {
         {
             "date": "8/30 週二",
             "stateOfPreviewText": "未繳費",
-            "mealNumber": "4",
+            "mealNumber": "3",
+            "mealName":"鍋貼＋飲料",
             "lunchBox": "學校餐盒",
             "cost": "70",
             "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"]
@@ -91,6 +93,7 @@ export async function fetchManageData() {
             "date": "8/31 週三",
             "stateOfPreviewText": "未訂餐",
             "mealNumber": "-",
+            "mealName":"-",
             "lunchBox": "-",
             "cost": "-",
             "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"]
@@ -99,6 +102,7 @@ export async function fetchManageData() {
             "date": "9/1 週四",
             "stateOfPreviewText": "未繳費",
             "mealNumber": "1",
+            "mealName":"小王子",
             "lunchBox": "學校餐盒",
             "cost": "70",
             "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"]
@@ -137,6 +141,7 @@ export function getCost(lunchBox){ //取得餐盒對應的錢
             break;
     }
 }
-export function postOrder(postData){    //修改或新增訂單
-
+export function postOrder(Data){    //修改或新增訂單
+    let postData
+    console.log(Data)
 }

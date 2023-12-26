@@ -62,7 +62,7 @@ export async function fetchOrderData() {
     return result
 }
 
-export async function fetchManageData() {
+export async function getManageData() {
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     await delay()
     return {
@@ -141,7 +141,27 @@ export function getCost(lunchBox){ //取得餐盒對應的錢
             break;
     }
 }
-export function postOrder(Data){    //修改或新增訂單
-    let postData
-    console.log(Data)
+export async function postOrder(data){    //修改或新增訂單
+    const postOrderData = (data, url) => {
+        return new Promise((resolve, reject) => {
+            console.log("api recive order info")
+            resolve(data)
+            // let xhr = new XMLHttpRequest()
+            // xhr.open('POST', url, true)
+            // xhr.onreadystatechange = function () {
+            //     if (xhr.readyState === 4) {
+            //         if (xhr.status === 200) {
+            //             // Request was successful, handle the response
+            //             resolve(null, xhr.responseText);
+            //         } else {
+            //             // There was an error with the request
+            //             reject(new Error('HTTP error! Status: ' + xhr.status));
+            //         }
+            //     }
+            // };
+            // // Send the XML data in the request body
+            // xhr.send(data);
+        })
+    }
+    return await postOrderData(data)
 }

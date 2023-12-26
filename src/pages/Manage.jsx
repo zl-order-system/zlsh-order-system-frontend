@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react"
-import { fetchManageData, getCost, postOrder} from "../API/API"
+import { fetchManageData, getCost, getManageData, postOrder} from "../API/API"
 
 let originData;
 
@@ -79,7 +79,7 @@ function Manage() {
     const [data, setData] = useState(null);
     const [HTML, setHTML] = useState(<div>Loding...</div>)
     useEffect(() => {
-        fetchManageData().then(value => {
+        getManageData().then(value => {
             originData = JSON.parse(JSON.stringify(value))
             setData(creatData(value))
         });
@@ -171,10 +171,21 @@ function Items({itemsData}){
     let handleButtonClick = (event, index) => {
         let o = JSON.parse(JSON.stringify(newItemData))
         if(o[index]["selectData"]["acceptClickButton"] == true){
-            postOrder(o[index])
+            o[index]["selectData"]["acceptClickButton"] = false
+            o[index]["css"]["opacityOfButton"] = "opacity-50"
+            o[index]["css"]["cursorOfButton"] = "cursor-default"
+            setNewItemData(o)
+            let data = {
+                // id: id,
+                date: o[index]["date"],
+                lunchBox: o[index]["lunchBox"],
+                selectedMeal: o[index]["mealName"],
+            }
+            postOrder(data).then((res)=>{
+                console.log(res);
+            })
         }
     };
-
     return newItemData.map((element, index) => {
         return (
             <div className=" flex flex-col w-full my-[0.75rem]" key={index}>

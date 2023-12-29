@@ -7,9 +7,11 @@ import { useState,useEffect } from "react";
 function Banner({orderData}) {
   if(orderData==null)return
 
-  const weekdays = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
-  let month = 9;
-  let date = 29;
+  const weekdays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+  const currentDate = new Date();
+  let month = currentDate.getMonth()+1
+  let date = currentDate.getDate()
+  let weekday = weekdays[currentDate.getDay()]
 
   return (
     <div className="mt-10 mx-4 h-64 bg-[#00AEB9] rounded-[1.25rem] grid place-content-center font-[inter] grid-cols-[4.5fr_5.5fr] grid-rows-[1fr_1px_1fr] shadow-lg">
@@ -33,7 +35,7 @@ function Banner({orderData}) {
       {/* 日期 */}
       <div className='h-full flex flex-col text-center justify-center items-center'>
         <span className="block text-3xl text-[#DFDFDF]">{month}月{date}日</span>
-        <span className="block text-3xl text-[#DFDFDF]">{weekdays[5]}</span>
+        <span className="block text-3xl text-[#DFDFDF]">{weekday}</span>
       </div>
     </div>
   )

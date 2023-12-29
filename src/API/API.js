@@ -66,49 +66,69 @@ export async function getManageData() {
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     await delay()
     return {
-        "headerPreviews": {
-            "paid": "500",
-            "unpaid": "140",
-            "NotOrderedDays": "3",
+        "headerData": {
+            "paid": "65", //paid
+            "owed": "195", //unpaid
+            "daysUnordered": "1" //NotOrderedDays
         },
-        "item": [{
-            "date": "8/29 週一",
-            "stateOfPreviewText": "已繳費", //已繳費0 未繳費1 未訂餐2
-            "mealNumber": "1",
-            "mealName":"小王子",
-            "lunchBox": "自備餐盒",
-            "cost": "65",
-            "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"],
-        },
-        {
-            "date": "8/30 週二",
-            "stateOfPreviewText": "未繳費",
-            "mealNumber": "3",
-            "mealName":"鍋貼＋飲料",
-            "lunchBox": "學校餐盒",
-            "cost": "70",
-            "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"]
+        "bodyData": [{
+            "state": "已繳費",
+            "date": "Date",
+            "displayDate": "8/29 週一", //date
+            "id": "1", //mealNumber
+            "lunchBox": "自備餐盒", //lunchBox
+            "price": "65", //cost
+            "selectedMeal": "小王子", //mealName
+            "mealOptions": ["小王子", "味噌湯麵", "鍋貼＋飲料"] //allMealNumber
+
         },
         {
-            "date": "8/31 週三",
-            "stateOfPreviewText": "未訂餐",
-            "mealNumber": "-",
-            "mealName":"-",
-            "lunchBox": "-",
-            "cost": "-",
-            "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"]
+            "state": "未繳費",
+            "date": "Date",
+            "displayDate": "8/30 週二", //date
+            "id": "2", //mealNumber
+            "lunchBox": "自備餐盒", //lunchBox
+            "price": "65", //cost
+            "selectedMeal": "味噌湯麵", //mealName
+            "mealOptions": ["小王子", "味噌湯麵", "鍋貼＋飲料"] //allMealNumber
+
         },
         {
-            "date": "9/1 週四",
-            "stateOfPreviewText": "未繳費",
-            "mealNumber": "1",
-            "mealName":"小王子",
-            "lunchBox": "學校餐盒",
-            "cost": "70",
-            "allMealNumber": ["小王子","味噌湯麵","鍋貼＋飲料"]
-        }
-        ]
+            "state": "未訂餐",
+            "date": "Date",
+            "displayDate": "8/31 週三", //date
+            "id": "3", //mealNumber
+            "lunchBox": "學校餐盒", //lunchBox
+            "price": "70", //cost
+            "selectedMeal": "鍋貼＋飲料", //mealName
+            "mealOptions": ["小王子", "味噌湯麵", "鍋貼＋飲料"] //allMealNumber
+
+        },
+        {
+            "state": "未繳費",
+            "date": "Date",
+            "displayDate": "9/1 週四", //date
+            "id": "2", //mealNumber
+            "lunchBox": "學校餐盒", //lunchBox
+            "price": "70", //cost
+            "selectedMeal": "咖哩燴飯", //mealName
+            "mealOptions": ["小王子", "味噌湯麵", "鍋貼＋飲料", "咖哩燴飯"] //allMealNumber
+
+        },
+        {
+            "state": "未繳費",
+            "date": "Date",
+            "displayDate": "9/2 週五", //date
+            "id": "2", //mealNumber
+            "lunchBox": "自備餐盒", //lunchBox
+            "price": "65", //cost
+            "selectedMeal": "紅燒肉蒸蛋蓋飯", //mealName
+            "mealOptions": ["小王子", "味噌湯麵", "鍋貼＋飲料", "紅燒肉蒸蛋蓋飯"] //allMealNumber
+
+        }]
     }
+
+
 
     let result
     await fetch(manageDataURL).then(res => {
@@ -142,12 +162,12 @@ export function getCost(lunchBox){ //取得餐盒對應的錢
     }
 }
 export async function postOrder(data){    //修改或新增訂單
-    const postOrderData = (data, url) => {
+    const postOrderData = (data, method, url) => {
         return new Promise((resolve, reject) => {
             console.log("api recive order info")
             resolve(data)
             // let xhr = new XMLHttpRequest()
-            // xhr.open('POST', url, true)
+            // xhr.open(method, url, true)
             // xhr.onreadystatechange = function () {
             //     if (xhr.readyState === 4) {
             //         if (xhr.status === 200) {

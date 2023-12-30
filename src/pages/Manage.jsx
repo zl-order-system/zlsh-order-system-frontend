@@ -156,7 +156,7 @@ function Items({ itemsData }) {
             o[index]["css"]["cursorOfButton"] = "cursor-default"
             setNewItemData(o)
             let data = {
-                // id: id,
+                id: o[index]["mealOptions"].indexOf(o[index]["selectedMeal"]),
                 date: o[index]["displayDate"],
                 lunchBox: o[index]["lunchBox"],
                 selectedMeal: o[index]["selectedMeal"],
@@ -230,7 +230,7 @@ function PreviewBar({itemsData}) {
             <div className="w-full h-[2rem] flex flex-row">
                 {q.map((item, index) => {
                     return (
-                        <div className="flex flex-col flex-1 items-center translate-y-[-0.5rem]" key={index}>
+                        <div className="flex flex-col flex-1 items-center translate-y-[-0.4rem]" key={index}>
                             <div className="w-[1px] h-[1rem] bg-[#565656] opacity-70"></div>
                             <div className="h-full  text-center text-[#565656] text-[0.8rem] font-[400]">{item["date"]}</div>
                         </div>

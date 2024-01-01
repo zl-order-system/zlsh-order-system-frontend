@@ -2,7 +2,7 @@ import random
 import json
 from datetime import date, datetime, timedelta
 
-mealOptions = ["小王子", "紅燒肉蒸蛋蓋飯", "涼麵", "皮蛋瘦肉粥", "味增湯麵", "鍋貼"]
+mealOptions = ["小王子", "紅燒肉蒸蛋蓋飯", "涼麵", "皮蛋瘦肉粥", "味增湯麵", "鍋貼", "關東煮"]
 weekdays = ["日", "一", "二", "三", "四", "五", "六"]
 
 class FakeInfo():

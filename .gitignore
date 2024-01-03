@@ -22,5 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.pyc
 
-**/__pychache/
+**/__pychache__/

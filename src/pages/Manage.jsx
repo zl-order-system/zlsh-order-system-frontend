@@ -101,7 +101,7 @@ function Manage() {
                     <PreviewBar itemsData={data["bodyData"]} />
                     <div className=" w-full h-[1px] bg-[#B6B6B6]"></div>
                     <div className=" flex flex-col items-center w-full">
-                        <Items itemsData={data["bodyData"]} setData={setData} />
+                        <Items itemsData={data["bodyData"]} data={data} setData={setData} />
                     </div>
                 </div>
             );
@@ -110,11 +110,10 @@ function Manage() {
     return HTML
 }
 
-function Items({ itemsData, setData }) {
-    console.log(itemsData);
-    const [newItemData, setNewItemData] = useState(firstSetNewItemData())
+function Items({ itemsData, data, setData }) {
+    let newItemData = firstSetNewItemData()
     function firstSetNewItemData() {
-        let o = [...itemsData]
+        let o = itemsData
         o.forEach((element, index) => {
             switch (element["state"]) {
                 case "已繳費" || "未繳費":
@@ -138,17 +137,17 @@ function Items({ itemsData, setData }) {
         } else if (value == "num") {
             o[index]["selectedMeal"] = event.target.value
         }
-        setNewItemData(o)
+        newItemData = o
         if (o[index]["selectedMeal"] != originData["bodyData"][index]["selectedMeal"] || o[index]["lunchBox"] != originData["bodyData"][index]["lunchBox"]) {
             o[index]["css"]["opacityOfButton"] = "opacity-100"
             o[index]["css"]["cursorOfButton"] = "cursor-pointer"
             o[index]["selectData"]["acceptClickButton"] = true
-            setNewItemData(o)
+            newItemData = o
         } else if (o[index]["selectedMeal"] == originData["bodyData"][index]["selectedMeal"] || o[index]["lunchBox"] == originData["bodyData"][index]["lunchBox"]) {
             o[index]["css"]["opacityOfButton"] = "opacity-50"
             o[index]["css"]["cursorOfButton"] = "cursor-default"
             o[index]["selectData"]["acceptClickButton"] = false
-            setNewItemData(o)
+            newItemData = o
         }
     };
 
@@ -158,7 +157,7 @@ function Items({ itemsData, setData }) {
             o[index]["selectData"]["acceptClickButton"] = false
             o[index]["css"]["opacityOfButton"] = "opacity-50"
             o[index]["css"]["cursorOfButton"] = "cursor-default"
-            setNewItemData(o)
+            newItemData = o
             let data = {
                 id: o[index]["mealOptions"].indexOf(o[index]["selectedMeal"]),
                 date: o[index]["displayDate"],
@@ -167,7 +166,6 @@ function Items({ itemsData, setData }) {
             }
             postOrder(data, method).then( res => {
                 getManageData().then(value => {
-                    console.log(value);
                     originData = JSON.parse(value)
                     setData(creatData(JSON.parse(value)))
                 }).catch( value => {
@@ -210,7 +208,6 @@ function Items({ itemsData, setData }) {
     });
 }
 function PreviewBar({itemsData}) {
-    console.log("uuu");
     let len = itemsData.length
     let q = []
     itemsData.forEach((item, index) => {

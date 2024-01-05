@@ -80,7 +80,10 @@ function Manage() {
     const [HTML, setHTML] = useState(<div>Loding...</div>)
     useEffect(() => {
         getManageData().then(value => {
-            originData = value
+            originData = JSON.parse(value)
+            setData(creatData(JSON.parse(value)))
+        }).catch( value => {
+            originData = JSON.parse(value)
             setData(creatData(JSON.parse(value)))
         });
     }, []);
@@ -98,7 +101,7 @@ function Manage() {
                     <PreviewBar itemsData={data["bodyData"]} />
                     <div className=" w-full h-[1px] bg-[#B6B6B6]"></div>
                     <div className=" flex flex-col items-center w-full">
-                        <Items itemsData={data["bodyData"]} />
+                        <Items itemsData={data["bodyData"]} setData={setData} />
                     </div>
                 </div>
             );
@@ -107,7 +110,8 @@ function Manage() {
     return HTML
 }
 
-function Items({ itemsData }) {
+function Items({ itemsData, setData }) {
+    console.log(itemsData);
     const [newItemData, setNewItemData] = useState(firstSetNewItemData())
     function firstSetNewItemData() {
         let o = [...itemsData]
@@ -161,8 +165,15 @@ function Items({ itemsData }) {
                 lunchBox: o[index]["lunchBox"],
                 selectedMeal: o[index]["selectedMeal"],
             }
-            postOrder(data, method).then((res) => {
-                console.log(res);
+            postOrder(data, method).then( res => {
+                getManageData().then(value => {
+                    console.log(value);
+                    originData = JSON.parse(value)
+                    setData(creatData(JSON.parse(value)))
+                }).catch( value => {
+                    originData = JSON.parse(value)
+                    setData(creatData(JSON.parse(value)))
+                });
             })
         }
     };
@@ -199,6 +210,7 @@ function Items({ itemsData }) {
     });
 }
 function PreviewBar({itemsData}) {
+    console.log("uuu");
     let len = itemsData.length
     let q = []
     itemsData.forEach((item, index) => {

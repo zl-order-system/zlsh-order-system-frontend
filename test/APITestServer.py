@@ -10,7 +10,7 @@ def manage():
     if request.method == "GET": #取得資訊
         return FakeInfo.creatManageData(5)
     elif request.method == "POST":  #新增預定
-        return "POST"
+        return FakeInfo.creatManageData(5)
     elif request.method == "PUT":   #更新預定
         return "PUT"
     elif request.method == "DELETE":    #刪除預定

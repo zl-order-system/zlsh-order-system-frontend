@@ -1,0 +1,110 @@
+{
+    "manage_POST": {
+        "headerData": {
+            "paid": "65",
+            "owed": "0",
+            "daysUnordered": "0"
+        },
+        "bodyData": [{
+            "state": "已繳費",
+            "date": "Date",
+            "displayDate": "8/29 週一",
+            "id": "1",
+            "lunchBox": "自備餐盒",
+            "price": "65",
+            "selectedMeal": "小王子",
+            "mealOptions": [
+                "小王子",
+                "味噌湯麵",
+                "鍋貼＋飲料"
+            ]
+        }]
+    },
+    "manage_PUT": {
+        "headerData": {
+            "paid": "65",
+            "owed": "195",
+            "daysUnordered": "1"
+        },
+        "bodyData": [{
+            "state": "已繳費",
+            "date": "Date",
+            "displayDate": "8/29 週一",
+            "id": "1",
+            "lunchBox": "自備餐盒",
+            "price": "65",
+            "selectedMeal": "小王子",
+            "mealOptions": [
+                "小王子",
+                "味噌湯麵",
+                "鍋貼＋飲料"
+            ]
+        }]
+    },
+    "manage_GET": {
+        "headerData": {
+            "paid": "65",
+            "owed": "195",
+            "daysUnordered": "1"
+        },
+        "bodyData": [
+            {
+                "state": "已繳費",
+                "date": "Date",
+                "displayDate": "8/29 週一",
+                "id": "1",
+                "lunchBox": "自備餐盒",
+                "price": "65",
+                "selectedMeal": "小王子",
+                "mealOptions": [
+                    "小王子",
+                    "味噌湯麵",
+                    "鍋貼＋飲料"
+                ]
+            },
+            {
+                "state": "未繳費",
+                "date": "Date",
+                "displayDate": "8/30 週二",
+                "id": "2",
+                "lunchBox": "自備餐盒",
+                "price": "65",
+                "selectedMeal": "味噌湯麵",
+                "mealOptions": [
+                    "小王子",
+                    "味噌湯麵",
+                    "鍋貼＋飲料"
+                ]
+            },
+            {
+                "state": "未訂餐",
+                "date": "Date",
+                "displayDate": "8/31 週三",
+                "id": "-",
+                "lunchBox": "-",
+                "price": "-",
+                "selectedMeal": "-",
+                "mealOptions": [
+                    "小王子",
+                    "味噌湯麵",
+                    "鍋貼＋飲料"
+                ]
+            },
+            {
+                "state": "未繳費",
+                "date": "Date",
+                "displayDate": "9/1 週四",
+                "id": "2",
+                "lunchBox": "學校餐盒",
+                "price": "70",
+                "selectedMeal": "咖哩燴飯",
+                "mealOptions": [
+                    "小王子",
+                    "味噌湯麵",
+                    "鍋貼＋飲料",
+                    "咖哩燴飯"
+                ]
+            }
+        ]
+    }
+}

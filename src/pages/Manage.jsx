@@ -3,7 +3,7 @@ import { getCost, getManageData, postOrder } from "../API/API"
 
 let originData;
 
-function creatData(value) {
+function createData(value) {
     let returnData = {};
     returnData["headerData"] = {
         "paid": value["headerData"]["paid"],
@@ -81,11 +81,8 @@ function Manage() {
     useEffect(() => {
         getManageData().then(value => {
             originData = JSON.parse(value)
-            setData(creatData(JSON.parse(value)))
-        }).catch( value => {
-            originData = JSON.parse(value)
-            setData(creatData(JSON.parse(value)))
-        });
+            setData(createData(JSON.parse(value)))
+        })
     }, []);
 
     useEffect(() => {
@@ -111,8 +108,10 @@ function Manage() {
 }
 
 function Items({ itemsData, setData }) {
-    console.log(itemsData);
     const [newItemData, setNewItemData] = useState(firstSetNewItemData())
+    useEffect(() => {
+        setNewItemData(firstSetNewItemData())
+    }, [itemsData])
     function firstSetNewItemData() {
         let o = [...itemsData]
         o.forEach((element, index) => {
@@ -166,14 +165,8 @@ function Items({ itemsData, setData }) {
                 selectedMeal: o[index]["selectedMeal"],
             }
             postOrder(data, method).then( res => {
-                getManageData().then(value => {
-                    console.log(value);
-                    originData = JSON.parse(value)
-                    setData(creatData(JSON.parse(value)))
-                }).catch( value => {
-                    originData = JSON.parse(value)
-                    setData(creatData(JSON.parse(value)))
-                });
+                originData = JSON.parse(res)
+                setData(createData(JSON.parse(res)))
             })
         }
     };
@@ -210,7 +203,6 @@ function Items({ itemsData, setData }) {
     });
 }
 function PreviewBar({itemsData}) {
-    console.log("uuu");
     let len = itemsData.length
     let q = []
     itemsData.forEach((item, index) => {

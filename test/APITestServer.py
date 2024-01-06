@@ -12,9 +12,9 @@ def manage():
     elif request.method == "POST":  #新增預定
         return FakeInfo.creatManageData(5)
     elif request.method == "PUT":   #更新預定
-        return "PUT"
+        return FakeInfo.creatManageData(5)
     elif request.method == "DELETE":    #刪除預定
-        return "DELTE"
+        return FakeInfo.creatManageData(5)
 
 if __name__ == '__main__':
     app.run(debug=True)

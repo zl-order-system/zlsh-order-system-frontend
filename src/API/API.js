@@ -1,9 +1,11 @@
 import Information from "./information.json"
+import fakeInfo from "./fakeInfo.json"
+
+const flaskOpen = false
 const URL = {
     orderPage : "URL",
     managePage : "http://127.0.0.1:5000/manage"
 }
-
 
 export async function fetchOrderData() {
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -65,12 +67,11 @@ export async function fetchOrderData() {
 }
 
 export async function getManageData() {
+    if ( !flaskOpen ) return JSON.stringify(fakeInfo["manage_GET"])
     const url = URL.managePage
     const method = "GET"
     const getData = (method, url) => {
         return new Promise((resolve, reject) => {
-            console.log("api recive get info")
-            // resolve(data)
             let xhr = new XMLHttpRequest()
             xhr.open(method, url, true)
             xhr.onreadystatechange = function () {
@@ -80,7 +81,7 @@ export async function getManageData() {
                         resolve(xhr.responseText);
                     } else {
                         // There was an error with the request
-                        reject(fakeData);
+                        reject(new Error(xhr.Error));
                     }
                 }
             };
@@ -88,68 +89,6 @@ export async function getManageData() {
             xhr.send();
         })
     }
-    const fakeData = JSON.stringify({
-        "headerData": {
-            "paid": "65", //paid
-            "owed": "195", //unpaid
-            "daysUnordered": "1" //NotOrderedDays
-        },
-        "bodyData": [{
-            "state": "已繳費",
-            "date": "Date",
-            "displayDate": "8/29 週一", //date
-            "id": "1", //mealNumber
-            "lunchBox": "自備餐盒", //lunchBox
-            "price": "65", //cost
-            "selectedMeal": "小王子", //mealName
-            "mealOptions": ["小王子", "味噌湯麵", "鍋貼＋飲料"] //allMealNumber
-
-        },
-        {
-            "state": "未繳費",
-            "date": "Date",
-            "displayDate": "8/30 週二", //date
-            "id": "2", //mealNumber
-            "lunchBox": "自備餐盒", //lunchBox
-            "price": "65", //cost
-            "selectedMeal": "味噌湯麵", //mealName
-            "mealOptions": ["小王子", "味噌湯麵", "鍋貼＋飲料"] //allMealNumber
-
-        },
-        {
-            "state": "未訂餐",
-            "date": "Date",
-            "displayDate": "8/31 週三", //date
-            "id": "-", //mealNumber
-            "lunchBox": "-", //lunchBox
-            "price": "-", //cost
-            "selectedMeal": "-", //mealName
-            "mealOptions": ["小王子", "味噌湯麵", "鍋貼＋飲料"] //allMealNumber
-
-        },
-        {
-            "state": "未繳費",
-            "date": "Date",
-            "displayDate": "9/1 週四", //date
-            "id": "2", //mealNumber
-            "lunchBox": "學校餐盒", //lunchBox
-            "price": "70", //cost
-            "selectedMeal": "咖哩燴飯", //mealName
-            "mealOptions": ["小王子", "味噌湯麵", "鍋貼＋飲料", "咖哩燴飯"] //allMealNumber
-
-        },
-        {
-            "state": "未繳費",
-            "date": "Date",
-            "displayDate": "9/2 週五", //date
-            "id": "2", //mealNumber
-            "lunchBox": "自備餐盒", //lunchBox
-            "price": "65", //cost
-            "selectedMeal": "紅燒肉蒸蛋蓋飯", //mealName
-            "mealOptions": ["小王子", "味噌湯麵", "鍋貼＋飲料", "紅燒肉蒸蛋蓋飯"] //allMealNumber
-
-        }]
-    })
     return await getData(method, url)
 }
 export function getCost(lunchBox){ //取得餐盒對應的錢
@@ -166,11 +105,10 @@ export function getCost(lunchBox){ //取得餐盒對應的錢
     }
 }
 export async function postOrder(data, method){    //修改或新增訂單
+    if ( !flaskOpen ) return JSON.stringify(fakeInfo["manage_POST"])
     const url = URL.managePage
     const postOrderData = (data, method, url) => {
         return new Promise((resolve, reject) => {
-            console.log("api recive order info")
-            // resolve(data)
             let xhr = new XMLHttpRequest()
             xhr.open(method, url, true)
             xhr.onreadystatechange = function () {

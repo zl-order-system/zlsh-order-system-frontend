@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { getCost, getManageData, postOrder } from "../API/API"
+import Loader from "../components/loader/Loader";
 
 let originData;
 

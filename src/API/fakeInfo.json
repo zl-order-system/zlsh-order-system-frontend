@@ -106,5 +106,27 @@
                 ]
             }
         ]
+    },
+    "Home_GET": {
+        "bannerData": {
+            "today": "2024-1-18",
+            "hasPaidToday": false,
+            "owed": "70",
+            "daysOrdered": "3"
+        },
+        "previewData": [
+            {
+                "date": "2024-1-19",
+                "ordered": true
+            },
+            {
+                "date": "2024-1-20",
+                "ordered": false
+            },
+            {
+                "date": "2024-1-21",
+                "ordered": false
+            }
+        ]
     }
 }

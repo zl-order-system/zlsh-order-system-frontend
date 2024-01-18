@@ -27,7 +27,7 @@ export default function Account() {
           <input name="seat" type="text" className="pl-2 outline-none border-b-2 border-b-neutral-400 text-black text-2xl font-normal font-['Roboto Mono for Powerline']"></input>
         </div>
         <div className="grid place-content-center pt-4">
-          <button className="text-center text-sky-400 text-2xl font-bold">送出</button>
+          <button className="text-center text-sky-400 text-2xl font-bold">儲存</button>
         </div>
       </div>
     </div>

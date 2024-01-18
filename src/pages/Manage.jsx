@@ -78,7 +78,7 @@ function createData(value) {
 
 function Manage() {
     const [data, setData] = useState(null);
-    const [HTML, setHTML] = useState(<div>Loding...</div>)
+    const [HTML, setHTML] = useState(<Loader/>)
     useEffect(() => {
         getManageData().then(value => {
             originData = JSON.parse(value)

@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import { getCost, getManageData, postOrder } from "../API/API"
 import Loader from "../components/loader/Loader";
+import SuccessHint from "../components/successHint/SuccessHint";
 
 let originData;
 
@@ -52,7 +53,7 @@ function createData(value) {
                 elementValue.opacityOfButton = "opacity-100"
                 elementValue.cursorOfButton = "cursor-pointer"
                 elementValue.acceptClickButton = true
-                value["bodyData"][index]["selectedMeal"] = value["bodyData"][index]["mealOptions"][0]
+                value["bodyData"][index]["selectedMeal"] = value["bodyData"][index]["mealOptions"][0]["name"]
                 value["bodyData"][index]["lunchBox"] = "自備餐盒"
                 break;
             default:
@@ -77,8 +78,11 @@ function createData(value) {
 
 
 function Manage() {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState(null)
     const [HTML, setHTML] = useState(<Loader/>)
+    const [loaderState, setLoaderState] = useState("hidden")
+    const [successHintState, setSuccessHintState] = useState(["", ""])
+
     useEffect(() => {
         getManageData().then(value => {
             originData = JSON.parse(value)
@@ -89,6 +93,9 @@ function Manage() {
     useEffect(() => {
         if (data != null) {
             setHTML(
+                <>
+                <div className={`fixed translate-x-[-50%] left-[50%] top-[10px]`}><SuccessHint state={successHintState[0]} text={successHintState[1]} set={setSuccessHintState}/></div>
+                <div className={`w-full h-[calc(100%-4.3rem)] fixed bg-gray-300 opacity-70 ${loaderState}`}><Loader/></div>
                 <div className="w-full h-full overflow-scroll pb-16 px-[1.8rem] pt-[2.5rem] flex flex-col">
                     <div className="text-black text-[1.8rem] font-[700]">訂餐管理</div>
                     <div className="flex flex-row justify-between my-[0.8rem]">
@@ -99,16 +106,17 @@ function Manage() {
                     <PreviewBar itemsData={data["bodyData"]} />
                     <div className=" w-full h-[1px] bg-[#B6B6B6]"></div>
                     <div className=" flex flex-col items-center w-full">
-                        <Items itemsData={data["bodyData"]} setData={setData} />
+                        <Items itemsData={data["bodyData"]} setData={setData} setLoaderState={setLoaderState} setSuccessHintState={setSuccessHintState}/>
                     </div>
                 </div>
+                </>
             );
         }
-    }, [data])
+    }, [data, loaderState, successHintState])
     return HTML
 }
 
-function Items({ itemsData, setData }) {
+function Items({ itemsData, setData, setLoaderState, setSuccessHintState }) {
     const [newItemData, setNewItemData] = useState(firstSetNewItemData())
     useEffect(() => {
         setNewItemData(firstSetNewItemData())
@@ -160,15 +168,18 @@ function Items({ itemsData, setData }) {
             o[index]["css"]["cursorOfButton"] = "cursor-default"
             setNewItemData(o)
             let data = {
-                id: o[index]["mealOptions"].indexOf(o[index]["selectedMeal"]),
+                id: o[index]["mealOptions"].findIndex(obj => obj["name"] == o[index]["selectedMeal"]),
                 date: o[index]["displayDate"],
                 lunchBox: o[index]["lunchBox"],
                 selectedMeal: o[index]["selectedMeal"],
             }
             postOrder(data, method).then( res => {
+                setLoaderState("hidden")
                 originData = JSON.parse(res)
                 setData(createData(JSON.parse(res)))
+                setSuccessHintState(["open","訂餐成功"])
             })
+            setLoaderState("block")
         }
     };
     return newItemData.map((element, index) => {
@@ -188,11 +199,12 @@ function Items({ itemsData, setData }) {
                     {/* 未繳費、未訂餐時顯示 */}
                     <div className={`${element["css"]["displayOfSelectBlock"]} flex flex-row gap-2 mt-[2px]`}>
                         <select defaultValue={element["lunchBox"]} onChange={(event) => { handleSelectChange(event, index, "box") }} className="py-0.5 px-1 h-fit text-[0.9rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
-                            <option value="自備餐盒">自備餐盒</option>
-                            <option value="學校餐盒">學校餐盒</option>
+                            {
+                               element["mealOptions"][element["mealOptions"].findIndex(obj => obj["name"] == element["selectedMeal"])]["schoolOnly"] ? [<option value="學校餐盒">學校餐盒</option>] : [<option value="自備餐盒">自備餐盒</option>,<option value="學校餐盒">學校餐盒</option>]
+                            }
                         </select>
                         <select defaultValue={element["selectedMeal"]} onChange={(event) => { handleSelectChange(event, index, "num") }} className="py-0.5 px-1 text-[0.9rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
-                            {element["mealOptions"].map((element, index) => <option value={element} key={index}>{element}</option>)}
+                            {element["mealOptions"].map((element, index) => <option value={element["name"]} key={index}>{element["name"]}</option>)}
                         </select>
                         <div className="text-[#565656] text-[1rem] font-[400] flex flex-row justify-start gap-[1.5rem] ml-1">{element["price"]}元</div>
                     </div>

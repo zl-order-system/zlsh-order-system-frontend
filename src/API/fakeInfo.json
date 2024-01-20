@@ -14,9 +14,22 @@
             "price": "65",
             "selectedMeal": "小王子",
             "mealOptions": [
-                "小王子",
-                "味噌湯麵",
-                "鍋貼＋飲料"
+                {
+                    "name":"小王子",
+                    "schoolOnly":true
+                },
+                {
+                    "name":"味噌湯麵",
+                    "schoolOnly":false
+                },
+                {
+                    "name":"鍋貼＋飲料",
+                    "schoolOnly":false
+                },
+                {
+                    "name":"咖哩燴飯",
+                    "schoolOnly":false
+                }
             ]
         }]
     },
@@ -35,9 +48,22 @@
             "price": "65",
             "selectedMeal": "小王子",
             "mealOptions": [
-                "小王子",
-                "味噌湯麵",
-                "鍋貼＋飲料"
+                {
+                    "name":"小王子",
+                    "schoolOnly":true
+                },
+                {
+                    "name":"味噌湯麵",
+                    "schoolOnly":false
+                },
+                {
+                    "name":"鍋貼＋飲料",
+                    "schoolOnly":false
+                },
+                {
+                    "name":"咖哩燴飯",
+                    "schoolOnly":false
+                }
             ]
         }]
     },
@@ -57,9 +83,22 @@
                 "price": "65",
                 "selectedMeal": "小王子",
                 "mealOptions": [
-                    "小王子",
-                    "味噌湯麵",
-                    "鍋貼＋飲料"
+                    {
+                        "name":"小王子",
+                        "schoolOnly":true
+                    },
+                    {
+                        "name":"味噌湯麵",
+                        "schoolOnly":false
+                    },
+                    {
+                        "name":"鍋貼＋飲料",
+                        "schoolOnly":false
+                    },
+                    {
+                        "name":"咖哩燴飯",
+                        "schoolOnly":false
+                    }
                 ]
             },
             {
@@ -71,9 +110,22 @@
                 "price": "65",
                 "selectedMeal": "味噌湯麵",
                 "mealOptions": [
-                    "小王子",
-                    "味噌湯麵",
-                    "鍋貼＋飲料"
+                    {
+                        "name":"小王子",
+                        "schoolOnly":true
+                    },
+                    {
+                        "name":"味噌湯麵",
+                        "schoolOnly":false
+                    },
+                    {
+                        "name":"鍋貼＋飲料",
+                        "schoolOnly":false
+                    },
+                    {
+                        "name":"咖哩燴飯",
+                        "schoolOnly":false
+                    }
                 ]
             },
             {
@@ -85,9 +137,22 @@
                 "price": "-",
                 "selectedMeal": "-",
                 "mealOptions": [
-                    "小王子",
-                    "味噌湯麵",
-                    "鍋貼＋飲料"
+                    {
+                        "name":"小王子",
+                        "schoolOnly":true
+                    },
+                    {
+                        "name":"味噌湯麵",
+                        "schoolOnly":false
+                    },
+                    {
+                        "name":"鍋貼＋飲料",
+                        "schoolOnly":false
+                    },
+                    {
+                        "name":"咖哩燴飯",
+                        "schoolOnly":false
+                    }
                 ]
             },
             {
@@ -99,10 +164,22 @@
                 "price": "70",
                 "selectedMeal": "咖哩燴飯",
                 "mealOptions": [
-                    "小王子",
-                    "味噌湯麵",
-                    "鍋貼＋飲料",
-                    "咖哩燴飯"
+                    {
+                        "name":"小王子",
+                        "schoolOnly":true
+                    },
+                    {
+                        "name":"味噌湯麵",
+                        "schoolOnly":false
+                    },
+                    {
+                        "name":"鍋貼＋飲料",
+                        "schoolOnly":false
+                    },
+                    {
+                        "name":"咖哩燴飯",
+                        "schoolOnly":false
+                    }
                 ]
             }
         ]

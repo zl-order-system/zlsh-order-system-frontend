@@ -33,14 +33,19 @@ class FakeInfo():
             itemData["displayDate"] = (current_date + timedelta(days=i)).strftime("%m/%d 週") + weekdays[int((current_date + timedelta(days=i)).strftime("%w"))]
             randomNum = random.randint(3, 6)
             itemData["mealOptions"] = []
+            haveAddMealNames = []
             for i in range(randomNum):
                 r = random.randint(0, len(mealOptions)-1)
-                if mealOptions[r] not in itemData["mealOptions"]:
-                    itemData["mealOptions"].append(mealOptions[r])
+                if mealOptions[r] not in haveAddMealNames:
+                    haveAddMealNames.append(mealOptions[r])
+                    itemData["mealOptions"].append({
+                        "name" : mealOptions[r],
+                        "schoolOnly" : True if r % 2 else False 
+                    })
             if itemData["state"] == "已繳費" or itemData["state"] == "未繳費":
                 randomNum = random.randint(0, len(itemData["mealOptions"])-1)
                 itemData["id"] = randomNum
-                itemData["selectedMeal"] = itemData["mealOptions"][randomNum]
+                itemData["selectedMeal"] = itemData["mealOptions"][randomNum]["name"]
                 randomNum = random.randint(0,1)
                 if randomNum:
                     itemData["lunchBox"] = "自備餐盒"

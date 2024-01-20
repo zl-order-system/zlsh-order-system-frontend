@@ -13,7 +13,7 @@ with open('src/API/fakeInfo.json', 'r') as file:
 
 @app.route('/manage',methods=["GET", "POST", "PUT", "DELETE"])
 def manage():
-    time.sleep(3)
+    time.sleep(1)
     if request.method == "GET": #取得資訊
         return FakeInfo.creatManageData(5)
     elif request.method == "POST":  #新增預定

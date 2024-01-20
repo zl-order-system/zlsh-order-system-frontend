@@ -1,7 +1,7 @@
 import Information from "./information.json"
 import fakeInfo from "./fakeInfo.json"
 
-const flaskOpen = false
+const flaskOpen = true
 const URL = {
     homePage : "http://127.0.0.1:5000/home",
     managePage : "http://127.0.0.1:5000/manage"

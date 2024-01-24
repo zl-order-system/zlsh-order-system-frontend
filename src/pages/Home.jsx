@@ -1,47 +1,62 @@
-import { fetchOrderData } from "../API/API.js";
+import { getHomeData } from "../API/API.js";
 import { Link } from 'react-router-dom';
 import { useState,useEffect } from "react";
+import Loader from "../components/loader/Loader.jsx";
 
-// let orderData = fetchOrderData()  //取得使用者訂餐資料
+const weekdays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
 
-function Banner({orderData}) {
-  if(orderData==null)return
-
-  const weekdays = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
-  let month = 9;
-  let date = 29;
-
+function Banner({ HomeData }) {
+  if(HomeData==null)return
+  const currentDate = new Date();
+  let month = currentDate.getMonth()+1
+  let date = currentDate.getDate()
+  let weekday = weekdays[currentDate.getDay()]
+  const stateText = []
+  switch (HomeData["bannerData"]["hasPaidToday"]) {
+    case true:
+      stateText[0] = "今日已繳費"
+      stateText[1] = ""
+      break;
+    case false:
+      stateText[0] = "今日尚未繳費"
+      stateText[1] = "請儘速向幹部繳納"
+      break
+    case null:
+      stateText[0] = "今日未訂餐"
+      stateText[1] = "請儘速訂餐"
+    default:
+      break;
+  }
   return (
     <div className="mt-10 mx-4 h-64 bg-[#00AEB9] rounded-[1.25rem] grid place-content-center font-[inter] grid-cols-[4.5fr_5.5fr] grid-rows-[1fr_1px_1fr] shadow-lg">
       {/* 代繳金額 */}
       <div className='h-full pt-4 pl-6 flex flex-col'>
         <div className='text-white text-[1.5rem]'>代繳金額</div>
-        <div className='pl-6 text-[3rem] text-white'>65$</div>
+        <div className='pl-6 text-[3rem] text-white'>{ HomeData["bannerData"]["owed"] }$</div>
       </div>
       {/* 未繳錢 */}
       <div className="h-full flex flex-col justify-center text-center gap-2">
-        <span className="text-[#EEFF2B] font-semibold text-[1.5rem]">今日尚未繳錢</span>
-        <span className="text-[#DFDFDF] text-[1.25rem]">請儘速向幹部繳納</span>
+        <span className="text-[#EEFF2B] font-semibold text-[1.5rem]">{ stateText[0] }</span>
+        <span className="text-[#DFDFDF] text-[1.25rem]">{ stateText[1] }</span>
       </div>
       {/* 分隔線 */}
       <span className="mx-auto block w-11/12 bg-[#D7D7D7] h-[1px] col-span-2"></span>
       {/* 已訂餐天數 */}
       <div className=' h-full pt-4 pl-6 flex flex-col'>
         <div className='text-white text-2xl'>已訂餐天數</div>
-        <div className='pl-6 text-[2.5rem] text-white'>一天</div>
+        <div className='pl-6 text-[2.5rem] text-white'>{ HomeData["bannerData"]["daysOrdered"] }天</div>
       </div>
       {/* 日期 */}
       <div className='h-full flex flex-col text-center justify-center items-center'>
         <span className="block text-3xl text-[#DFDFDF]">{month}月{date}日</span>
-        <span className="block text-3xl text-[#DFDFDF]">{weekdays[5]}</span>
+        <span className="block text-3xl text-[#DFDFDF]">{weekday}</span>
       </div>
     </div>
   )
 }
 
-function UtilButtons({orderData}) {
-  if(orderData==null)return
-
+function UtilButtons({ HomeData }) {
+  if(HomeData==null)return
   return (
     <div className="flex justify-evenly">
       <button className='flex flex-col justify-center items-center'>
@@ -93,30 +108,33 @@ function UtilButtons({orderData}) {
     </div>
   )
 }
-function EachDay({month,day,week,orderState}){
+function EachDay({ date, orderState }){
   let orderHTML
-  if(orderState=="T"){
+  const year = date.split("-")[0]
+  const month = date.split("-")[1]
+  const day = date.split("-")[2]
+  const week = weekdays[new Date(year, month-1, day).getDay()];
+  if( orderState ){
     orderHTML = <div className=" text-[#525252] text-[1.6rem] font-[600] text-center">已預訂</div>
-  }else if(orderState=="F"){
-    orderHTML = <button className=" text-[#00C0CC] text-[1.6rem] font-[600] text-center -translate-x-[50%] left-[50%] relative">預訂</button>
+  }else if( !orderState ){
+    orderHTML = <Link to={"/manage"}><button className=" text-[#00C0CC] text-[1.6rem] font-[600] text-center -translate-x-[50%] left-[50%] relative">預訂</button></Link>
   }
   return(
     <div className="w-[9.7rem] min-w-[9.7rem] h-[9.7rem] border-[1px] border-[#ACACAC] rounded-[1.3rem]">
-      <div className=" text-black text-[1.3rem] font-[700] ml-[1rem]">{month}月</div>
-      <div className=" text-black text-[2.8rem] font-[400] leading-[2.8rem] text-center">{day}</div>
-      <div className=" text-[#6C6C6C] text-[1.3rem] font-[400] text-center">{week}</div>
+      <div className=" text-black text-[1.3rem] font-[700] ml-[1rem]">{ month }月</div>
+      <div className=" text-black text-[2.8rem] font-[400] leading-[2.8rem] text-center">{ day }</div>
+      <div className=" text-[#6C6C6C] text-[1.3rem] font-[400] text-center">{ week }</div>
       {orderHTML}
     </div>
   )
 }
-function OrderPreveiw({orderData}){
-  if(orderData==null)return
-
+function OrderPreveiw({ HomeData }){
+  if(HomeData==null)return
   return(
     <div className="flex gap-[1rem] flex-col mx-[1.5rem]">
       <div className="flex justify-between">
         <div className="text-black text-[1.8rem] font-[700]">預覽</div>
-        <Link to={"/order"}>
+        <Link to={"/manage"}>
           <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
           <g clipPath="url(#clip0_58_99)">
           <path d="M6.5625 35L28.4375 35C32.0556 35 35 32.0556 35 28.4375L35 6.5625C35 2.94437 32.0556 0 28.4375 0L6.5625 0C2.94437 0 0 2.94437 0 6.5625L0 28.4375C0 32.0556 2.94437 35 6.5625 35ZM1.45833 6.5625C1.45833 3.74792 3.74792 1.45833 6.5625 1.45833L28.4375 1.45833C31.2521 1.45833 33.5417 3.74792 33.5417 6.5625L33.5417 28.4375C33.5417 31.2521 31.2521 33.5417 28.4375 33.5417L6.5625 33.5417C3.74792 33.5417 1.45833 31.2521 1.45833 28.4375L1.45833 6.5625Z" fill="black"/>
@@ -131,30 +149,26 @@ function OrderPreveiw({orderData}){
         </Link>
       </div>
       <div className="flex flex-row justify-start flex-shrink-0 gap-5 overflow-scroll w-full py-4">
-        {orderData.map( ( item,index )=>{
-          return <EachDay month={item["month"]} day={item["day"]} week={item["week"]} orderState={item["orderState"]} key={index}/>
-        })}
+        {HomeData["previewData"].map((item, index) => <EachDay date={item["date"]} orderState={item["ordered"]} key={index}/>)}
       </div>
     </div>
   )
 }
 
 function Home() {
-  const [orderData,setOrderData] = useState(null) //取得使用者訂餐資料
+  const [HomeData,setHomeData] = useState(null) //取得使用者訂餐資料
     useEffect(()=>{
-        fetchOrderData().then((value)=>{
-            setOrderData(value)
+        getHomeData().then(( value )=>{
+            setHomeData(JSON.parse(value))
         })
     },[])
-    // useEffect(() => {   搞死人的異步
-    //     console.log(orderData)
-    //   }, [orderData]);
+  if ( HomeData == null ) return <Loader/>
   return (
     <div className="flex flex-col gap-9 w-full h-full overflow-scroll pb-16">
-        <Banner orderData={orderData}/>
-        <UtilButtons orderData={orderData}/>
-        <OrderPreveiw orderData={orderData}/>
-      </div>
+        <Banner HomeData={HomeData}/>
+        <UtilButtons HomeData={HomeData}/>
+        <OrderPreveiw HomeData={HomeData}/>
+    </div>
   )
 }
 

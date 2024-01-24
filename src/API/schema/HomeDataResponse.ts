@@ -1,6 +1,6 @@
 import { OrderState, lunchBoxType } from "./Enums"
 
-type GetManageDataResponse = {
+type GetHomeDataResponse = {
     bannerData: {
         today: Date,
         hasPaidToday: boolean,

@@ -22,7 +22,7 @@ export async function getHomeData(){
                         resolve(xhr.responseText);
                     } else {
                         // There was an error with the request
-                        reject(new Error(xhr.Error));
+                        reject({status : xhr.status, statusText : xhr.statusText, testMode : flaskOpen});
                     }
                 }
             };
@@ -50,7 +50,7 @@ export async function getManageData() {
                         resolve(xhr.responseText);
                     } else {
                         // There was an error with the request
-                        reject(new Error(xhr.Error));
+                        reject({status : xhr.status, statusText : xhr.statusText, testMode : flaskOpen});
                     }
                 }
             };
@@ -87,11 +87,14 @@ export async function postOrder(data, method){    //修改或新增訂單
                         resolve(xhr.responseText);
                     } else {
                         // There was an error with the request
-                        reject(true);
+                        reject({status : xhr.status, statusText : xhr.statusText, testMode : flaskOpen});
                     }
                 }
             };
-            // Send the XML data in the request body
+            xhr.onerror = function () {
+                console.log("ww");
+                return error
+            }
             xhr.send(data);
         })
     }

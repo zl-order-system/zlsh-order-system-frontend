@@ -156,20 +156,32 @@ function OrderPreveiw({ HomeData }){
 }
 
 function Home() {
-  const [HomeData,setHomeData] = useState(null) //取得使用者訂餐資料
-    useEffect(()=>{
-        getHomeData().then(( value )=>{
-            setHomeData(JSON.parse(value))
-        })
-    },[])
-  if ( HomeData == null ) return <Loader/>
-  return (
-    <div className="flex flex-col gap-9 w-full h-full overflow-scroll pb-16">
-        <Banner HomeData={HomeData}/>
-        <UtilButtons HomeData={HomeData}/>
-        <OrderPreveiw HomeData={HomeData}/>
-    </div>
+  const [HomeData, setHomeData] = useState(null) //取得使用者訂餐資料
+  const [HTML, setHTML] = useState(
+    <Loader />
   )
+  useEffect(()=>{
+    setHTML(
+      <div className="flex flex-col gap-9 w-full h-full overflow-scroll pb-16">
+      <Banner HomeData={HomeData} />
+      <UtilButtons HomeData={HomeData} />
+      <OrderPreveiw HomeData={HomeData} />
+    </div>
+    )
+  }, [HomeData])
+  useEffect(() => {
+    getHomeData().then((value) => {
+      setHomeData(JSON.parse(value))
+    }).catch((error) => {
+      setHTML(
+        <div>
+          <div>{`發生錯誤：${error.status}`}</div>
+          <div>{`測試模式(flask)：${error.testMode}`}</div>
+        </div>
+      )
+    })
+  }, [])
+  return HTML
 }
 
 export default Home

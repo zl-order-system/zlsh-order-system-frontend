@@ -24,8 +24,8 @@ def manage():
         return FakeInfo.creatManageData(5)
 @app.route('/home',methods=["GET"])
 def home():
-    time.sleep(3)
+    time.sleep(1)
     return Home_Get_Text
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")

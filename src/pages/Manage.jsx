@@ -87,6 +87,13 @@ function Manage() {
         getManageData().then(value => {
             originData = JSON.parse(value)
             setData(createData(JSON.parse(value)))
+        }).catch((error) => {
+            setHTML(
+                <div>
+                    <div>{`發生錯誤：${error.status}`}</div>
+                    <div>{`測試模式(flask)：${error.testMode}`}</div>
+                </div>
+            )
         })
     }, []);
 
@@ -200,7 +207,7 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState }) {
                     <div className={`${element["css"]["displayOfSelectBlock"]} flex flex-row gap-2 mt-[2px]`}>
                         <select defaultValue={element["lunchBox"]} onChange={(event) => { handleSelectChange(event, index, "box") }} className="py-0.5 px-1 h-fit text-[0.9rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
                             {
-                               element["mealOptions"][element["mealOptions"].findIndex(obj => obj["name"] == element["selectedMeal"])]["schoolOnly"] ? [<option value="學校餐盒">學校餐盒</option>] : [<option value="自備餐盒">自備餐盒</option>,<option value="學校餐盒">學校餐盒</option>]
+                               element["mealOptions"][element["mealOptions"].findIndex(obj => obj["name"] == element["selectedMeal"])]["schoolOnly"] ? <option value="學校餐盒">學校餐盒</option> : [<option value="自備餐盒" key={"自備餐盒"}>自備餐盒</option>,<option value="學校餐盒" key={"學校餐盒"}>學校餐盒</option>]
                             }
                         </select>
                         <select defaultValue={element["selectedMeal"]} onChange={(event) => { handleSelectChange(event, index, "num") }} className="py-0.5 px-1 text-[0.9rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">

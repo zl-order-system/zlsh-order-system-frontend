@@ -1,4 +1,3 @@
-import { type } from "os"
 import { OrderState, lunchBoxType } from "./Enums"
 
 type getManageDataResponse = {

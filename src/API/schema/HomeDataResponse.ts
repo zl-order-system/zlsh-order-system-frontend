@@ -1,7 +1,7 @@
 import { OrderState, lunchBoxType } from "./Enums"
 
 type GetHomeDataResponse = {
-    role: string,
+    role: string,   // USER || ADMIN
     bannerData: {
         today: Date,
         hasPaidToday: boolean,

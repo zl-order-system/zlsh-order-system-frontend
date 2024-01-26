@@ -8,8 +8,11 @@ CORS(app)
 
 
 with open('src/API/fakeInfo.json', 'r') as file:
-    Home_Get_Data = json.load(file)["Home_GET"]
+    data = json.load(file)
+    Home_Get_Data = data.get("Home_GET", {})
     Home_Get_Text = json.dumps(Home_Get_Data)
+    account_Get_Data = data.get("account_GET", {})
+    account_Get_Text = json.dumps(account_Get_Data)
 
 @app.route('/manage',methods=["GET", "POST", "PUT", "DELETE"])
 def manage():
@@ -26,6 +29,10 @@ def manage():
 def home():
     time.sleep(1)
     return Home_Get_Text
+@app.route('/account',methods=["GET"])
+def account():
+    time.sleep(1)
+    return account_Get_Text
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

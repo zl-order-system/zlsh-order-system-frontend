@@ -2,6 +2,8 @@ import { getHomeData } from "../API/API.js";
 import { Link } from 'react-router-dom';
 import { useState,useEffect } from "react";
 import Loader from "../components/loader/Loader.jsx";
+import manageLogo from "../svg/manageLogo.svg"
+
 
 const weekdays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
 
@@ -155,19 +157,30 @@ function OrderPreveiw({ HomeData }){
   )
 }
 
+function ManagerButton({ HomeData }){
+  if(HomeData["role"] == "USER") return null
+  else if(HomeData["role"] == "ADMIN") return(
+    <a href=""><div to={""} className="mx-4 bg-[#D5EFF9] rounded-[1.25rem] place-content-center font-[inter] shadow-[2px_3px_6px_1px_rgba(123,123,123,0.25)] flex justify-between py-[1.1rem]">
+        <div className="ml-[2.5rem] "><img src={ manageLogo } /></div>
+        <div className="w-full text-center text-[rgba(0,0,0,0.70)] text-[1.5rem] font-[600] tracking-[0.2rem]">進入後台管理系統</div>
+    </div></a>
+  )
+}
+
 function Home() {
   const [HomeData, setHomeData] = useState(null) //取得使用者訂餐資料
-  const [HTML, setHTML] = useState(
-    <Loader />
-  )
+  const [HTML, setHTML] = useState(<Loader />)
   useEffect(()=>{
-    setHTML(
-      <div className="flex flex-col gap-9 w-full h-full overflow-scroll pb-16">
-      <Banner HomeData={HomeData} />
-      <UtilButtons HomeData={HomeData} />
-      <OrderPreveiw HomeData={HomeData} />
-    </div>
-    )
+    if(HomeData != null){
+      setHTML(
+        <div className="flex flex-col gap-9 w-full h-full overflow-scroll pb-16">
+        <Banner HomeData={HomeData} />
+        <ManagerButton HomeData={HomeData} />
+        <UtilButtons HomeData={HomeData} />
+        <OrderPreveiw HomeData={HomeData} />
+      </div>
+      )
+    }
   }, [HomeData])
   useEffect(() => {
     getHomeData().then((value) => {

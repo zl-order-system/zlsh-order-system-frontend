@@ -2,15 +2,17 @@ import Information from "./information.json"
 import fakeInfo from "./fakeInfo.json"
 
 const flaskOpen = true
+const domain = "http://192.168.31.171:5000/"
 const URL = {
-    homePage : "http://127.0.0.1:5000/home",
-    managePage : "http://127.0.0.1:5000/manage"
+    homePage :  domain + "home",
+    managePage : domain + "manage",
+    accountPage : domain + "account"
 }
 
 export async function getHomeData(){
-    if ( !flaskOpen ) return JSON.stringify(fakeInfo["Home_GET"])
+    if ( !flaskOpen ) return JSON.stringify(fakeInfo["account_GET"])
     const url = URL.homePage
-    const method = "GET"
+    let method = "GET"
     const getData = (method, url) => {
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest()
@@ -38,7 +40,7 @@ export async function getHomeData(){
 export async function getManageData() {
     if ( !flaskOpen ) return JSON.stringify(fakeInfo["manage_GET"])
     const url = URL.managePage
-    const method = "GET"
+    let method = "GET"
     const getData = (method, url) => {
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest()
@@ -91,12 +93,33 @@ export async function postOrder(data, method){    //修改或新增訂單
                     }
                 }
             };
-            xhr.onerror = function () {
-                console.log("ww");
-                return error
-            }
             xhr.send(data);
         })
     }
     return await postOrderData(data, method, url)
+}
+
+export async function getAccount(){
+    if ( !flaskOpen ) return JSON.stringify(fakeInfo["manage_POST"])
+    const url = URL.accountPage
+    let method = "GET"
+    const getAccountData = (method, url) => {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest()
+            xhr.open(method, url, true)
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // Request was successful, handle the response
+                        resolve(xhr.responseText);
+                    } else {
+                        // There was an error with the request
+                        reject({status : xhr.status, statusText : xhr.statusText, testMode : flaskOpen});
+                    }
+                }
+            };
+            xhr.send();
+        })
+    }
+    return await getAccountData(method, url)
 }

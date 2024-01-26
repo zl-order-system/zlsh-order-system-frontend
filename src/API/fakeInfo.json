@@ -185,6 +185,7 @@
         ]
     },
     "Home_GET": {
+        "role": "ADMIN",
         "bannerData": {
             "today": "2024-1-18",
             "hasPaidToday": false,
@@ -205,5 +206,14 @@
                 "ordered": false
             }
         ]
+    },
+    "account_GET": {
+        "avatarUrl": "https://via.placeholder.com/192x192",
+        "name": "周奕宇",
+        "id": "11230155",
+        "googleName": "10922周奕宇",
+        "email": "s11230155@zlsh.tp.edu.tw",
+        "class": "109",
+        "seatNumber": "22"
     }
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { getCost, getManageData, postOrder } from "../API/API"
 import Loader from "../components/loader/Loader";
 import SuccessHint from "../components/successHint/SuccessHint";
+import ErrorHint from "../components/errorHint/errorHint";
 
 let originData;
 
@@ -82,6 +83,7 @@ function Manage() {
     const [HTML, setHTML] = useState(<Loader/>)
     const [loaderState, setLoaderState] = useState("hidden")
     const [successHintState, setSuccessHintState] = useState(["", ""])
+    const [errorHintState, setErrorHintState] = useState(["", ""])
 
     useEffect(() => {
         getManageData().then(value => {
@@ -102,8 +104,9 @@ function Manage() {
             setHTML(
                 <>
                 <div className={`fixed translate-x-[-50%] left-[50%] top-[10px]`}><SuccessHint state={successHintState[0]} text={successHintState[1]} set={setSuccessHintState}/></div>
+                <div className={`fixed translate-x-[-50%] left-[50%] top-[10px]`}><ErrorHint state={errorHintState[0]} text={errorHintState[1]} set={setErrorHintState}/></div>
                 <div className={`w-full h-[calc(100%-4.3rem)] fixed bg-gray-300 opacity-70 ${loaderState}`}><Loader/></div>
-                <div className="w-full h-full overflow-scroll pb-16 px-[1.8rem] pt-[2.5rem] flex flex-col">
+                <div className="w-full h-full overflow-scroll pb-16 px-[1.8rem] pt-[1rem] flex flex-col">
                     <div className="text-black text-[1.8rem] font-[700]">訂餐管理</div>
                     <div className="flex flex-row justify-between my-[0.8rem]">
                         <div className="text-black text-[1.2rem] font-[700]">已繳: {data["headerData"]["paid"]}元</div>
@@ -113,17 +116,17 @@ function Manage() {
                     <PreviewBar itemsData={data["bodyData"]} />
                     <div className=" w-full h-[1px] bg-[#B6B6B6]"></div>
                     <div className=" flex flex-col items-center w-full">
-                        <Items itemsData={data["bodyData"]} setData={setData} setLoaderState={setLoaderState} setSuccessHintState={setSuccessHintState}/>
+                        <Items itemsData={data["bodyData"]} setData={setData} setLoaderState={setLoaderState} setSuccessHintState={setSuccessHintState} setErrorHintState={setErrorHintState} />
                     </div>
                 </div>
                 </>
             );
         }
-    }, [data, loaderState, successHintState])
+    }, [data, loaderState, successHintState, errorHintState])
     return HTML
 }
 
-function Items({ itemsData, setData, setLoaderState, setSuccessHintState }) {
+function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErrorHintState }) {
     const [newItemData, setNewItemData] = useState(firstSetNewItemData())
     useEffect(() => {
         setNewItemData(firstSetNewItemData())
@@ -185,6 +188,9 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState }) {
                 originData = JSON.parse(res)
                 setData(createData(JSON.parse(res)))
                 setSuccessHintState(["open","訂餐成功"])
+            }).catch( error => {
+                setLoaderState("hidden")
+                setErrorHintState(["open","訂餐失敗"])
             })
             setLoaderState("block")
         }

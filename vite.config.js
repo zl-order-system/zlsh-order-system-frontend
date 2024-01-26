@@ -5,7 +5,7 @@ import cors from 'koa2-cors';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/zlsh-order-system/",
+  base: "/",
   plugins: [react(), tailwindcss()],
   server: {
     middleware: [

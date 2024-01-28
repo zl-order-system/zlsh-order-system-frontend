@@ -1,0 +1,379 @@
+[
+    {
+        "date": "2024-01-02",
+        "mealOptions": [
+            {
+                "name": "日式燒肉片",
+                "schoolOnly": false
+            },
+            {
+                "name": "肉絲炒飯",
+                "schoolOnly": false
+            },
+            {
+                "name": "香酥雞排",
+                "schoolOnly": false
+            },
+            {
+                "name": "義式芝麻烤腿排",
+                "schoolOnly": false
+            }
+        ]
+    },
+    {
+        "date": "2024-01-03",
+        "mealOptions": [
+            {
+                "name": "日式燒肉片",
+                "schoolOnly": false
+            },
+            {
+                "name": "肉絲炒飯",
+                "schoolOnly": false
+            },
+            {
+                "name": "香酥雞排",
+                "schoolOnly": false
+            },
+            {
+                "name": "義式芝麻烤腿排",
+                "schoolOnly": false
+            }
+        ]
+    },
+    {
+        "date": "2024-01-04",
+        "mealOptions": [
+            {
+                "name": "日式燒肉片",
+                "schoolOnly": false
+            },
+            {
+                "name": "肉絲炒飯",
+                "schoolOnly": false
+            },
+            {
+                "name": "香酥雞排",
+                "schoolOnly": false
+            },
+            {
+                "name": "義式芝麻烤腿排",
+                "schoolOnly": false
+            }
+        ]
+    },
+    {
+        "date": "2024-01-05",
+        "mealOptions": [
+            {
+                "name": "日式燒肉片",
+                "schoolOnly": false
+            },
+            {
+                "name": "肉絲炒飯",
+                "schoolOnly": false
+            },
+            {
+                "name": "香酥雞排",
+                "schoolOnly": false
+            },
+            {
+                "name": "義式芝麻烤腿排",
+                "schoolOnly": false
+            }
+        ]
+    },
+    {
+        "date": "2024-01-08",
+        "mealOptions": [
+            {
+                "name": "蒜香骰子豬",
+                "schoolOnly": false
+            },
+            {
+                "name": "沙茶雞丁",
+                "schoolOnly": false
+            },
+            {
+                "name": "椒鹽花枝排",
+                "schoolOnly": false
+            },
+            {
+                "name": "清蒸多利魚",
+                "schoolOnly": false
+            },
+            {
+                "name": "咖哩肉片燴飯",
+                "schoolOnly": true
+            }
+        ]
+    },
+    {
+        "date": "2024-01-09",
+        "mealOptions": [
+            {
+                "name": "蒜香骰子豬",
+                "schoolOnly": false
+            },
+            {
+                "name": "沙茶雞丁",
+                "schoolOnly": false
+            },
+            {
+                "name": "椒鹽花枝排",
+                "schoolOnly": false
+            },
+            {
+                "name": "清蒸多利魚",
+                "schoolOnly": false
+            },
+            {
+                "name": "咖哩肉片燴飯",
+                "schoolOnly": true
+            }
+        ]
+    },
+    {
+        "date": "2024-01-10",
+        "mealOptions": [
+            {
+                "name": "蒜香骰子豬",
+                "schoolOnly": false
+            },
+            {
+                "name": "沙茶雞丁",
+                "schoolOnly": false
+            },
+            {
+                "name": "椒鹽花枝排",
+                "schoolOnly": false
+            },
+            {
+                "name": "清蒸多利魚",
+                "schoolOnly": false
+            },
+            {
+                "name": "咖哩肉片燴飯",
+                "schoolOnly": true
+            }
+        ]
+    },
+    {
+        "date": "2024-01-11",
+        "mealOptions": [
+            {
+                "name": "蒜香骰子豬",
+                "schoolOnly": false
+            },
+            {
+                "name": "沙茶雞丁",
+                "schoolOnly": false
+            },
+            {
+                "name": "椒鹽花枝排",
+                "schoolOnly": false
+            },
+            {
+                "name": "清蒸多利魚",
+                "schoolOnly": false
+            },
+            {
+                "name": "咖哩肉片燴飯",
+                "schoolOnly": true
+            }
+        ]
+    },
+    {
+        "date": "2024-01-12",
+        "mealOptions": [
+            {
+                "name": "蒜香骰子豬",
+                "schoolOnly": false
+            },
+            {
+                "name": "沙茶雞丁",
+                "schoolOnly": false
+            },
+            {
+                "name": "椒鹽花枝排",
+                "schoolOnly": false
+            },
+            {
+                "name": "清蒸多利魚",
+                "schoolOnly": false
+            },
+            {
+                "name": "咖哩肉片燴飯",
+                "schoolOnly": true
+            }
+        ]
+    },
+    {
+        "date": "2024-01-15",
+        "mealOptions": [
+            {
+                "name": "蔥爆肉絲",
+                "schoolOnly": false
+            },
+            {
+                "name": "黑胡椒雞柳",
+                "schoolOnly": false
+            },
+            {
+                "name": "紅燒肉",
+                "schoolOnly": false
+            },
+            {
+                "name": "香滷棒腿",
+                "schoolOnly": false
+            }
+        ]
+    },
+    {
+        "date": "2024-01-16",
+        "mealOptions": [
+            {
+                "name": "蔥爆肉絲",
+                "schoolOnly": false
+            },
+            {
+                "name": "黑胡椒雞柳",
+                "schoolOnly": false
+            },
+            {
+                "name": "紅燒肉",
+                "schoolOnly": false
+            },
+            {
+                "name": "香滷棒腿",
+                "schoolOnly": false
+            }
+        ]
+    },
+    {
+        "date": "2024-01-17",
+        "mealOptions": [
+            {
+                "name": "蔥爆肉絲",
+                "schoolOnly": false
+            },
+            {
+                "name": "黑胡椒雞柳",
+                "schoolOnly": false
+            },
+            {
+                "name": "紅燒肉",
+                "schoolOnly": false
+            },
+            {
+                "name": "香滷棒腿",
+                "schoolOnly": false
+            }
+        ]
+    },
+    {
+        "date": "2024-01-18",
+        "mealOptions": [
+            {
+                "name": "蔥爆肉絲",
+                "schoolOnly": false
+            },
+            {
+                "name": "黑胡椒雞柳",
+                "schoolOnly": false
+            },
+            {
+                "name": "紅燒肉",
+                "schoolOnly": false
+            },
+            {
+                "name": "香滷棒腿",
+                "schoolOnly": false
+            }
+        ]
+    },
+    {
+        "date": "2024-01-23",
+        "mealOptions": [
+            {
+                "name": "蠔油肉片",
+                "schoolOnly": false
+            },
+            {
+                "name": "肉燥乾麵",
+                "schoolOnly": true
+            },
+            {
+                "name": "咔啦雞排",
+                "schoolOnly": false
+            },
+            {
+                "name": "椒鹽魚排",
+                "schoolOnly": false
+            }
+        ]
+    },
+    {
+        "date": "2024-01-24",
+        "mealOptions": [
+            {
+                "name": "蠔油肉片",
+                "schoolOnly": false
+            },
+            {
+                "name": "肉燥乾麵",
+                "schoolOnly": true
+            },
+            {
+                "name": "咔啦雞排",
+                "schoolOnly": false
+            },
+            {
+                "name": "椒鹽魚排",
+                "schoolOnly": false
+            }
+        ]
+    },
+    {
+        "date": "2024-01-25",
+        "mealOptions": [
+            {
+                "name": "蠔油肉片",
+                "schoolOnly": false
+            },
+            {
+                "name": "肉燥乾麵",
+                "schoolOnly": true
+            },
+            {
+                "name": "咔啦雞排",
+                "schoolOnly": false
+            },
+            {
+                "name": "椒鹽魚排",
+                "schoolOnly": false
+            }
+        ]
+    },
+    {
+        "date": "2024-01-26",
+        "mealOptions": [
+            {
+                "name": "蠔油肉片",
+                "schoolOnly": false
+            },
+            {
+                "name": "肉燥乾麵",
+                "schoolOnly": true
+            },
+            {
+                "name": "咔啦雞排",
+                "schoolOnly": false
+            },
+            {
+                "name": "椒鹽魚排",
+                "schoolOnly": false
+            }
+        ]
+    }
+]

@@ -1,8 +1,9 @@
 import Information from "./information.json"
 import fakeInfo from "./fakeInfo.json"
+import fakeMealsData from "./fakeMealsData.json"
 
 const flaskOpen = true
-const domain = "http://192.168.31.171:5000/"
+const domain = "http://localhost:5000/"
 const URL = {
     homePage :  domain + "home",
     managePage : domain + "manage",
@@ -122,4 +123,8 @@ export async function getAccount(){
         })
     }
     return await getAccountData(method, url)
+}
+
+export function getMealsData(){
+    return fakeMealsData
 }

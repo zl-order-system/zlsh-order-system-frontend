@@ -7,6 +7,7 @@ import Test from './pages/Test';
 import Account from './pages/Account';
 import Login from './pages/Login';
 import Manage from './pages/Manage';
+import Meals from './pages/Meals';
 import { setToken } from './utils/token';
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/test" element={<Test/>} />
           <Route path="/account" element={<Account/>} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/meals" element={<Meals/>} />
         </Routes>
         {window.location.pathname !== '/login' && <Nav />}
       </Router>

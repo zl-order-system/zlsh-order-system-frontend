@@ -3,11 +3,12 @@ import fakeInfo from "./fakeInfo.json"
 import fakeMealsData from "./fakeMealsData.json"
 
 const flaskOpen = true
-const domain = "http://localhost:5000/"
+const domain = "http://localhost:5000"
 const URL = {
-    homePage :  domain + "home",
-    managePage : domain + "manage",
-    accountPage : domain + "account"
+    homePage :  domain + "/home",
+    managePage : domain + "/manage",
+    accountPage : domain + "/account",
+    mealsPage : domain + "/meals"
 }
 
 export async function getHomeData(){
@@ -125,6 +126,27 @@ export async function getAccount(){
     return await getAccountData(method, url)
 }
 
-export function getMealsData(){
-    return fakeMealsData
+export async function getMealsData(){
+    if ( !flaskOpen ) return JSON.stringify(fakeMealsData)
+    const url = URL.mealsPage
+    let method = "GET"
+    const getData = (method, url) => {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest()
+            xhr.open(method, url, true)
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // Request was successful, handle the response
+                        resolve(xhr.responseText);
+                    } else {
+                        // There was an error with the request
+                        reject({status : xhr.status, statusText : xhr.statusText, testMode : flaskOpen});
+                    }
+                }
+            };
+            xhr.send();
+        })
+    }
+    return await getData(method, url)
 }

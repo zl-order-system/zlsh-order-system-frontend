@@ -7,7 +7,11 @@ function Meals(){
     const [HTML, setHTML] = useState(<Loader />)
     const [mealsData, setMealData] = useState(null)
     useEffect(() => {
-        setMealData(getMealsData())
+        getMealsData().then((res) => {
+            setMealData(JSON.parse(res))
+        }).catch((error) => {
+            console.log(error)
+        })
     }, [])
     useEffect(() => {
         if (mealsData != null){

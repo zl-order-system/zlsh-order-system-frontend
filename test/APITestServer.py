@@ -14,6 +14,10 @@ with open('src/API/fakeInfo.json', 'r') as file:
     account_Get_Data = data.get("account_GET", {})
     account_Get_Text = json.dumps(account_Get_Data)
 
+with open('src/API/fakeMealsData.json', 'r') as file:
+    data = json.load(file)
+    mealsData = json.dumps(data, ensure_ascii=False)
+
 @app.route('/manage',methods=["GET", "POST", "PUT", "DELETE"])
 def manage():
     time.sleep(1)
@@ -33,6 +37,10 @@ def home():
 def account():
     time.sleep(1)
     return account_Get_Text
+@app.route('/meals', methods=["GET"])
+def meals():
+    time.sleep(1)
+    return mealsData
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

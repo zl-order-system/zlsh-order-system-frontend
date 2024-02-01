@@ -8,7 +8,7 @@ const URL = {
     homePage :  domain + "/home",
     managePage : domain + "/manage",
     accountPage : domain + "/account",
-    mealsPage : "https://zl-order-system.github.io/zlsh-order-system-crawl/API/meals/latest.json"
+    mealsPage : "https://raw.githubusercontent.com/zl-order-system/zlsh-order-system-crawl/main/API/meals/latest.json"
 }
 
 async function doRequest(method, url, data) {

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, useNavigate, useSearchParams} from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, useNavigate, useSearchParams} from 'react-router-dom';
 import { useEffect } from 'react';
 // components
 import Home from './pages/Home'

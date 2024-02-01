@@ -41,6 +41,10 @@ def account():
 def meals():
     time.sleep(1)
     return mealsData
+@app.route('/messages', methods=["GET", "POST", "PUT", "DELETE"])
+def messages():
+    time.sleep(3)
+    return "abcd123"
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

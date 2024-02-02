@@ -1,0 +1,36 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Generate GitHub token
+        uses: peter-evans/generate-github-token@v1
+        with:
+          repo: "target-repo-owner/target-repo-name"  # Replace with target repo info
+          permissions: repo  # Adjust permissions as needed
+
+      - name: Push to target repository
+        uses: actions/checkout@v3
+        with:
+          repository: "target-repo-owner/target-repo-name"  # Replace with target repo info
+          ref: ${{ github.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}  # Access generated token
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to GitHub Pages (optional)
+        if: env.TARGET_BRANCH == 'gh-pages'  # Check if targeting 'gh-pages' branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist  # Adjust if your built app is in a different directory
+          publish_branch: ${{ env.TARGET_BRANCH }}  # Replace with appropriate branch

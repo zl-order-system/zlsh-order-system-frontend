@@ -184,7 +184,6 @@ function Home() {
   }, [HomeData])
   useEffect(() => {
     getHomeData().then((value) => {
-      console.log(value);
       setHomeData(JSON.parse(value))
     }).catch((error) => {
       setHTML(

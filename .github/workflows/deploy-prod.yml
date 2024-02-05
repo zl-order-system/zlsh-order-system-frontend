@@ -2,10 +2,10 @@ name: Deploy to Staging
 
 on:
   push:
-    branches: [ main ]
+    branches: [ prod ]
 
 env:
-  BASE_URL: "/staging"
+  BASE_URL: "/"
 
 jobs:
   build:
@@ -28,5 +28,4 @@ jobs:
           destination-repository-name: 'zl-order-system.github.io'
           user-email: example@example.com
           target-branch: main
-          target-directory: staging
           create-target-branch-if-needed: true

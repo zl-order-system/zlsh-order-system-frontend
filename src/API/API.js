@@ -2,7 +2,7 @@ import Information from "./information.json"
 import fakeInfo from "./fakeInfo.json"
 import fakeMealsData from "./fakeMealsData.json"
 
-const flaskOpen = true
+const flaskOpen = false
 const domain = "http://localhost:5000"
 const URL = {
     homePage :  domain + "/home",
@@ -29,7 +29,7 @@ async function doRequest(method, url, data) {
 }
 
 export async function getHomeData(){
-    if ( !flaskOpen ) return JSON.stringify(fakeInfo["account_GET"])
+    if ( !flaskOpen ) return JSON.stringify(fakeInfo["Home_GET"])
     const url = URL.homePage
     let method = "GET"
     return doRequest(method, url, null)
@@ -63,7 +63,7 @@ export async function postOrder(data, method){    //修改或新增訂單
 }
 
 export async function getAccount(){
-    if ( !flaskOpen ) return JSON.stringify(fakeInfo["manage_POST"])
+    if ( !flaskOpen ) return JSON.stringify(fakeInfo["account_GET"])
     const url = URL.accountPage
     let method = "GET"
     return doRequest(method, url, null)

@@ -28,4 +28,5 @@ jobs:
           destination-repository-name: 'zl-order-system.github.io'
           user-email: example@example.com
           target-branch: main
+          target-directory: app
           create-target-branch-if-needed: true

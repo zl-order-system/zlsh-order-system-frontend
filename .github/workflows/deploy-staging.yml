@@ -24,3 +24,4 @@ jobs:
           user-email: example@example.com
           target-branch: main
           target-directory: staging
+          create-target-branch-if-needed: true

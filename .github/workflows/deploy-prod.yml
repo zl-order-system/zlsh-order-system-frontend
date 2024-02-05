@@ -5,7 +5,7 @@ on:
     branches: [ prod ]
 
 env:
-  BASE_URL: "/"
+  BASE_URL: "/app"
 
 jobs:
   build:

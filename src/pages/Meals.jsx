@@ -51,7 +51,7 @@ function MealsList({ mealsData }){
                         <div className="ml-[1rem]">
                             {day["mealOptions"].map((meal, index) => {
                                 return(
-                                    <div className="flex flex-row justify-start items-end" key={index}>
+                                    <div className="flex flex-row justify-start items-end gap-[0.5rem]" key={index}>
                                         <div className="text-[#1F2328] text-[1.5rem] font-[700]">{`${index+1}. ${meal["name"]}`}</div>
                                         {meal["schoolOnly"] && <div className="text-[#686868] text-[0.87rem] font-[700]">無自備餐盒</div>}
                                     </div>

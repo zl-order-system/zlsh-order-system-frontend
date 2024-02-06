@@ -1,5 +1,5 @@
 import { HashRouter as Router, Route, Routes, useNavigate, useSearchParams} from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // components
 import Home from './pages/Home'
 import Nav from './components/Nav'
@@ -12,6 +12,8 @@ import { setToken } from './utils/token';
 
 
 function App() {
+  const [hash, setHash] = useState(window.location.hash)
+  window.addEventListener('hashchange', () => {setHash(window.location.hash)})
   return (
     <div className='grid grid-cols-1 grid-rows-[1fr_4.3rem] w-[100dvw] h-[100dvh] min-w-[260px]'>
       <Router>
@@ -24,7 +26,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/meals" element={<Meals/>} />
         </Routes>
-        {window.location.hash !== '#/login' && <Nav />}
+        {hash !== '#/login' && <Nav />}
       </Router>
     </div>
   )

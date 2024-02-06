@@ -7,6 +7,5 @@ export function loginCheck(){
     // localStorage.removeItem("token")
     if(getToken() == null){
         window.location.href = '#/login'
-        location.reload()
     }
 }

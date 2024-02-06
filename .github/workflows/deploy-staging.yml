@@ -18,10 +18,13 @@ jobs:
         run: |
           export BASE_URL=${{ env.BASE_URL }}
           npm run build
+        env:
+          PROD_BACKEND_HOST: ${{secrets.PROD_BACKEND_HOST}}
       - name: Deploy
         uses: cpina/github-action-push-to-another-repository@main
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+
         with:
           source-directory: 'dist'
           destination-github-username: 'zl-order-system'

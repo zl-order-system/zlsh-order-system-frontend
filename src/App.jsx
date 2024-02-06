@@ -24,7 +24,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/meals" element={<Meals/>} />
         </Routes>
-        {window.location.pathname !== '/login' && <Nav />}
+        {window.location.hash !== '#/login' && <Nav />}
       </Router>
     </div>
   )

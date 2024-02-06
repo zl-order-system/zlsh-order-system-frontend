@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState,useEffect } from "react";
 import Loader from "../components/loader/Loader.jsx";
 import manageLogo from "../svg/manageLogo.svg"
+import { loginCheck } from "../utils/token.js";
 
 
 const weekdays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
@@ -183,6 +184,7 @@ function Home() {
     }
   }, [HomeData])
   useEffect(() => {
+    loginCheck()
     getHomeData().then((value) => {
       setHomeData(JSON.parse(value))
     }).catch((error) => {

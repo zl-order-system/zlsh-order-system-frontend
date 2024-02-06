@@ -1,4 +1,5 @@
 function Login(){
+    console.log("test:"+typeof process.env.PROD_BACKEND_HOST)
     return(
         <div className=" px-[1rem] pt-[5rem] w-full flex flex-row justify-center">
               <div className="bg-white w-full h-[28rem]  border border-[#ACACAC] shadow-[0px_4px_8px_0px_rgba(90,90,90,0.25)] rounded-[0.6rem] flex flex-col justify-center gap-[2.2rem] items-center max-w-[500px]">

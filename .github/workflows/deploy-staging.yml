@@ -6,6 +6,7 @@ on:
 
 env:
   BASE_URL: "/staging/app"
+  VITE_INTERNAL: true
 
 jobs:
   build:

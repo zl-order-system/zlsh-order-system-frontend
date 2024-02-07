@@ -43,7 +43,7 @@ useEffect(() => {
           </div>
           <div>
             <label htmlFor="class" className="block text-neutral-400 text-xl font-bold font-['Roboto Slab']">班級</label>
-            <div name="class" type="text" className="pl-2 outline-none text-black text-2xl font-normal font-['Roboto Mono for Powerline']">{data["class"]}</div>
+            <div name="class" type="text" className="pl-2 outline-none text-black text-2xl font-normal font-['Roboto Mono for Powerline']">{data["classNumber"]}</div>
           </div>
           <div>
             <label htmlFor="seat" className="block text-neutral-400 text-xl font-bold font-['Roboto Slab']">座號</label>

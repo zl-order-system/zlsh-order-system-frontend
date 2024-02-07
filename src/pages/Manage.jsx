@@ -195,7 +195,6 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
         }
     };
     return newItemData.map((element, index) => {
-        console.log(element["mealOptions"].findIndex(obj => obj["name"] == element["selectedMeal"]));
         return (
             <div className=" flex flex-col w-full my-[0.75rem]" key={index}>
                 <div className=" flex flex-row justify-between">

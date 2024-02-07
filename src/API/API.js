@@ -6,11 +6,12 @@ import { getToken, logout } from "../utils/token"
 
 const fakeInfoMode = false
 
-async function doRequest(method, url, data) {
+async function doRequest(method, url, data, herderJson) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest()
         xhr.open(method, url, true)
         xhr.setRequestHeader('Authorization', `Bearer ${ getToken() }`);
+        if(herderJson) xhr.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
@@ -63,7 +64,7 @@ export async function getManageData() {
     if ( fakeInfoMode ) return JSON.stringify(fakeInfo["manage_GET"])
     const url = getAppConstansts().manage
     let method = "GET"
-    return doRequest(method, url, null)
+    return doRequest(method, url, null, true)
 }
 
 export function getCost(lunchBox){ //取得餐盒對應的錢
@@ -82,6 +83,7 @@ export function getCost(lunchBox){ //取得餐盒對應的錢
 
 export async function postOrder(data, method){    //修改或新增訂單
     if ( fakeInfoMode ) return JSON.stringify(fakeInfo["manage_POST"])
+    console.log(data);
     const url = getAppConstansts().manage
     return doRequest(method, url, data)
 }

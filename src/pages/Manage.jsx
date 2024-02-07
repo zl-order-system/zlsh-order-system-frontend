@@ -174,12 +174,11 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
             o[index]["css"]["cursorOfButton"] = "cursor-default"
             setNewItemData(o)
             let data = {
-                id: o[index]["mealOptions"].findIndex(obj => obj["name"] == o[index]["selectedMeal"]),
                 date: o[index]["displayDate"],
-                lunchBox: o[index]["lunchBox"],
-                selectedMeal: o[index]["selectedMeal"],
+                lunchBoxType: o[index]["lunchBox"],
+                selectedMeal: o[index]["mealOptions"].findIndex(obj => obj["name"] == o[index]["selectedMeal"]),
             }
-            postOrder(data, method).then( res => {
+            postOrder(JSON.stringify(data), method).then( res => {
                 setLoaderState("hidden")
                 originData = JSON.parse(res)
                 setData(createData(JSON.parse(res)))
@@ -196,6 +195,7 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
         }
     };
     return newItemData.map((element, index) => {
+        console.log(element["mealOptions"].findIndex(obj => obj["name"] == element["selectedMeal"]));
         return (
             <div className=" flex flex-col w-full my-[0.75rem]" key={index}>
                 <div className=" flex flex-row justify-between">

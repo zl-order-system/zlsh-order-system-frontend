@@ -1,4 +1,4 @@
-import { HashRouter as Router, Route, Routes, useNavigate, useSearchParams} from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, useNavigate, useLocation} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 // components
 import Home from './pages/Home'
@@ -33,11 +33,12 @@ function App() {
 }
 
 function TokenManager() {
-  const [params] = useSearchParams();
   const navigate = useNavigate();
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search);
 
   useEffect(() => {
-    const token = params.get("token");
+    const token = searchParams.get("token");
     if (token == null || token == "") return;
     setToken(token)
     navigate("/");

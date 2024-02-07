@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import Loader from "../components/loader/Loader"
 import { getAccount } from "../API/API";
+import { logout } from "../utils/token";
 
 export default function Account() {
   const [HTML, setHTML] = useState(<Loader/>)
@@ -48,6 +49,9 @@ useEffect(() => {
           <div>
             <label htmlFor="seat" className="block text-neutral-400 text-xl font-bold font-['Roboto Slab']">座號</label>
             <div className="pl-2 outline-none text-black text-2xl font-normal font-['Roboto Mono for Powerline']">{data["seatNumber"]}</div>
+          </div>
+          <div className="grid place-content-center pt-4">
+            <button class="text-center text-sky-400 text-2xl font-bold" onClick={logout}>登出</button>
           </div>
         </div>
       </div>

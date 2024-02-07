@@ -188,12 +188,7 @@ function Home() {
     getHomeData().then((value) => {
       setHomeData(JSON.parse(value))
     }).catch((error) => {
-      // doError(error, setHTML)
-      setHTML(
-        <div>
-          <div>{`發生錯誤：${error.status}`}</div>
-        </div>
-      )
+      doError(error, setHTML)
     })
   }, [])
   return HTML

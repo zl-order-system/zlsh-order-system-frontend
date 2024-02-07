@@ -2,7 +2,7 @@ import Information from "./information.json"
 import fakeInfo from "./fakeInfo.json"
 import fakeMealsData from "./fakeMealsData.json"
 import getAppConstansts from "./appConstansts"
-import { getToken } from "../utils/token"
+import { getToken, logout } from "../utils/token"
 
 const fakeInfoMode = false
 
@@ -25,8 +25,32 @@ async function doRequest(method, url, data) {
 }
 
 export function doError(error, callFunction){
-    callFunction(error.status)
+    switch (error.status) {
+        case 400:  //資料錯誤
+            callFunction("資料錯誤，請回報給開發人員:" + error.status)
+            break
+        case 401:
+            logout()
+            break;
+        case 403:
+            callFunction("無此權限:" + error.status)
+        case 500:
+            callFunction("後端錯誤，請回報給開發人員:" + error.status)
+        case 503:
+            callFunction("後端斷線，閘道仍在線:" + error.status)
+        default:
+            callFunction("發生錯誤：" + error.status)
+            break;
+    }
 }
+// 4xx - 客戶端問題
+// 400 - 前端錯誤，請回報給開發人員
+// 401 - 未驗證
+// 403 - 已驗證但無權限
+// 5xx - 伺服器端錯誤
+// 500 - 後端錯誤，請回報給開發人員
+// 503 - 後端斷線，閘道仍在線
+// Time out - 連線逾時，請檢查網路連線
 
 export async function getHomeData(){
     if ( fakeInfoMode ) return JSON.stringify(fakeInfo["Home_GET"])

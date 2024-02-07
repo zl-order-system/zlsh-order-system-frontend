@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import Loader from "../components/loader/Loader"
-import { getAccount } from "../API/API";
+import { doError, getAccount } from "../API/API";
 import { logout } from "../utils/token";
 
 export default function Account() {
@@ -11,13 +11,7 @@ export default function Account() {
     getAccount().then(value => {
         setData(JSON.parse(value))
     }).catch((error) => {
-      console.log(error)
-        setHTML(
-            <div>
-                <div>{`發生錯誤：${error.status}`}</div>
-                <div>{`測試模式(flask)：${error.testMode}`}</div>
-            </div>
-        )
+        doError(error, setHTML)
     })
 }, []);
 

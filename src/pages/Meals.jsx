@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Loader from "../components/loader/Loader"
-import { getMealsData } from "../API/API"
+import { doError, getMealsData } from "../API/API"
 import yellowHintIcon from "../svg/yellowHint.svg";
 
 function Meals(){
@@ -10,7 +10,7 @@ function Meals(){
         getMealsData().then((res) => {
             setMealData(JSON.parse(res))
         }).catch((error) => {
-            console.log(error)
+            doError(error, setMealData)
         })
     }, [])
     useEffect(() => {

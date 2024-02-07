@@ -1,3 +1,4 @@
+import googleIcon from "../svg/googleIcon.png"
 function Login() {
     return (
         <div className=" px-[1rem] pt-[5rem] w-full flex flex-row justify-center">
@@ -7,7 +8,7 @@ function Login() {
                 <a href="http://staging.order-system.octoberserver.net/oauth2/authorization/google">
                     <button className="w-[18rem] h-[3.7rem] border-[2px] border-black rounded-[0.6rem] flex flex-row items-center justify-center gap-[1.8rem]">
                         <div className="w-[1.8rem] h-[1.8rem] ">
-                            <img src="https://freesvg.org/img/1534129544.png" />
+                            <img src={googleIcon} />
                         </div>
                         <dir className=" text-black text-[1.2rem] font-[800] p-0">以Google帳號登入</dir>
                     </button>

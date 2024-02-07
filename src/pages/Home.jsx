@@ -191,7 +191,6 @@ function Home() {
       setHTML(
         <div>
           <div>{`發生錯誤：${error.status}`}</div>
-          <div>{`測試模式(flask)：${error.testMode}`}</div>
         </div>
       )
     })

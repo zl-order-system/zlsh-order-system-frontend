@@ -1,26 +1,22 @@
 import Information from "./information.json"
 import fakeInfo from "./fakeInfo.json"
 import fakeMealsData from "./fakeMealsData.json"
+import getAppConstansts from "./appConstansts"
+import { getToken } from "../utils/token"
 
-const flaskOpen = false
-const domain = "http://localhost:5000"
-const URL = {
-    homePage :  domain + "/home",
-    managePage : domain + "/manage",
-    accountPage : domain + "/account",
-    mealsPage : "https://raw.githubusercontent.com/zl-order-system/zlsh-order-system-crawl/main/API/meals/latest.json"
-}
+const fakeInfoMode = false
 
 async function doRequest(method, url, data) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest()
         xhr.open(method, url, true)
+        xhr.setRequestHeader('Authorization', `Bearer ${ getToken() }`);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     resolve(xhr.responseText);
                 } else {
-                    reject({ status: xhr.status, statusText: xhr.statusText, testMode : flaskOpen });
+                    reject({ status: xhr.status, statusText: xhr.statusText, testMode : fakeInfoMode });
                 }
             }
         }
@@ -29,15 +25,15 @@ async function doRequest(method, url, data) {
 }
 
 export async function getHomeData(){
-    if ( !flaskOpen ) return JSON.stringify(fakeInfo["Home_GET"])
-    const url = URL.homePage
+    if ( fakeInfoMode ) return JSON.stringify(fakeInfo["Home_GET"])
+    const url = getAppConstansts().home
     let method = "GET"
     return doRequest(method, url, null)
 }
 
 export async function getManageData() {
-    if ( !flaskOpen ) return JSON.stringify(fakeInfo["manage_GET"])
-    const url = URL.managePage
+    if ( !fakeInfoMode ) return JSON.stringify(fakeInfo["manage_GET"])
+    const url = getAppConstansts().manage
     let method = "GET"
     return doRequest(method, url, null)
 }
@@ -57,21 +53,21 @@ export function getCost(lunchBox){ //取得餐盒對應的錢
 }
 
 export async function postOrder(data, method){    //修改或新增訂單
-    if ( !flaskOpen ) return JSON.stringify(fakeInfo["manage_POST"])
-    const url = URL.managePage
+    if ( !fakeInfoMode ) return JSON.stringify(fakeInfo["manage_POST"])
+    const url = getAppConstansts().manage
     return doRequest(method, url, data)
 }
 
 export async function getAccount(){
-    if ( !flaskOpen ) return JSON.stringify(fakeInfo["account_GET"])
-    const url = URL.accountPage
+    if ( !fakeInfoMode ) return JSON.stringify(fakeInfo["account_GET"])
+    const url = getAppConstansts().account
     let method = "GET"
     return doRequest(method, url, null)
 }
 
 export async function getMealsData(){
-    if ( !flaskOpen ) return JSON.stringify(fakeMealsData)
-    const url = URL.mealsPage
+    if ( !fakeInfoMode ) return JSON.stringify(fakeMealsData)
+    const url = getAppConstansts().meals
     let method = "GET"
     return doRequest(method, url, null)
 }

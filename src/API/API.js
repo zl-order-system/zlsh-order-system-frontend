@@ -24,6 +24,10 @@ async function doRequest(method, url, data) {
     })
 }
 
+export function doError(error, callFunction){
+    callFunction(error.status)
+}
+
 export async function getHomeData(){
     if ( fakeInfoMode ) return JSON.stringify(fakeInfo["Home_GET"])
     const url = getAppConstansts().home
@@ -32,7 +36,7 @@ export async function getHomeData(){
 }
 
 export async function getManageData() {
-    if ( !fakeInfoMode ) return JSON.stringify(fakeInfo["manage_GET"])
+    if ( fakeInfoMode ) return JSON.stringify(fakeInfo["manage_GET"])
     const url = getAppConstansts().manage
     let method = "GET"
     return doRequest(method, url, null)
@@ -53,20 +57,20 @@ export function getCost(lunchBox){ //取得餐盒對應的錢
 }
 
 export async function postOrder(data, method){    //修改或新增訂單
-    if ( !fakeInfoMode ) return JSON.stringify(fakeInfo["manage_POST"])
+    if ( fakeInfoMode ) return JSON.stringify(fakeInfo["manage_POST"])
     const url = getAppConstansts().manage
     return doRequest(method, url, data)
 }
 
 export async function getAccount(){
-    if ( !fakeInfoMode ) return JSON.stringify(fakeInfo["account_GET"])
+    if ( fakeInfoMode ) return JSON.stringify(fakeInfo["account_GET"])
     const url = getAppConstansts().account
     let method = "GET"
     return doRequest(method, url, null)
 }
 
 export async function getMealsData(){
-    if ( !fakeInfoMode ) return JSON.stringify(fakeMealsData)
+    if ( fakeInfoMode ) return JSON.stringify(fakeMealsData)
     const url = getAppConstansts().meals
     let method = "GET"
     return doRequest(method, url, null)

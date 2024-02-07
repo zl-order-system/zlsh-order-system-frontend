@@ -4,7 +4,7 @@ from creatFakeInfo import FakeInfo
 import time
 import json
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
 
 
 with open('src/API/fakeInfo.json', 'r') as file:

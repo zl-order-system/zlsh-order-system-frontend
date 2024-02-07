@@ -25,7 +25,7 @@ useEffect(() => {
       setHTML(
         <div className="w-full h-full overflow-scroll pb-16 flex flex-col items-center py-10 gap-10">
         <div className="flex flex-col items-center gap-8">
-          <img className="w-48 h-48 rounded-full border-4 border-teal-900" src={data["avatarUrl"]}></img>
+          <img className="w-48 h-48 rounded-full border-4 border-teal-900" src={"https://upload.wikimedia.org/wikipedia/zh/4/4b/Zhonglun_High_School_flat.png"}></img>
           <h1 className="text-black text-4xl font-bold font-['Roboto Slab']">{data["name"]}</h1>
         </div>
         <div className="flex flex-col text-left gap-2 w-fit">

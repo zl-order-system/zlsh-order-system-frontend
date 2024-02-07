@@ -113,9 +113,9 @@ function UtilButtons({ HomeData }) {
 }
 function EachDay({ date, orderState }){
   let orderHTML
-  const year = date.split("-")[0]
-  const month = date.split("-")[1]
-  const day = date.split("-")[2]
+  const year = date[0]
+  const month = date[1]
+  const day = date[2]
   const week = weekdays[new Date(year, month-1, day).getDay()];
   if( orderState ){
     orderHTML = <div className=" text-[#525252] text-[1.6rem] font-[600] text-center">已預訂</div>

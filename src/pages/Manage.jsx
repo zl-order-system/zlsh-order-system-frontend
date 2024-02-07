@@ -90,6 +90,7 @@ function Manage() {
             originData = JSON.parse(value)
             setData(createData(JSON.parse(value)))
         }).catch((error) => {
+            console.log(error);
             doError(error, setHTML)
         })
     }, []);

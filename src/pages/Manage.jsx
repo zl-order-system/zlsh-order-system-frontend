@@ -180,9 +180,11 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
             }
             postOrder(JSON.stringify(data), method).then( res => {
                 setLoaderState("hidden")
-                originData = JSON.parse(res)
-                setData(createData(JSON.parse(res)))
                 setSuccessHintState(["open","訂餐成功"])
+                getManageData((res) => {
+                    originData = JSON.parse(res)
+                    setData(createData(JSON.parse(res)))
+                })
             }).catch( error => {
                 setLoaderState("hidden")
                 if(method == "POST"){

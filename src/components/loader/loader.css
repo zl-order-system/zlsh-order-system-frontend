@@ -37,6 +37,7 @@
   border-radius: 50px;
   box-shadow: 0 0 0 3px inset #00C0CC;
   animation: l4 2.5s infinite;
+  z-index: 50;
 }
 .loader2:after {
   animation-delay: -1.25s;

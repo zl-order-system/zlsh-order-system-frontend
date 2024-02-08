@@ -174,14 +174,14 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
             o[index]["css"]["cursorOfButton"] = "cursor-default"
             setNewItemData(o)
             let data = {
-                date: o[index]["displayDate"],
+                date: o[index]["date"],
                 lunchBoxType: o[index]["lunchBox"],
                 selectedMeal: o[index]["mealOptions"].findIndex(obj => obj["name"] == o[index]["selectedMeal"]),
             }
             postOrder(JSON.stringify(data), method).then( res => {
                 setLoaderState("hidden")
                 setSuccessHintState(["open","訂餐成功"])
-                getManageData((res) => {
+                getManageData().then((res) => {
                     originData = JSON.parse(res)
                     setData(createData(JSON.parse(res)))
                 })

@@ -182,10 +182,17 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
             o[index]["css"]["opacityOfButton"] = "opacity-50"
             o[index]["css"]["cursorOfButton"] = "cursor-default"
             setNewItemData(o)
-            let data = {
-                date: o[index]["date"],
-                lunchBoxType: o[index]["lunchBox"],
-                selectedMeal: o[index]["mealOptions"].findIndex(obj => obj["name"] == o[index]["selectedMeal"]),
+            let data = {}
+            if (method == "DELETE") {
+                data = {
+                    date: o[index]["date"]
+                }
+            }else{
+                data = {
+                    date: o[index]["date"],
+                    lunchBoxType: o[index]["lunchBox"],
+                    selectedMeal: o[index]["mealOptions"].findIndex(obj => obj["name"] == o[index]["selectedMeal"]),
+                }
             }
             postOrder(JSON.stringify(data), method).then( res => {
                 setLoaderState("hidden")
@@ -197,11 +204,11 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
             }).catch( error => {
                 setLoaderState("hidden")
                 if(method == "POST"){
-                    setErrorHintState(["open",`訂餐失敗${error.state}`])
+                    setErrorHintState(["open",`訂餐失敗:${error.status}`])
                 }else if(method == "PATCH"){
-                    setErrorHintState(["open",`修改失敗${error.state}`])
+                    setErrorHintState(["open",`修改失敗:${error.status}`])
                 }else{
-                    setErrorHintState(["open",`刪除失敗${error.state}`])
+                    setErrorHintState(["open",`刪除失敗:${error.status}`])
                 }
             })
             setLoaderState("block")

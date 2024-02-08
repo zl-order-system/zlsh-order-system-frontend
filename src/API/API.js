@@ -83,7 +83,6 @@ export function getCost(lunchBox){ //取得餐盒對應的錢
 
 export async function postOrder(data, method){    //修改或新增訂單
     if ( fakeInfoMode ) return JSON.stringify(fakeInfo["manage_POST"])
-    console.log(data);
     const url = getAppConstansts().manage
     return doRequest(method, url, data, true)
 }

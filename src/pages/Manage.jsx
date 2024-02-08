@@ -174,10 +174,10 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
             setNewItemData(o)
         }
     };
-
+    
     let handleButtonClick = (event, method, index) => {
         let o = JSON.parse(JSON.stringify(newItemData))
-        if ( ( o[index]["selectData"]["acceptClickButton"] && method == "PATCH" ) || ( o[index]["selectData"]["acceptTrashClickButton"] && method == "DELETE" ) ){
+        if ( ( o[index]["selectData"]["acceptClickButton"] && method == "PATCH" ) || ( o[index]["selectData"]["acceptTrashClickButton"] && method == "DELETE" ) || method == "POST" ){
             o[index]["selectData"]["acceptClickButton"] = false
             o[index]["css"]["opacityOfButton"] = "opacity-50"
             o[index]["css"]["cursorOfButton"] = "cursor-default"
@@ -196,7 +196,13 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
             }
             postOrder(JSON.stringify(data), method).then( res => {
                 setLoaderState("hidden")
-                setSuccessHintState(["open","訂餐成功"])
+                if(method == "POST"){
+                    setSuccessHintState(["open","訂餐成功"])
+                }else if(method == "PATCH"){
+                    setSuccessHintState(["open","修改成功"])
+                }else{
+                    setSuccessHintState(["open","刪除成功"])
+                }
                 getManageData().then((res) => {
                     originData = JSON.parse(res)
                     setData(createData(JSON.parse(res)))

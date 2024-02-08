@@ -177,7 +177,7 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
 
     let handleButtonClick = (event, method, index) => {
         let o = JSON.parse(JSON.stringify(newItemData))
-        if ( o[index]["selectData"]["acceptClickButton"] || (o[index]["selectData"]["acceptTrashClickButton"])) {
+        if ( ( o[index]["selectData"]["acceptClickButton"] && method == "PATCH" ) || ( o[index]["selectData"]["acceptTrashClickButton"] && method == "DELETE" ) ){
             o[index]["selectData"]["acceptClickButton"] = false
             o[index]["css"]["opacityOfButton"] = "opacity-50"
             o[index]["css"]["cursorOfButton"] = "cursor-default"

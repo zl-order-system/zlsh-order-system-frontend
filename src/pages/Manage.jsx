@@ -204,11 +204,11 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
             }).catch( error => {
                 setLoaderState("hidden")
                 if(method == "POST"){
-                    setErrorHintState(["open",`訂餐失敗:${error.status}`])
+                    setErrorHintState(["open",`訂餐失敗(${error.status})`])
                 }else if(method == "PATCH"){
-                    setErrorHintState(["open",`修改失敗:${error.status}`])
+                    setErrorHintState(["open",`修改失敗(${error.status})`])
                 }else{
-                    setErrorHintState(["open",`刪除失敗:${error.status}`])
+                    setErrorHintState(["open",`刪除失敗(${error.status})`])
                 }
             })
             setLoaderState("block")

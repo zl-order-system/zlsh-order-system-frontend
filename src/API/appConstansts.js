@@ -13,5 +13,5 @@ export default () => {
             "meals" : "https://raw.githubusercontent.com/zl-order-system/zlsh-order-system-crawl/main/API/meals/latest.json",
             "manage" : "",
             "account" : ""
-        }
+        } 
 }

@@ -6,8 +6,10 @@ on:
 
 env:
   BASE_URL: "/staging/app"
-  abc: "123"
-  ttt: "456"
+  API_HOME_URL: ${{ vars.STAGING_BACKEND_HOST }} + ${{ vars.API_HOME_PATH }}
+  API_MANAGE_URL: ${{ vars.STAGING_BACKEND_HOST }} + ${{ vars.API_MANAGE_PATH }}
+  API_ACCOUNT_URL: ${{ vars.STAGING_BACKEND_HOST }} + ${{ vars.API_ACCOUNT_PATH }}
+  API_MEALS_URL: ${{ vars.API_MEALS_URL }}
 
 jobs:
   build:

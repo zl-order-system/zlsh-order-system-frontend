@@ -9,10 +9,10 @@ export default () => {
         }
     else
         return {
-            "home" : process.env.API_HOME_URL,
-            "meals" : process.env.API_MEALS_URL,
-            "manage" : process.env.API_MANAGE_URL,
-            "account" : process.env.API_ACCOUNT_URL
+            "home" : "https://" + process.env.API_HOME_URL,
+            "meals" : "https://" + process.env.API_MEALS_URL,
+            "manage" : "https://" + process.env.API_MANAGE_URL,
+            "account" : "https://" + process.env.API_ACCOUNT_URL
         }
     
 }

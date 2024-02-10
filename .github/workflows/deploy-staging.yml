@@ -7,6 +7,7 @@ on:
 env:
   BASE_URL: "/staging/app"
   abc: "123"
+  ttt: "456
 
 jobs:
   build:

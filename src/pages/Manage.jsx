@@ -6,7 +6,6 @@ import ErrorHint from "../components/errorHint/errorHint";
 import trashIcon from "../svg/trash-solid.svg"
 
 let originData;
-console.log(process.vars.PROD_BACKEND_HOST)
 
 function createData(value) {
     let returnData = {};
@@ -96,6 +95,7 @@ function Manage() {
     const [errorHintState, setErrorHintState] = useState(["", ""])
 
     useEffect(() => {
+        console.log(process.vars.PROD_BACKEND_HOST)
         getManageData().then(value => {
             originData = JSON.parse(value)
             setData(createData(JSON.parse(value)))

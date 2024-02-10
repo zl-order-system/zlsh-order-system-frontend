@@ -95,7 +95,7 @@ function Manage() {
     const [errorHintState, setErrorHintState] = useState(["", ""])
 
     useEffect(() => {
-        console.log(process.vars.PROD_BACKEND_HOST)
+        console.log(process.env.abc)
         getManageData().then(value => {
             originData = JSON.parse(value)
             setData(createData(JSON.parse(value)))

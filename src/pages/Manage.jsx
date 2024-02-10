@@ -6,6 +6,7 @@ import ErrorHint from "../components/errorHint/errorHint";
 import trashIcon from "../svg/trash-solid.svg"
 
 let originData;
+console.log(process.vars.PROD_BACKEND_HOST)
 
 function createData(value) {
     let returnData = {};

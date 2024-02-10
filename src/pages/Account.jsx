@@ -45,7 +45,7 @@ useEffect(() => {
             <div className="pl-2 outline-none text-black text-2xl font-normal font-['Roboto Mono for Powerline']">{data["seatNumber"]}</div>
           </div>
           <div className="grid place-content-center pt-4">
-            <button class="text-center text-sky-400 text-2xl font-bold" onClick={logout}>登出</button>
+            <button className="text-center text-sky-400 text-2xl font-bold" onClick={logout}>登出</button>
           </div>
         </div>
       </div>

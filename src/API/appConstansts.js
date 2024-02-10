@@ -1,17 +1,18 @@
 export default () => {
-    let mode = "staging"
-    if ( mode === "staging" )
+    let MODE = process.env.MODE
+    if ( MODE === undefined )
         return {
             "home" : "https://staging.order-system.octoberserver.net/api/user/home",
             "meals" : "https://zl-order-system.github.io/zlsh-order-system-crawl/API/meals/latest.json",
             "manage" : "https://staging.order-system.octoberserver.net/api/order",
             "account" : "https://staging.order-system.octoberserver.net/api/user/account"
         }
-    else 
+    else
         return {
-            "home" : "",
-            "meals" : "https://raw.githubusercontent.com/zl-order-system/zlsh-order-system-crawl/main/API/meals/latest.json",
-            "manage" : "",
-            "account" : ""
+            "home" : process.env.API_HOME_URL,
+            "meals" : process.env.API_MEALS_URL,
+            "manage" : process.env.API_MANAGE_URL,
+            "account" : process.env.API_ACCOUNT_URL
         }
+    
 }

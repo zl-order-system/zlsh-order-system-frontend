@@ -6,6 +6,7 @@ on:
 
 env:
   BASE_URL: "/staging/app"
+  MODE: "staging"
   API_HOME_URL: ${{ vars.STAGING_BACKEND_HOST }} + ${{ vars.API_HOME_PATH }}
   API_MANAGE_URL: ${{ vars.STAGING_BACKEND_HOST }} + ${{ vars.API_MANAGE_PATH }}
   API_ACCOUNT_URL: ${{ vars.STAGING_BACKEND_HOST }} + ${{ vars.API_ACCOUNT_PATH }}

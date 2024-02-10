@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react"
-import { doError, getCost, getManageData, postOrder } from "../API/API"
+import { useState, useEffect } from "react";
+import { doError, getCost, getManageData, postOrder } from "../API/API";
 import Loader from "../components/loader/Loader";
 import SuccessHint from "../components/successHint/SuccessHint";
 import ErrorHint from "../components/errorHint/errorHint";
-import trashIcon from "../svg/trash-solid.svg"
+import trashIcon from "../svg/trash-solid.svg";
 
 let originData;
 

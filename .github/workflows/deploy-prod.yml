@@ -11,6 +11,7 @@ env:
   API_MANAGE_URL: ${{ vars.PROD_BACKEND_HOST }}${{ vars.API_MANAGE_PATH }}
   API_ACCOUNT_URL: ${{ vars.PROD_BACKEND_HOST }}${{ vars.API_ACCOUNT_PATH }}
   API_MEALS_URL: ${{ vars.API_MEALS_URL }}
+  MANAGEMENT_PAGE_URL: ${{ vars.MANAGEMENT_PAGE_URL }}
 
 jobs:
   build:

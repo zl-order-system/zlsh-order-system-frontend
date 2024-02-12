@@ -8,6 +8,7 @@ import Account from './pages/Account';
 import Login from './pages/Login';
 import Manage from './pages/Manage';
 import Meals from './pages/Meals';
+import Intro from './pages/intro'
 import { setToken } from './utils/token';
 
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/account" element={<Account/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/meals" element={<Meals/>} />
+          <Route path="/intro" element={<Intro/>} />
         </Routes>
         {hash !== '#/login' && <Nav />}
       </Router>

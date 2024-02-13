@@ -1,4 +1,4 @@
-import { doError, getHomeData } from "../API/API.js";
+import { doError, getHomeData, getRoles } from "../API/API.js";
 import { Link } from 'react-router-dom';
 import { useState,useEffect } from "react";
 import Loader from "../components/loader/Loader.jsx";
@@ -161,9 +161,9 @@ function OrderPreveiw({ HomeData }){
   )
 }
 
-function ManagerButton({ HomeData }){
-  if(HomeData["role"] == "USER") return null
-  else if(HomeData["role"] == "ADMIN") return(
+function ManagerButton({ roles }){
+  if(roles.length === 0) return null
+  return(
     <a href={appConstansts().management}><div to={""} className="mx-4 bg-[#D5EFF9] rounded-[1.25rem] place-content-center font-[inter] shadow-[2px_3px_6px_1px_rgba(123,123,123,0.25)] flex justify-between py-[1.1rem]">
         <div className="ml-[2.5rem] "><img src={ manageLogo } /></div>
         <div className="w-full text-center text-[rgba(0,0,0,0.70)] text-[1.5rem] font-[600] tracking-[0.2rem]">進入後台管理系統</div>
@@ -174,12 +174,13 @@ function ManagerButton({ HomeData }){
 function Home() {
   const [HomeData, setHomeData] = useState(null) //取得使用者訂餐資料
   const [HTML, setHTML] = useState(<Loader />)
+  const [roles, setRoles] = useState([])
   useEffect(()=>{
     if(HomeData != null){
       setHTML(
         <div className="flex flex-col gap-9 w-full h-full overflow-scroll pb-16">
         <Banner HomeData={HomeData} />
-        <ManagerButton HomeData={HomeData} />
+        <ManagerButton roles={roles} />
         <UtilButtons HomeData={HomeData} />
         <OrderPreveiw HomeData={HomeData} />
       </div>
@@ -188,6 +189,11 @@ function Home() {
   }, [HomeData])
   useEffect(() => {
     loginCheck()
+    getRoles().then((res) => {
+      setRoles(JSON.parse(res))
+    }).catch(() => {
+      console.log("取得權限失敗")
+    })
     getHomeData().then((value) => {
       setHomeData(JSON.parse(value))
     }).catch((error) => {

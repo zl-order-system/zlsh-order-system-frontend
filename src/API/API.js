@@ -100,3 +100,10 @@ export async function getMealsData(){
     let method = "GET"
     return doRequest(method, url, null)
 }
+
+export async function getRoles(){
+    if ( fakeInfoMode ) return
+    const url = getAppConstansts().roles
+    let method = "GET"
+    return doRequest(method, url, null)
+}

@@ -201,6 +201,6 @@ function Home() {
     })
   }, [])
   return HTML
-}
+} 
 
 export default Home

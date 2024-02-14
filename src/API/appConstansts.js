@@ -16,7 +16,7 @@ export default () => {
             "manage" : "https://" + process.env.API_MANAGE_URL,
             "account" : "https://" + process.env.API_ACCOUNT_URL,
             "management" : process.env.MANAGEMENT_PAGE_URL,
-            "roles" : process.env.API_ROLES_PATH
+            "roles" : "https://" + process.env.API_ROLES_PATH
         }
     
 }

@@ -26,9 +26,11 @@ function Login() {
 function ErrorCheck(){
     const location = useLocation()
     const searchParams = new URLSearchParams(location.search);
-    if(searchParams.get("error") === "NOT_SCHOOL_ACCOUNT"){
-        alert("請使用學校帳號登入")
-    }
+    useEffect(()=>{
+        if(searchParams.get("error") === "NOT_SCHOOL_ACCOUNT"){
+            alert("請使用學校帳號登入")
+        }
+    }, [])
     return <></>
 }
 export default Login

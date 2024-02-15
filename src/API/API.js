@@ -28,19 +28,22 @@ async function doRequest(method, url, data, haderJson) {
 export function doError(error, callFunction){
     switch (error.status) {
         case 400:  //資料錯誤
-            callFunction("資料錯誤，請回報給開發人員:" + error.status)
+            callFunction("資料錯誤，請回報給開發人員:" + error.status);
             break
         case 401:
-            logout()
+            logout();
             break;
         case 403:
-            callFunction("無此權限:" + error.status)
+            callFunction("無此權限:" + error.status);
+            break;
         case 500:
-            callFunction("後端錯誤，請回報給開發人員:" + error.status)
+            callFunction("後端錯誤，請回報給開發人員:" + error.status);
+            break;
         case 503:
-            callFunction("後端斷線，閘道仍在線:" + error.status)
+            callFunction("後端斷線，閘道仍在線:" + error.status);
+            break;
         default:
-            callFunction("發生錯誤：" + error.status)
+            callFunction("發生錯誤：" + error.status);
             break;
     }
 }

@@ -63,7 +63,7 @@ function UtilButtons({ HomeData }) {
   if(HomeData==null)return
   return (
     <div className="flex justify-evenly">
-      <Link to={"/intro"}>
+      <a href="https://hackmd.io/@tucker123/zl-order-system-intro" target="_blank">
         <button className='flex flex-col justify-center items-center'>
           <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="36" cy="36" r="36" fill="#D5EFF9"/>
@@ -78,7 +78,7 @@ function UtilButtons({ HomeData }) {
           </svg>
           <span className='font-bold text-center py-0.5'>使用說明</span>
         </button>
-      </Link>
+      </a>
       <Link to={"/meals"}>
         <button className='flex flex-col justify-center items-center' >
           <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">

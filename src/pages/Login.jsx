@@ -29,8 +29,11 @@ function ErrorCheck(){
     const location = useLocation()
     const searchParams = new URLSearchParams(location.search);
     useEffect(()=>{
-        if(searchParams.get("error") === "NOT_SCHOOL_ACCOUNT"){
-            alert("請使用學校帳號登入")
+        if (searchParams.get("error") === "NOT_SCHOOL_ACCOUNT") {
+            const timeoutId = setTimeout(() => {
+                alert("請使用學校帳號登入")
+            }, 150);
+            return () => clearTimeout(timeoutId);
         }
     }, [])
     return <></>

@@ -28,12 +28,18 @@ function Login() {
 function ErrorCheck(){
     const location = useLocation()
     const searchParams = new URLSearchParams(location.search);
+    function sendAlert(msg) {
+        const timeoutId = setTimeout(() => {
+            alert(msg)
+        }, 150);
+        return () => clearTimeout(timeoutId);
+    }
     useEffect(()=>{
-        if (searchParams.get("error") === "NOT_SCHOOL_ACCOUNT") {
-            const timeoutId = setTimeout(() => {
-                alert("請使用學校帳號登入")
-            }, 150);
-            return () => clearTimeout(timeoutId);
+        switch (searchParams.get("error")) {
+            case ("NOT_SCHOOL_ACCOUNT"):
+                return sendAlert("請使用學校帳號登入");
+            case ("ACCOUNT_FORMAT_ERROR"):
+                return sendAlert("帳號資料殼是錯誤，請回報給開發人員");
         }
     }, [])
     return <></>

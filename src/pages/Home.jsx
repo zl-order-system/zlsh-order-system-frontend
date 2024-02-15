@@ -4,7 +4,7 @@ import { useState,useEffect } from "react";
 import Loader from "../components/loader/Loader.jsx";
 import manageLogo from "../svg/manageLogo.svg"
 import { loginCheck } from "../utils/token.js";
-import appConstansts from "../API/appConstansts.js";
+import appConstants from "../API/appConstants.js";
 
 
 const weekdays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
@@ -26,9 +26,9 @@ function Banner({ HomeData }) {
       stateText[1] = "請儘速向幹部繳納"
       break
     case null:
+    default:
       stateText[0] = "今日未訂餐"
       stateText[1] = "請儘速訂餐"
-    default:
       break;
   }
   return (
@@ -164,7 +164,7 @@ function OrderPreveiw({ HomeData }){
 function ManagerButton({ roles }){
   if(roles.length === 0) return null
   return(
-    <a href={appConstansts().management}><div to={""} className="mx-4 bg-[#D5EFF9] rounded-[1.25rem] place-content-center font-[inter] shadow-[2px_3px_6px_1px_rgba(123,123,123,0.25)] flex justify-between py-[1.1rem]">
+    <a href={appConstants().management}><div to={""} className="mx-4 bg-[#D5EFF9] rounded-[1.25rem] place-content-center font-[inter] shadow-[2px_3px_6px_1px_rgba(123,123,123,0.25)] flex justify-between py-[1.1rem]">
         <div className="ml-[2.5rem] "><img src={ manageLogo } /></div>
         <div className="w-full text-center text-[rgba(0,0,0,0.70)] text-[1.5rem] font-[600] tracking-[0.2rem]">進入後台管理系統</div>
     </div></a>
@@ -201,6 +201,6 @@ function Home() {
     })
   }, [])
   return HTML
-} 
+}
 
 export default Home

@@ -2,6 +2,7 @@ export default () => {
     let MODE = process.env.MODE
     if ( MODE === undefined )
         return {
+            "host" : "staging.order-system.octoberserver.net",
             "home" : "https://staging.order-system.octoberserver.net/api/user/home",
             "meals" : "https://zl-order-system.github.io/zlsh-order-system-crawl/API/meals/latest.json",
             "manage" : "https://staging.order-system.octoberserver.net/api/order",
@@ -11,6 +12,7 @@ export default () => {
         }
     else
         return {
+            "host" : process.env.BACKEND_HOST,
             "home" : "https://" + process.env.API_HOME_URL,
             "meals" : process.env.API_MEALS_URL,
             "manage" : "https://" + process.env.API_MANAGE_URL,
@@ -18,5 +20,5 @@ export default () => {
             "management" : process.env.MANAGEMENT_PAGE_URL,
             "roles" : "https://" + process.env.API_ROLES_PATH
         }
-    
+
 }

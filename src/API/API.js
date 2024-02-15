@@ -1,7 +1,7 @@
 import Information from "./information.json"
 import fakeInfo from "./fakeInfo.json"
 import fakeMealsData from "./fakeMealsData.json"
-import getAppConstansts from "./appConstansts"
+import getAppConstants from "./appConstants"
 import { getToken, logout } from "../utils/token"
 
 const fakeInfoMode = false
@@ -55,14 +55,14 @@ export function doError(error, callFunction){
 
 export async function getHomeData(){
     if ( fakeInfoMode ) return JSON.stringify(fakeInfo["Home_GET"])
-    const url = getAppConstansts().home
+    const url = getAppConstants().home
     let method = "GET"
     return doRequest(method, url, null)
 }
 
 export async function getManageData() {
     if ( fakeInfoMode ) return JSON.stringify(fakeInfo["manage_GET"])
-    const url = getAppConstansts().manage
+    const url = getAppConstants().manage
     let method = "GET"
     return doRequest(method, url, null, true)
 }
@@ -83,27 +83,27 @@ export function getCost(lunchBox){ //取得餐盒對應的錢
 
 export async function postOrder(data, method){    //修改或新增訂單
     if ( fakeInfoMode ) return JSON.stringify(fakeInfo["manage_POST"])
-    const url = getAppConstansts().manage
+    const url = getAppConstants().manage
     return doRequest(method, url, data, true)
 }
 
 export async function getAccount(){
     if ( fakeInfoMode ) return JSON.stringify(fakeInfo["account_GET"])
-    const url = getAppConstansts().account
+    const url = getAppConstants().account
     let method = "GET"
     return doRequest(method, url, null)
 }
 
 export async function getMealsData(){
     if ( fakeInfoMode ) return JSON.stringify(fakeMealsData)
-    const url = getAppConstansts().meals
+    const url = getAppConstants().meals
     let method = "GET"
     return doRequest(method, url, null)
 }
 
 export async function getRoles(){
     if ( fakeInfoMode ) return
-    const url = getAppConstansts().roles
+    const url = getAppConstants().roles
     let method = "GET"
     return doRequest(method, url, null)
 }

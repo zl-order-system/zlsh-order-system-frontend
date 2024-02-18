@@ -144,7 +144,7 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
                     o[index]["price"] = getCost(element["lunchBox"])
                     break
                 case "未訂餐":
-                    o[index]["price"] = getCost(element["lunchBox"])//getCost("自備餐盒")
+                    o[index]["price"] = getCost(element["lunchBox"])
                     break
                 default:
                     break
@@ -188,9 +188,10 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
                     date: o[index]["date"]
                 }
             }else{
+                let box = o[index]["mealOptions"][o[index]["mealOptions"].findIndex(obj => obj["name"] == o[index]["selectedMeal"])]["schoolOnly"] ? "學校餐盒" : o[index]["lunchBox"]
                 data = {
                     date: o[index]["date"],
-                    lunchBoxType: o[index]["lunchBox"],
+                    lunchBoxType: box,
                     selectedMeal: o[index]["mealOptions"].findIndex(obj => obj["name"] == o[index]["selectedMeal"]),
                 }
             }
@@ -221,6 +222,7 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
         }
     };
     return newItemData.map((element, index) => {
+        console.log(element);
         return (
             <div className=" flex flex-col w-full my-[0.75rem]" key={index}>
                 <div className=" flex flex-row justify-between">
@@ -242,7 +244,7 @@ function Items({ itemsData, setData, setLoaderState, setSuccessHintState, setErr
                             }
                         </select>
                         <select defaultValue={element["selectedMeal"]} onChange={(event) => { handleSelectChange(event, index, "num") }} className="py-0.5 px-1 text-[0.9rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
-                            {element["mealOptions"].map((element, index) => <option value={element["name"]} key={index}>{element["name"]}</option>)}
+                            {element["mealOptions"].map((e, index) => <option value={e["name"]} key={index}>{e["name"]}</option>)}
                         </select>
                         <div className="text-[#565656] text-[1rem] font-[400] flex flex-row justify-start gap-[1.5rem] ml-1">{element["price"]}元</div>
                     </div>

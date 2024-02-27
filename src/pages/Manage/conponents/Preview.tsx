@@ -1,7 +1,7 @@
-import { GetManageDataResponse } from "../../../API/schema/Manage"
-import { StateText } from "../Schema"
+import { GetOrderDataRes } from "../../../API/schema/manage"
+import { OrderState } from "../../../util/types/types"
 
-export function Preview({ data }: { data: GetManageDataResponse }) {
+export function Preview({ data }: { data: GetOrderDataRes }) {
   return (
     <>
       <div className="flex flex-row justify-between my-[0.8rem]">
@@ -12,8 +12,15 @@ export function Preview({ data }: { data: GetManageDataResponse }) {
       <div>
         <div className="h-[2rem] w-full bg-[#D0CFCF] rounded-[1.15rem] overflow-hidden flex flex-row">
           {data.bodyData.map((item, index) => {
-            const Color = item.state === StateText.paid ? "#97D581" : item.state === StateText.notPaid ? "#E2473D" : "#D0CFCF"
-            return <div className={`bg-[${Color}] h-full flex-1 flex flex-col items-center`} key={index}></div>
+            const className = "h-full flex-1 flex flex-col items-center"
+            switch(item.state) {
+            case OrderState.PAID:
+              return <div className={`${className} bg-[#97D581]`} key={index}></div>;
+            case OrderState.UNPAID:
+              return <div className={`${className} bg-[#E2473D]`} key={index}></div>;
+            case OrderState.UNORDERED:
+              return <div className={`${className} bg-[#D0CFCF]`} key={index}></div>;
+            }
           })}
         </div>
         <div className="w-full h-[2rem] flex flex-row">

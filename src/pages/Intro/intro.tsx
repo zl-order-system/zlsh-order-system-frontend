@@ -1,3 +1,3 @@
 export default function intro() {
-    return <div>intro</div>
+  return <div>intro</div>
 }

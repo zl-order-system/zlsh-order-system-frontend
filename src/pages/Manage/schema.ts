@@ -1,17 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
+import { LunchBoxType } from "../../util/types/types";
 
-export enum StateText {
-  paid = "已繳費",
-  notPaid = "未繳費",
-  notOrder = "未訂餐" 
-}
-
-export interface SelectData {
+export type SelectData = {
   num: number;
-  box?: string;
+  box: LunchBoxType;
 }
 
-export interface SelectContextType {
+export type SelectContextType = {
   selectData: SelectData;
   setSelectData: Dispatch<SetStateAction<SelectData>>;
 }

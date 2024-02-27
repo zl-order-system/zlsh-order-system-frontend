@@ -1,3 +1,3 @@
 export default function Meals() {
-    return <div>Meals</div>
+  return <div>Meals</div>
 }

@@ -1,4 +1,7 @@
-{
+import { OrderState } from "../../util/types/types";
+import { GetOrderDataRes } from "../../API/schema/manage"
+
+const data: GetOrderDataRes = {
     "headerData": {
         "paid": 0,
         "owed": 0,
@@ -6,7 +9,7 @@
     },
     "bodyData": [
         {
-            "state": "未訂餐",
+            "state": OrderState.UNORDERED,
             "date": [
                 2024,
                 2,
@@ -42,7 +45,7 @@
             "locked": false
         },
         {
-            "state": "未訂餐",
+            "state": OrderState.UNORDERED,
             "date": [
                 2024,
                 2,
@@ -74,7 +77,7 @@
             "locked": false
         },
         {
-            "state": "未訂餐",
+            "state": OrderState.UNORDERED,
             "date": [
                 2024,
                 2,
@@ -106,7 +109,7 @@
             "locked": false
         },
         {
-            "state": "未訂餐",
+            "state":  OrderState.UNORDERED,
             "date": [
                 2024,
                 2,
@@ -138,7 +141,7 @@
             "locked": false
         },
         {
-            "state": "未訂餐",
+            "state":  OrderState.UNORDERED,
             "date": [
                 2024,
                 3,
@@ -171,3 +174,4 @@
         }
     ]
 }
+export default data;

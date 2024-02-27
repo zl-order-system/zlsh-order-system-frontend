@@ -13,7 +13,7 @@ export type MealOption = {
   schoolOnly: boolean
 }
 
-export type OrderDataBodyOld = {
+type OrderDataBodyOld = {
   state: OrderState,
   date: number[],
   displayDate: string,

@@ -1,12 +1,12 @@
 import { HashRouter as Router, Route, Routes, useNavigate, useLocation} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 // components
-import Home from './pages/Home/Home'
-import Nav from './components/Nav'
-import Account from './pages/Account/Account';
-import Login from './pages/Login/Login';
+import { Home } from './pages/Home/Home'
+import { Nav } from './components/Nav'
+import { Account } from './pages/Account/Account';
+import { Login } from './pages/Login/Login';
 import { Manage } from './pages/Manage/Manage';
-import Meals from './pages/Meals/Meals';
+import { Meals } from './pages/Meals/Meals';
 // import Intro from './pages/Intro/Intro'
 import { setToken } from './util/token';
 import { Page } from './util/types/pages';
@@ -27,7 +27,7 @@ function App() {
           <Route path={Page.MEALS} element={<Meals/>} />
           {/* <Route path="/intro" element={<Intro/>} /> */}
         </Routes>
-        {hash !== '#/login' && <Nav />}
+        {hash !== '#/login' && <Nav/>}
       </Router>
     </div>
   )

@@ -1,7 +1,7 @@
 import { GetOrderDataRes } from "../../../API/schema/manage"
 import { OrderState } from "../../../util/types/types"
 
-export function Preview({ data }: { data: GetOrderDataRes }) {
+export function Preview({data}: {data: GetOrderDataRes}) {
   return (
     <>
       <div className="flex flex-row justify-between my-[0.8rem]">

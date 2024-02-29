@@ -1,10 +1,12 @@
-import { OrderDataBody, OrderDataBodyOrdered } from "../../../API/schema/manage"
-import { SelectContextType, SelectData, SelectRefType } from "../schema"
-import trashIcon from "../../../assets/trashIcon.svg"
-import editIcon from "../../../assets/editIcon.svg"
 import lo from "lodash"
 import { createContext, useContext, useEffect, useRef, useState } from "react"
+
+import { OrderDataBody, OrderDataBodyOrdered } from "../../../API/schema/manage"
+import { SelectContextType, SelectData, SelectRefType } from "../schema"
 import { LunchBoxPrice, LunchBoxType, OrderState } from "../../../util/types/types"
+
+import trashIcon from "../../../assets/trashIcon.svg"
+import editIcon from "../../../assets/editIcon.svg"
 
 const SelectContext = createContext<SelectContextType>({} as SelectContextType)
 
@@ -20,11 +22,11 @@ function selectDataInit(item: OrderDataBody, ): SelectData {
   return {num: 0, box: LunchBoxType.PERSONAL};
 }
 
-export function ItemForm({item}: { item: OrderDataBody }) {
+export function ItemForm({item}: {item: OrderDataBody}) {
   const [selectData, setSelectData] = useState<SelectData>(selectDataInit(item));
   return (
     <SelectContext.Provider value={{ selectData, setSelectData }}>
-      <div className={`flex flex-row justify-between items-center`}>
+      <div className={"flex flex-row justify-between items-center"}>
         {item.state === OrderState.PAID && <OrderInfo item={item}/>}
         {item.state !== OrderState.PAID && <Selector item={item}/>}
         <ItemButton item={item}/>
@@ -33,9 +35,9 @@ export function ItemForm({item}: { item: OrderDataBody }) {
   )
 }
 
-function OrderInfo({ item }: { item: OrderDataBodyOrdered }) {
+function OrderInfo({item}: {item: OrderDataBodyOrdered}) {
   return (
-    <div className={`text-[#565656] text-[1rem] font-[400] flex flex-row justify-start gap-[1.5rem]`}>
+    <div className="text-[#565656] text-[1rem] font-[400] flex flex-row justify-start gap-[1.5rem]">
       <div>{item.selectedMeal}</div>
       <div>{item.lunchBox}</div>
       <div>{item.price}元</div>
@@ -43,7 +45,7 @@ function OrderInfo({ item }: { item: OrderDataBodyOrdered }) {
   )
 }
 
-function Selector({ item }: { item: OrderDataBody }) {
+function Selector({item}: {item: OrderDataBody}) {
   const {selectData, setSelectData}: SelectContextType = useContext(SelectContext)
   const selectRef: SelectRefType = {meal: useRef<HTMLSelectElement>(null), box: useRef<HTMLSelectElement>(null)}
   const mealOption = lo.cloneDeep(item.mealOptions)
@@ -62,7 +64,7 @@ function Selector({ item }: { item: OrderDataBody }) {
   }, [selectRef.meal.current?.value])
 
   return (
-    <div className={"flex flex-row gap-2 mt-[2px]"}>
+    <div className="flex flex-row gap-2 mt-[2px]">
       <select defaultValue={item.state !== OrderState.UNORDERED ? item.lunchBox : ""} onChange={handleChange} ref={selectRef.box} className="py-0.5 px-1 h-fit text-[0.9rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
         {mealOption[selectData.num].schoolOnly || <option value="自備餐盒">自備餐盒</option>}
         <option value="學校餐盒">學校餐盒</option>

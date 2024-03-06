@@ -10,7 +10,10 @@ import { parseLunchBox } from "../../../util/util"
 
 function selectDataInit(item: OrderDataBody): SelectData {
   if (item.state !== OrderState.UNORDERED)
-    return {num: item.mealOptions.findIndex(e => e.name === item.selectedMeal), box: item.lunchBox};
+    return {
+      num: item.mealOptions.findIndex(e => e.name === item.selectedMeal),
+      box: item.lunchBox
+    };
 
   if (item.mealOptions[0].schoolOnly)
     return {num: 0, box: LunchBoxType.SCHOOL};

@@ -1,5 +1,5 @@
 import lo from "lodash"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 import trashIcon from "../../../assets/trashIcon.svg"
 import editIcon from "../../../assets/editIcon.svg"
@@ -8,24 +8,23 @@ import { SelectData } from "../schema"
 import { LunchBoxPrice, LunchBoxType, OrderState, SetState } from "../../../util/types/types"
 import { parseLunchBox } from "../../../util/util"
 
-function selectDataInit(item: OrderDataBody, ): SelectData {
-  const mealOptions = lo.cloneDeep(item.mealOptions)
-
+function selectDataInit(item: OrderDataBody): SelectData {
   if (item.state !== OrderState.UNORDERED)
-    return {num: mealOptions.findIndex(e => e.name === item.selectedMeal), box: item.lunchBox};
+    return {num: item.mealOptions.findIndex(e => e.name === item.selectedMeal), box: item.lunchBox};
 
-  if (mealOptions[0].schoolOnly)
+  if (item.mealOptions[0].schoolOnly)
     return {num: 0, box: LunchBoxType.SCHOOL};
 
   return {num: 0, box: LunchBoxType.PERSONAL};
 }
 
-export function ItemForm({item}: {item: OrderDataBody}) {
+export function ItemForm({item: pItem}: {item: OrderDataBody}) {
+  const item = useMemo(() => lo.cloneDeep(pItem), [pItem])
   const [selectData, setSelectData] = useState<SelectData>(selectDataInit(item));
   return (
     <div className={"flex flex-row justify-between items-center"}>
       {item.state === OrderState.UNORDERED && <Selector item={item} selectData={selectData} setSelectData={setSelectData}/>}
-      {item.state === OrderState.UNPAID && <Selector defaultLunchBox="" defaultMeal="" item={item} selectData={selectData} setSelectData={setSelectData}/>}
+      {item.state === OrderState.UNPAID && <Selector defaultLunchBox={item.lunchBox} defaultMeal={item.selectedMeal} item={item} selectData={selectData} setSelectData={setSelectData}/>}
       {item.state === OrderState.PAID && <OrderInfo item={item}/>}
       <ItemButton item={item} selectData={selectData}/>
     </div>
@@ -76,12 +75,11 @@ function OrderInfo({item}: {item: OrderDataBodyOrdered}) {
 function Selector({item, selectData, setSelectData, defaultLunchBox, defaultMeal}: {item: OrderDataBody, selectData: SelectData, setSelectData: SetState<SelectData>, defaultLunchBox?: string, defaultMeal?: string}) {
   const selectorRefMeal = useRef<HTMLSelectElement>(null);
   const selectorRefBox = useRef<HTMLSelectElement>(null);
-  const mealOption = lo.cloneDeep(item.mealOptions)
 
   function handleChange() {
     if (selectorRefBox.current === null) return;
     setSelectData({
-      num: mealOption.findIndex(m => m.name === selectorRefMeal.current?.value),
+      num: item.mealOptions.findIndex(m => m.name === selectorRefMeal.current?.value),
       box: parseLunchBox(selectorRefBox.current.value)
     })
   }
@@ -105,7 +103,7 @@ function Selector({item, selectData, setSelectData, defaultLunchBox, defaultMeal
         ))}
       </select>
       <select defaultValue={defaultLunchBox} onChange={handleChange} ref={selectorRefBox} className="py-0.5 px-1 h-fit text-[0.9rem] text-[#6C6C6C] font-[300] rounded-[0.25rem] border-[1px] border-[#ACACAC] leading-[100%] bg-white">
-        {!mealOption[selectData.num].schoolOnly && <option value="自備餐盒">自備餐盒</option>}
+        {!item.mealOptions[selectData.num].schoolOnly && <option value="自備餐盒">自備餐盒</option>}
         <option value="學校餐盒">學校餐盒</option>
       </select>
       <div className="text-[#565656] text-[1rem] font-[400] flex flex-row justify-start gap-[1.5rem] ml-1">{ selectData.box === LunchBoxType.PERSONAL ? LunchBoxPrice.PERSONAL : LunchBoxPrice.SCHOOL }元</div>

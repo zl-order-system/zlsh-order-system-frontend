@@ -27,7 +27,7 @@ export function Preview({data}: {data: GetOrderDataRes}) {
           {data.bodyData.map((item, index) => (
             <div className="flex flex-col flex-1 items-center translate-y-[-0.4rem]" key={index}>
               <div className="w-[1px] h-[1rem] bg-[#565656] opacity-70"></div>
-              <div className="h-full  text-center text-[#565656] text-[0.8rem] font-[400]">{item.displayDate}</div>
+              <div className="h-full  text-center text-[#565656] text-[0.8rem] font-[400]">{item.displayDate.split(" ")[0]}</div>
             </div>
           ))}
         </div>

@@ -9,7 +9,7 @@ import { Manage } from './pages/Manage/Manage';
 import { Meals } from './pages/Meals/Meals';
 // import Intro from './pages/Intro/Intro'
 import { setToken } from './util/token';
-import { Page } from './util/types/pages';
+import { Page } from './util/types/types';
 
 
 function App() {

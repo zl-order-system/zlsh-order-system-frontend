@@ -1,11 +1,11 @@
-import { LunchBoxType } from "./types/types";
+import { LunchBox } from "./types/types";
 
 export function parseLunchBox(s: string) {
   switch(s) {
-  case "學校餐盒":
-    return LunchBoxType.SCHOOL;
   case "自備餐盒":
-    return LunchBoxType.PERSONAL;
+    return LunchBox.PERSONAL;
+  case "學校餐盒":
+    return LunchBox.SCHOOL;
   default:
     throw new Error("Invalid Lunch Box String");
   }
@@ -24,5 +24,14 @@ export function getDate(date?: number[]) {
     month: newDate.getMonth() + 1,
     date: newDate.getDate(),
     day: weeksDay[newDate.getDay()]
+  }
+}
+
+export function getPrice(box: LunchBox) {
+  switch (box) {
+  case LunchBox.PERSONAL:
+    return 65;
+  case LunchBox.SCHOOL:
+    return 70;
   }
 }

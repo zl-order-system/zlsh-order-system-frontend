@@ -6,14 +6,9 @@ export enum OrderState {
   PAID = "已繳費",
 }
 
-export enum LunchBoxType {
-  SCHOOL = "學校餐盒",
+export enum LunchBox {
   PERSONAL = "自備餐盒",
-}
-
-export enum LunchBoxPrice {
-  SCHOOL = 70,
-  PERSONAL = 65,
+  SCHOOL = "學校餐盒",
 }
 
 export enum Page {

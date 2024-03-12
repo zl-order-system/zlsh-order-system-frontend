@@ -1,7 +1,7 @@
 import { Banner } from "./components/Banner"
 import { Buttons } from "./components/Buttons"
 import { Preview } from "./components/Preview"
-import { getHomeData } from "./getHomeData" 
+import { getHomeData } from "./getHomeData"
 import { GetHomeDataResponse } from "./schema"
 
 export function Home() {

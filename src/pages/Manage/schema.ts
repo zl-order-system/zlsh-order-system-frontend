@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
-import { LunchBoxType } from "../../util/types/types";
+import { LunchBox } from "../../util/types/types";
 
 export type SelectData = {
   num: number;
-  box: LunchBoxType;
+  box: LunchBox;
 }
 
 export type SelectContextType = {

@@ -1,13 +1,27 @@
-export function Account() {
-  const data = {
-    name: "周奕宇 社長",
-    id: 11230157,
-    googleName: "10922周奕宇",
-    email: "s11230155@zlsh.tp.edu.tw",
-    classNumber: 109,
-    seatNumber: 22,
-  };
-  const logout = () => {};
+import { useQuery } from "react-query";
+import { fetchBackendCurry } from "../../API/util";
+import { GetAccountDataRes, zGetAccountDataRes } from "../../API/schema/account";
+import { clearToken, setToken } from "../../util/token";
+
+// const data = {
+//   name: "周奕宇 社長",
+//   id: 11230157,
+//   googleName: "10922周奕宇",
+//   email: "s11230155@zlsh.tp.edu.tw",
+//   classNumber: 109,
+//   seatNumber: 22,
+// };
+
+export function AccountWrapper() {
+  const {data} = useQuery({
+    queryKey: ["fetchAccountData"],
+    queryFn: fetchBackendCurry("/api/user/account", zGetAccountDataRes)
+  });
+  if (data === undefined) return <></>;
+  return <Account data={data}/>
+}
+
+function Account({data}: {data: GetAccountDataRes}) {
   return (
     <div className="w-full h-full overflow-scroll pb-16 flex flex-col items-center py-10 gap-10">
       <div className="flex flex-col items-center gap-8">
@@ -36,7 +50,7 @@ export function Account() {
           <div className="pl-2 outline-none text-black text-2xl font-normal">{data.seatNumber}</div>
         </div>
         <div className="grid place-content-center pt-4">
-          <button className="text-center text-sky-400 text-2xl font-bold" onClick={logout}>登出</button>
+          <button className="text-center text-sky-400 text-2xl font-bold" onClick={clearToken}>登出</button>
         </div>
       </div>
     </div>

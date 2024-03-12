@@ -24,7 +24,7 @@ export function Preview({barData, header}: {barData: {displayDate: string, state
           })}
         </div>
         <div className="w-full h-[2rem] flex flex-row">
-          {barData.map((v, i) => <DateLabel index={i} displayDate={v.displayDate}/>)}
+          {barData.map((v, i) => <DateLabel index={i} key={i} displayDate={v.displayDate}/>)}
         </div>
         <div className="flex flex-row justify-start gap-[1.3rem] mb-[1.25rem]">
           <ColourLabel className="bg-[#97D581]">

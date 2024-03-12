@@ -17,9 +17,9 @@ const data: GetOrderDataRes = {
             ],
             "displayDate": "2/23 週五",
             "id": null,
-            "lunchBox": "-",
-            "price": "-",
-            "selectedMeal": "-",
+            "lunchBox": null,
+            "price": null,
+            "selectedMeal": null,
             "mealOptions": [
                 {
                     "name": "微辣高麗肉片",
@@ -53,9 +53,9 @@ const data: GetOrderDataRes = {
             ],
             "displayDate": "2/26 週一",
             "id": null,
-            "lunchBox": "-",
-            "price": "-",
-            "selectedMeal": "-",
+            "lunchBox": null,
+            "price": null,
+            "selectedMeal": null,
             "mealOptions": [
                 {
                     "name": "滷無骨腿排",
@@ -85,9 +85,9 @@ const data: GetOrderDataRes = {
             ],
             "displayDate": "2/27 週二",
             "id": null,
-            "lunchBox": "-",
-            "price": "-",
-            "selectedMeal": "-",
+            "lunchBox": null,
+            "price": null,
+            "selectedMeal": null,
             "mealOptions": [
                 {
                     "name": "滷無骨腿排",
@@ -117,9 +117,9 @@ const data: GetOrderDataRes = {
             ],
             "displayDate": "2/29 週四",
             "id": null,
-            "lunchBox": "-",
-            "price": "-",
-            "selectedMeal": "-",
+            "lunchBox": null,
+            "price": null,
+            "selectedMeal": null,
             "mealOptions": [
                 {
                     "name": "滷無骨腿排",
@@ -149,9 +149,9 @@ const data: GetOrderDataRes = {
             ],
             "displayDate": "3/1 週五",
             "id": null,
-            "lunchBox": "-",
-            "price": "-",
-            "selectedMeal": "-",
+            "lunchBox": null,
+            "price": null,
+            "selectedMeal": null,
             "mealOptions": [
                 {
                     "name": "滷無骨腿排",

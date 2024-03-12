@@ -1,5 +1,3 @@
-// import { OrderState, lunchBoxType } from "../Enums"
-
 import { LunchBox, OrderState } from "../../util/types/types"
 
 export type OrderDataHeader = {
@@ -13,17 +11,17 @@ export type MealOption = {
   schoolOnly: boolean
 }
 
-type OrderDataBodyOld = {
-  state: OrderState,
-  date: number[],
-  displayDate: string,
-  id: string | null,
-  lunchBox: LunchBox | "-",
-  price: "65"| "70" | "-",
-  selectedMeal: string | "-",
-  mealOptions: MealOption[],
-  locked: boolean
-}
+// type OrderDataBodyOld = {
+//   state: OrderState,
+//   date: number[],
+//   displayDate: string,
+//   id: string | null,
+//   lunchBox: LunchBox | "-",
+//   price: "65"| "70" | "-",
+//   selectedMeal: string | "-",
+//   mealOptions: MealOption[],
+//   locked: boolean
+// }
 
 type OrderDataBodyCommon = {
   date: [number, number, number],
@@ -37,7 +35,7 @@ export type OrderItemUnordered = (OrderDataBodyCommon & {
   id: null,
   lunchBox: null,
   price: null,
-  selectedMeal: -1,
+  selectedMeal: null,
 })
 
 export type OrderItemOrdered = (OrderDataBodyCommon & {

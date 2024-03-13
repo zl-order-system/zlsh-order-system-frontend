@@ -5,10 +5,12 @@ import editIcon from "../../../assets/editIcon.svg"
 import { OrderItem, OrderItemOrdered } from "../../../API/schema/manage"
 import { LunchBox, OrderState } from "../../../util/types/types"
 import { getPrice, parseLunchBox } from "../../../util/util"
+import { HttpMethod, useMutationShort } from "../../../API/util"
+import { z } from "zod";
 
 type SelRef = React.RefObject<HTMLSelectElement>;
 
-export function ItemForm({item}: {item: OrderItem}) {
+export function ItemForm({item, refetch}: {item: OrderItem, refetch: ()=>void}) {
   // TODO: change to event emitters
   const selRefMeal = useRef<HTMLSelectElement>(null);
   const selRefBox = useRef<HTMLSelectElement>(null);
@@ -17,7 +19,7 @@ export function ItemForm({item}: {item: OrderItem}) {
       {item.state === OrderState.UNORDERED && <Selector item={item} selRefMeal={selRefMeal} selRefBox={selRefBox}/>}
       {item.state === OrderState.ORDERED && <Selector item={item} selRefMeal={selRefMeal} selRefBox={selRefBox}/>}
       {item.state === OrderState.PAID && <OrderInfo item={item}/>}
-      <ItemButton item={item} selRefMeal={selRefMeal} selRefBox={selRefBox}/>
+      <ItemButton item={item} refetch={refetch} selRefMeal={selRefMeal} selRefBox={selRefBox}/>
     </div>
   )
 }
@@ -73,22 +75,46 @@ function Selector({item, selRefBox, selRefMeal}: {item: OrderItem, selRefBox: Se
   )
 }
 
-function ItemButton({item, selRefBox, selRefMeal}: {item: OrderItem, selRefBox: SelRef, selRefMeal: SelRef}) {
+function ItemButton({item, refetch, selRefBox, selRefMeal}: {item: OrderItem, refetch: ()=>void, selRefBox: SelRef, selRefMeal: SelRef}) {
+  const createOrderData = useMutationShort("/api/order", HttpMethod.POST, z.undefined(), "createOrderData");
+  const updateOrderData = useMutationShort("/api/order", HttpMethod.PATCH, z.undefined(), "createOrderData");
+  const deleteOrderData = useMutationShort("/api/order", HttpMethod.DELETE, z.undefined(), "createOrderData");
 
-  function onClick () {
-    console.log({box: selRefBox.current?.value, meal: selRefMeal.current?.value})
+  async function onClickCreate() {
+    await createOrderData({
+      date: item.date,
+      lunchBoxType: selRefBox.current?.value,
+      selectedMeal: selRefMeal.current?.value
+    })
+    refetch();
+  }
+
+  async function onClickUpdate() {
+    await updateOrderData({
+      date: item.date,
+      lunchBoxType: selRefBox.current?.value,
+      selectedMeal: selRefMeal.current?.value
+    })
+    refetch();
+  }
+
+  async function onClickDelete() {
+    await deleteOrderData({
+      date: item.date,
+    })
+    refetch();
   }
 
   switch (item.state) {
   case OrderState.UNORDERED:
     return (
-      <button onClick={onClick} className="text-[#35B1E2] text-[1rem] font-[600]">預定</button>
+      <button onClick={onClickCreate} className="text-[#35B1E2] text-[1rem] font-[600]">預定</button>
     )
   case OrderState.ORDERED:
     return (
       <div className="flex flex-row gap-3">
-        <button className=""><img src={editIcon}></img></button>
-        <button className="block w-4"><img src={trashIcon}></img></button>
+        <button onClick={onClickUpdate}><img src={editIcon}></img></button>
+        <button onClick={onClickDelete} className="block w-4"><img src={trashIcon}></img></button>
       </div>
     )
   case OrderState.PAID:

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AppConstants } from "../../util/constants";
+import googleIcon from "../../assets/svg/googleIcon.png";
 
 export function Login() {
   return (
@@ -15,7 +16,7 @@ export function Login() {
             <button className="w-[18rem] h-[3.7rem] border-[2px] border-black rounded-[0.6rem] flex flex-row items-center justify-center gap-[1.8rem]">
               <div className="w-[1.8rem] h-[1.8rem] ">
                 {/* TODO: Add google icon */}
-                <img src={"GOOGLE_ICON_HERE"} />
+                <img src={googleIcon} />
               </div>
               <div className=" text-black text-[1.2rem] font-[800] p-0">以Google帳號登入</div>
             </button>

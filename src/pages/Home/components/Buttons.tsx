@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import introIcon from "../../../svg/introIcon.svg"
-import mealsIcon from "../../../svg/mealsIcon.svg"
-import myOrderIcon from "../../../svg/myOrderIcon.svg"
+import introIcon from "../../../assets/svg/introIcon.svg"
+import mealsIcon from "../../../assets/svg/mealsIcon.svg"
+import myOrderIcon from "../../../assets/svg/myOrderIcon.svg"
 
 
 

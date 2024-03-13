@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import arrowIcon from "../../../svg/arrowIcon.svg"
+import arrowIcon from "../../../assets/svg/arrowIcon.svg"
 import { getDate } from "../../../util/util"
 import { GetHomeDataRes } from "../../../API/schema/home"
 

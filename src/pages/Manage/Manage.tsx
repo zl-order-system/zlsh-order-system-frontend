@@ -6,7 +6,7 @@ import { GetOrderDataRes, zGetOrderDataRes } from "../../API/schema/manage";
 import { formatDatePretty } from "../../util/util";
 
 export function Manage() {
-  const {data} = useQuery({
+  const {data, refetch} = useQuery({
     queryKey: ["fetchOrderData"],
     queryFn: fetchBackendCurry("/api/order", zGetOrderDataRes)
   });
@@ -21,7 +21,7 @@ export function Manage() {
         barData={orderData.bodyData.map(v => ({displayDate: formatDatePretty(v.date), state: v.state}))}
         header={orderData.headerData}
       />
-      <Items data={orderData}/>
+      <Items data={orderData} refetch={refetch}/>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { AppConstants } from "../util/constants";
 import { z } from "zod";
 import { formatDate } from "../util/util";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "react-query";
 import { getToken } from "../util/token";
 
 export enum HttpMethod {

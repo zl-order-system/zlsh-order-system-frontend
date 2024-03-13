@@ -1,5 +1,5 @@
 import { HashRouter as Router, Route, Routes, useNavigate, useLocation} from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // components
 import { Home } from './pages/Home/Home'
 import { Nav } from './components/Nav'
@@ -11,7 +11,6 @@ import { Meals } from './pages/Meals/Meals';
 import { getToken, setToken } from './util/token';
 import { Page } from './util/types/types';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
 
 function App() {
   const [hash, setHash] = useState(window.location.hash.split("?")[0])

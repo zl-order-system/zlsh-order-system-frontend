@@ -3,13 +3,13 @@ import { OrderState } from "../../../util/types/types";
 import { formatDatePretty } from "../../../util/util";
 import { ItemForm } from "./ItemForm"
 
-export function Items({data}: {data: GetOrderDataRes}) {
+export function Items({data, refetch}: {data: GetOrderDataRes, refetch: ()=>void}) {
   return (
     <div className=" flex flex-col items-center w-full">
       {data.bodyData.map((item, index) => (
         <div className=" flex flex-col w-full my-[0.75rem]" key={index}>
           <ItemText item={item} />
-          <ItemForm item={item} />
+          <ItemForm item={item} refetch={refetch} />
         </div>
       ))}
     </div>

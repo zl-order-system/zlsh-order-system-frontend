@@ -29,7 +29,7 @@ function ItemStateText({state}: {state: OrderState}) {
   switch (state) {
   case OrderState.PAID:
     return <div className={`text-[#97D581] ${className}`}>{state}</div>;
-  case OrderState.UNPAID:
+  case OrderState.ORDERED:
     return <div className={`text-[#E2473D] ${className}`}>{state}</div>;
   case OrderState.UNORDERED:
     return <div className={`text-[#D0CFCF] ${className}`}>{state}</div>;

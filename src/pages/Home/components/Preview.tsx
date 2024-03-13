@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 import arrowIcon from "../../../svg/arrowIcon.svg"
-import { GetHomeDataResponse } from "../schema"
 import { getDate } from "../../../util/util"
+import { GetHomeDataRes } from "../../../API/schema/home"
 
-export function Preview({ HomeData }: {HomeData: GetHomeDataResponse }) {
+export function Preview({ HomeData }: {HomeData: GetHomeDataRes }) {
   return (
     <div className="flex gap-[1rem] flex-col mx-[1.5rem]">
       <div className="flex justify-between">
@@ -19,13 +19,13 @@ export function Preview({ HomeData }: {HomeData: GetHomeDataResponse }) {
   )
 }
 
-function Items({ HomeData }: {HomeData: GetHomeDataResponse }) {
+function Items({ HomeData }: {HomeData: GetHomeDataRes }) {
   return HomeData.previewData.map((item, index) => (
     <EachDay item={ item } key={index} />
   ))
 }
 
-function EachDay({item} : {item: {date: number[], ordered: boolean}}) {
+function EachDay({item} : {item: {date: Date, ordered: boolean}}) {
   const date = getDate(item.date)
   return (
     <div className="w-[9.7rem] min-w-[9.7rem] h-[9.7rem] border-[1px] border-[#ACACAC] rounded-[1.3rem]">

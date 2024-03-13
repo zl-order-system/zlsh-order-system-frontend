@@ -15,7 +15,7 @@ export function ItemForm({item}: {item: OrderItem}) {
   return (
     <div className={"flex flex-row justify-between items-center"}>
       {item.state === OrderState.UNORDERED && <Selector item={item} selRefMeal={selRefMeal} selRefBox={selRefBox}/>}
-      {item.state === OrderState.UNPAID && <Selector item={item} selRefMeal={selRefMeal} selRefBox={selRefBox}/>}
+      {item.state === OrderState.ORDERED && <Selector item={item} selRefMeal={selRefMeal} selRefBox={selRefBox}/>}
       {item.state === OrderState.PAID && <OrderInfo item={item}/>}
       <ItemButton item={item} selRefMeal={selRefMeal} selRefBox={selRefBox}/>
     </div>
@@ -84,7 +84,7 @@ function ItemButton({item, selRefBox, selRefMeal}: {item: OrderItem, selRefBox: 
     return (
       <button onClick={onClick} className="text-[#35B1E2] text-[1rem] font-[600]">預定</button>
     )
-  case OrderState.UNPAID:
+  case OrderState.ORDERED:
     return (
       <div className="flex flex-row gap-3">
         <button className=""><img src={editIcon}></img></button>

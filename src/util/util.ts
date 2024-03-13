@@ -12,19 +12,13 @@ export function parseLunchBox(s: string) {
   }
 }
 
-export function getDate(date?: number[]) {
+export function getDate(date: Date = new Date()) {
   const weeksDay = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
-  let newDate: Date
-  if ( date ){
-    newDate = new Date(date[0], date[1] - 1, date[2])
-  }else{
-    newDate = new Date()
-  }
   return {
-    year: newDate.getFullYear(),
-    month: newDate.getMonth() + 1,
-    date: newDate.getDate(),
-    day: weeksDay[newDate.getDay()]
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    date: date.getDate(),
+    day: weeksDay[date.getDay()]
   }
 }
 

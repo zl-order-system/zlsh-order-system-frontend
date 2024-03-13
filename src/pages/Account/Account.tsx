@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { fetchBackendCurry } from "../../API/util";
 import { GetAccountDataRes, zGetAccountDataRes } from "../../API/schema/account";
-import { clearToken, setToken } from "../../util/token";
+import { clearToken } from "../../util/token";
 
 // const data = {
 //   name: "周奕宇 社長",

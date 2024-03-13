@@ -1,15 +1,32 @@
+import { z } from "zod";
+
 export type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 export enum OrderState {
   UNORDERED = "未訂餐",
-  UNPAID = "未繳費",
+  ORDERED = "未繳費",
   PAID = "已繳費",
 }
+
+export const zOrderStateUnordered = z.literal("未訂餐");
+export const zOrderStateOrdered = z.literal("未繳費");
+export const zOrderStatePaid = z.literal("已繳費");
+
+export const zOrderState = z.union([
+  zOrderStateUnordered,
+  zOrderStateOrdered,
+  zOrderStatePaid,
+]);
 
 export enum LunchBox {
   PERSONAL = "自備餐盒",
   SCHOOL = "學校餐盒",
 }
+
+export const zLunchBox = z.union([
+  z.literal("自備餐盒"),
+  z.literal("學校餐盒"),
+]);
 
 export enum Page {
   LOGIN = "/login",

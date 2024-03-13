@@ -1,7 +1,7 @@
+import { GetHomeDataRes } from "../../../API/schema/home";
 import { getDate } from "../../../util/util";
-import { GetHomeDataResponse } from "../schema";
 
-export function Banner({ HomeData }: {HomeData: GetHomeDataResponse }) {
+export function Banner({ HomeData }: {HomeData: GetHomeDataRes }) {
   const text = getBannerText(HomeData.bannerData.hasPaidToday)
   const currentDate = getDate();
   return (

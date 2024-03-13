@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { LunchBox } from "../../util/types/types";
 
-export type SelectData = {
+type SelectData = {
   num: number;
   box: LunchBox;
 }

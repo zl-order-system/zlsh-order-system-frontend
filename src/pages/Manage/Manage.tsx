@@ -1,8 +1,18 @@
+import { useQuery } from "react-query";
 import { Items } from "./conponents/Items"
 import { Preview } from "./conponents/Preview"
-import orderData from "./data"
+import { fetchBackendCurry } from "../../API/util";
+import { GetOrderDataRes, zGetOrderDataRes } from "../../API/schema/manage";
 
 export function Manage() {
+  const {data} = useQuery({
+    queryKey: ["fetchOrderData"],
+    queryFn: fetchBackendCurry("/api/oder", zGetOrderDataRes)
+  });
+  if (data === undefined) return <></>;
+
+  const orderData = data as GetOrderDataRes;
+
   return (
     <div className="w-full h-full overflow-scroll pb-16 px-[1.8rem] pt-[1rem] flex flex-col">
       <div className="text-black text-[1.8rem] font-[700]">訂餐管理</div>

@@ -16,7 +16,7 @@ export function Preview({barData, header}: {barData: {displayDate: string, state
             switch(item.state) {
             case OrderState.PAID:
               return <div className={`${className} bg-[#97D581]`} key={index}></div>;
-            case OrderState.UNPAID:
+            case OrderState.ORDERED:
               return <div className={`${className} bg-[#E2473D]`} key={index}></div>;
             case OrderState.UNORDERED:
               return <div className={`${className} bg-[#D0CFCF]`} key={index}></div>;

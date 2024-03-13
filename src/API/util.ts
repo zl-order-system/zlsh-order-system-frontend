@@ -28,6 +28,9 @@ export function replaceStringWDate(obj: unknown): unknown {
   if (Array.isArray(obj))
     return obj.map(replaceStringWDate);
 
+  if (obj === null || obj === undefined)
+    return obj;
+
   if (typeof obj === "object")
     return Object.fromEntries(
       Object

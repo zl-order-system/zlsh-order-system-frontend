@@ -3,7 +3,7 @@ import arrowIcon from "../../../svg/arrowIcon.svg"
 import { getDate } from "../../../util/util"
 import { GetHomeDataRes } from "../../../API/schema/home"
 
-export function Preview({ HomeData }: {HomeData: GetHomeDataRes }) {
+export function Preview({ homeData }: {homeData: GetHomeDataRes }) {
   return (
     <div className="flex gap-[1rem] flex-col mx-[1.5rem]">
       <div className="flex justify-between">
@@ -13,14 +13,14 @@ export function Preview({ HomeData }: {HomeData: GetHomeDataRes }) {
         </Link>
       </div>
       <div className="flex flex-row justify-start flex-shrink-0 gap-5 overflow-scroll w-full py-4">
-        <Items HomeData={ HomeData } />
+        <Items homeData={ homeData } />
       </div>
     </div>
   )
 }
 
-function Items({ HomeData }: {HomeData: GetHomeDataRes }) {
-  return HomeData.previewData.map((item, index) => (
+function Items({ homeData }: {homeData: GetHomeDataRes }) {
+  return homeData.previewData.map((item, index) => (
     <EachDay item={ item } key={index} />
   ))
 }

@@ -7,7 +7,7 @@ import { GetOrderDataRes, zGetOrderDataRes } from "../../API/schema/manage";
 export function Manage() {
   const {data} = useQuery({
     queryKey: ["fetchOrderData"],
-    queryFn: fetchBackendCurry("/api/oder", zGetOrderDataRes)
+    queryFn: fetchBackendCurry("/api/order", zGetOrderDataRes)
   });
   if (data === undefined) return <></>;
 

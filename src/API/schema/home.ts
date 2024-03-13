@@ -1,7 +1,6 @@
 import { ZodSchema, z } from "zod";
 
 export type GetHomeDataRes = {
-  roles: string[],
   bannerData: {
     today: Date,
     hasPaidToday: boolean,
@@ -15,7 +14,6 @@ export type GetHomeDataRes = {
 }
 
 export const zGetHomeDataRes: ZodSchema<GetHomeDataRes> = z.object({
-  roles: z.array(z.string()),
   bannerData: z.object({
     today: z.date(),
     hasPaidToday: z.boolean(),

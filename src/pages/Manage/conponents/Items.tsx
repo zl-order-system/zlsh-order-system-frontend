@@ -18,7 +18,7 @@ export function Items({data}: {data: GetOrderDataRes}) {
 function ItemText({item}: {item: OrderItem}) {
   return (
     <div className=" flex flex-row justify-between">
-      <div className=" text-black text-[1.5rem] font-[700]">{item.displayDate}</div>
+      <div className=" text-black text-[1.5rem] font-[700]">{item.date.toUTCString()}</div>
       <ItemStateText state={item.state}/>
     </div>
   )

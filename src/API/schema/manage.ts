@@ -18,15 +18,13 @@ const zMealOption = z.object({
 })
 
 type OrderItemCommon = {
-  date: [number, number, number],
-  displayDate: string,
+  date: Date,
   mealOptions: MealOption[],
   locked: boolean
 }
 
 const zOrderItemCommon = z.object({
-  date: z.tuple([z.number(), z.number(), z.number()]),
-  displayDate: z.string(),
+  date: z.date(),
   mealOptions: z.array(zMealOption),
   locked: z.boolean()
 })

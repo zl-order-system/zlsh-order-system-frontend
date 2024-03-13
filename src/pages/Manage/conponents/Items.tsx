@@ -1,5 +1,6 @@
 import { GetOrderDataRes, OrderItem } from "../../../API/schema/manage"
 import { OrderState } from "../../../util/types/types";
+import { formatDatePretty } from "../../../util/util";
 import { ItemForm } from "./ItemForm"
 
 export function Items({data}: {data: GetOrderDataRes}) {
@@ -18,7 +19,7 @@ export function Items({data}: {data: GetOrderDataRes}) {
 function ItemText({item}: {item: OrderItem}) {
   return (
     <div className=" flex flex-row justify-between">
-      <div className=" text-black text-[1.5rem] font-[700]">{item.date.toUTCString()}</div>
+      <div className=" text-black text-[1.5rem] font-[700]">{formatDatePretty(item.date)}</div>
       <ItemStateText state={item.state}/>
     </div>
   )

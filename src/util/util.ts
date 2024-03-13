@@ -31,6 +31,14 @@ export function getPrice(box: LunchBox) {
   }
 }
 
+export function formatDatePretty(date: Date) {
+  const month = date.getMonth() + 1; // Months are 0-indexed
+  const day = date.getDate();
+  const weekday = ["一", "二", "三", "四", "五", "六", "日"][date.getDay()]; // Weekday in Japanese
+
+  return `${month}/${day} 週${weekday}`;
+}
+
 export const formatDate = (date: Date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
 
 export const redirectToMainApp = (win: Window) => win.location = AppConstants.MAIN_APP_URL

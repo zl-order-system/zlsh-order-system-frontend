@@ -7,7 +7,7 @@ import { GetHomeDataRes, zGetHomeDataRes } from "../../API/schema/home";
 
 export function Home() {
   const {data} = useQuery({
-    queryKey: ["fetchOrderData"],
+    queryKey: ["fetchHomeData"],
     queryFn: fetchBackendCurry("/api/user/home", zGetHomeDataRes)
   });
   if (data === undefined) return <></>;
@@ -15,9 +15,9 @@ export function Home() {
 
   return (
     <div className="flex flex-col gap-9 w-full h-full overflow-scroll pb-16">
-      <Banner homeData={homeData} />
+      <Banner homeData={homeData}/>
       <Buttons />
-      <Preview homeData={homeData} />
+      <Preview homeData={homeData}/>
     </div>
   )
 }

@@ -4,13 +4,14 @@ import { Buttons } from "./components/Buttons"
 import { Preview } from "./components/Preview"
 import { fetchBackendCurry } from "../../API/util";
 import { GetHomeDataRes, zGetHomeDataRes } from "../../API/schema/home";
+import Loader from "../../components/Loader/Loader";
 
 export function Home() {
   const {data} = useQuery({
     queryKey: ["fetchHomeData"],
     queryFn: fetchBackendCurry("/api/user/home", zGetHomeDataRes)
   });
-  if (data === undefined) return <></>;
+  if (data === undefined) return <Loader/>;
   const homeData = data as GetHomeDataRes;
 
   return (

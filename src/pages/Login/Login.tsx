@@ -15,7 +15,6 @@ export function Login() {
           <a href={`https://${AppConstants.BACKEND_HOST}/oauth2/authorization/google`}>
             <button className="w-[18rem] h-[3.7rem] border-[2px] border-black rounded-[0.6rem] flex flex-row items-center justify-center gap-[1.8rem]">
               <div className="w-[1.8rem] h-[1.8rem] ">
-                {/* TODO: Add google icon */}
                 <img src={googleIcon} />
               </div>
               <div className=" text-black text-[1.2rem] font-[800] p-0">以Google帳號登入</div>

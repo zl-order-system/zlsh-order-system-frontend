@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { fetchBackendCurry } from "../../API/util";
 import { GetAccountDataRes, zGetAccountDataRes } from "../../API/schema/account";
 import { clearToken } from "../../util/token";
+import Loader from "../../components/Loader/Loader";
 
 // const data = {
 //   name: "周奕宇 社長",
@@ -17,7 +18,7 @@ export function AccountWrapper() {
     queryKey: ["fetchAccountData"],
     queryFn: fetchBackendCurry("/api/user/account", zGetAccountDataRes)
   });
-  if (data === undefined) return <></>;
+  if (data === undefined) return <Loader/>;
   return <Account data={data}/>
 }
 

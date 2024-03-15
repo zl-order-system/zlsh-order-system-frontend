@@ -4,13 +4,14 @@ import { Preview } from "./conponents/Preview"
 import { fetchBackendCurry } from "../../API/util";
 import { GetOrderDataRes, zGetOrderDataRes } from "../../API/schema/manage";
 import { formatDatePretty } from "../../util/util";
+import Loader from "../../components/Loader/Loader";
 
 export function Manage() {
   const {data, refetch} = useQuery({
     queryKey: ["fetchOrderData"],
     queryFn: fetchBackendCurry("/api/order", zGetOrderDataRes)
   });
-  if (data === undefined) return <></>;
+  if (data === undefined) return <Loader/>;
 
   const orderData = data as GetOrderDataRes;
 

@@ -42,3 +42,17 @@ export enum Role {
   MEAL_ADMIN = "MEAL_ADMIN",
   MESSAGES_ADMIN = "MESSAGES_ADMIN",
 }
+
+export enum HintType {
+  success = "success",
+  error = "error"
+}
+export type HintRef = {
+  text : string,
+  hintType : HintType,
+  state : "close" | "open"
+}
+export type HintData = {
+  text : string,
+  hintType : HintType,
+} | undefined

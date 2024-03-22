@@ -7,6 +7,7 @@ import { LunchBox, OrderState } from "../../../util/types/types"
 import { getPrice, parseLunchBox } from "../../../util/util"
 import { HttpMethod, useMutationShort } from "../../../API/util"
 import { z } from "zod";
+import { hintPopUp } from "../../../components/Hint/Hint"
 
 type SelRef = React.RefObject<HTMLSelectElement>;
 

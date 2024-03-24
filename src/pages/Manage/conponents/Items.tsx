@@ -1,6 +1,6 @@
 import {  useState } from "react";
 import { GetOrderDataRes, OrderItem } from "../../../API/schema/manage"
-import { Hint, hintPopUp } from "../../../components/Hint/Hint";
+import { Hint } from "../../../components/Hint/Hint";
 import { HintData, OrderState } from "../../../util/types/types";
 import { formatDatePretty } from "../../../util/util";
 import { ItemForm } from "./ItemForm"
@@ -13,7 +13,7 @@ export function Items({data, refetch}: {data: GetOrderDataRes, refetch: ()=>void
       {data.bodyData.map((item, index) => (
         <div className=" flex flex-col w-full my-[0.75rem]" key={index}>
           <ItemText item={item} />
-          <ItemForm item={item} refetch={refetch} />
+          <ItemForm item={item} refetch={refetch} setHintData={setHintData} />
         </div>
       ))}
     </div>

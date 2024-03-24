@@ -3,7 +3,7 @@ import { useRef, useState } from "react"
 import trashIcon from "../../../assets/trashIcon.svg"
 import editIcon from "../../../assets/editIcon.svg"
 import { OrderItem, OrderItemOrdered } from "../../../API/schema/manage"
-import { LunchBox, OrderState } from "../../../util/types/types"
+import { HintData, HintType, LunchBox, OrderState, SetState } from "../../../util/types/types"
 import { getPrice, parseLunchBox } from "../../../util/util"
 import { HttpMethod, useMutationShort } from "../../../API/util"
 import { z } from "zod";
@@ -11,7 +11,7 @@ import { hintPopUp } from "../../../components/Hint/Hint"
 
 type SelRef = React.RefObject<HTMLSelectElement>;
 
-export function ItemForm({item, refetch}: {item: OrderItem, refetch: ()=>void}) {
+export function ItemForm({item, refetch, setHintData}: {item: OrderItem, refetch: ()=>void, setHintData: SetState<HintData>}) {
   // TODO: change to event emitters
   const selRefMeal = useRef<HTMLSelectElement>(null);
   const selRefBox = useRef<HTMLSelectElement>(null);
@@ -20,7 +20,7 @@ export function ItemForm({item, refetch}: {item: OrderItem, refetch: ()=>void}) 
       {item.state === OrderState.UNORDERED && <Selector item={item} selRefMeal={selRefMeal} selRefBox={selRefBox}/>}
       {item.state === OrderState.ORDERED && <Selector item={item} selRefMeal={selRefMeal} selRefBox={selRefBox}/>}
       {item.state === OrderState.PAID && <OrderInfo item={item}/>}
-      <ItemButton item={item} refetch={refetch} selRefMeal={selRefMeal} selRefBox={selRefBox}/>
+      <ItemButton item={item} refetch={refetch} selRefMeal={selRefMeal} selRefBox={selRefBox} setHintData={setHintData}/>
     </div>
   )
 }
@@ -76,7 +76,7 @@ function Selector({item, selRefBox, selRefMeal}: {item: OrderItem, selRefBox: Se
   )
 }
 
-function ItemButton({item, refetch, selRefBox, selRefMeal}: {item: OrderItem, refetch: ()=>void, selRefBox: SelRef, selRefMeal: SelRef}) {
+function ItemButton({item, refetch, selRefBox, selRefMeal, setHintData}: {item: OrderItem, refetch: ()=>void, selRefBox: SelRef, selRefMeal: SelRef, setHintData: SetState<HintData>}) {
   const createOrderData = useMutationShort("/api/order", HttpMethod.POST, z.undefined(), "createOrderData");
   const updateOrderData = useMutationShort("/api/order", HttpMethod.PATCH, z.undefined(), "createOrderData");
   const deleteOrderData = useMutationShort("/api/order", HttpMethod.DELETE, z.undefined(), "createOrderData");
@@ -87,6 +87,8 @@ function ItemButton({item, refetch, selRefBox, selRefMeal}: {item: OrderItem, re
       lunchBoxType: selRefBox.current?.value,
       selectedMeal: selRefMeal.current?.value
     })
+    .then(() => hintPopUp(HintType.success, "訂餐成功", setHintData))
+    .catch(() => hintPopUp(HintType.error, "訂餐失敗", setHintData))
     refetch();
   }
 
@@ -96,6 +98,8 @@ function ItemButton({item, refetch, selRefBox, selRefMeal}: {item: OrderItem, re
       lunchBoxType: selRefBox.current?.value,
       selectedMeal: selRefMeal.current?.value
     })
+    .then(() => hintPopUp(HintType.success, "更新成功", setHintData))
+    .catch(() => hintPopUp(HintType.error, "更新失敗", setHintData))
     refetch();
   }
 
@@ -103,6 +107,8 @@ function ItemButton({item, refetch, selRefBox, selRefMeal}: {item: OrderItem, re
     await deleteOrderData({
       date: item.date,
     })
+    .then(() => hintPopUp(HintType.success, "刪除成功", setHintData))
+    .catch(() => hintPopUp(HintType.error, "刪除失敗", setHintData))
     refetch();
   }
 

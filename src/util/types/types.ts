@@ -48,11 +48,12 @@ export enum HintType {
   error = "error"
 }
 export type HintRef = {
-  text : string,
-  hintType : HintType,
-  state : "close" | "open"
+  text: string,
+  hintType: HintType,
+  state: "close" | "open"
 }
 export type HintData = {
-  text : string,
-  hintType : HintType,
+  text: string,
+  hintType: HintType,
+  timer?: number
 } | undefined

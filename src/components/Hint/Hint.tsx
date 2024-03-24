@@ -1,7 +1,6 @@
-import successIcon from "../SuccessHint/check.svg"
-import errorIcon from "../ErrorHint/xmark.svg"
-import { HintData, HintType } from "../../util/types/types"
-import { Dispatch } from "react"
+import successIcon from "../../assets/svg/check.svg"
+import errorIcon from "../../assets/svg/xmark.svg"
+import { HintData, HintType, SetState } from "../../util/types/types"
 
 // export function Hint({hintRef}: {hintRef: React.RefObject<HintRef | undefined>}){
 //   const [hintData, setHintData] = useState<{text: string, hintType: HintType}>()
@@ -22,6 +21,7 @@ import { Dispatch } from "react"
 //     </div>
 //   )
 // }
+
 export function Hint({hintData}: {hintData: HintData}){
   const icon = hintData?.hintType === HintType.success ? successIcon : errorIcon
   if (hintData === undefined) return
@@ -33,12 +33,17 @@ export function Hint({hintData}: {hintData: HintData}){
   )
 }
 
-export function hintPopUp(hintType: HintType, text: string, setStateFunc: Dispatch<HintData>){
-  setStateFunc({
-    text: text,
-    hintType: hintType,
+export function hintPopUp(hintType: HintType, text: string, setHintData: SetState<HintData>){
+  const clearState = () => setHintData(undefined)
+  setHintData((hintData: HintData) => {
+    // 判斷之前的Hint是否結束
+    if(hintData !== undefined){
+      clearTimeout(hintData.timer)
+    }
+    return {
+      hintType: hintType,
+      text: text,
+      timer: setTimeout(clearState, 2000)
+    }
   })
-  const clearState = () => setStateFunc(undefined)
-  setTimeout(clearState, 2000)
-  return
 }

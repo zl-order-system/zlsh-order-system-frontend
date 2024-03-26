@@ -35,7 +35,7 @@ export function Hint({hintData}: {hintData: HintData}){
 
 export function hintPopUp(hintType: HintType, text: string, setHintData: SetState<HintData>){
   const clearState = () => setHintData(undefined)
-  setHintData((hintData: HintData) => {
+  setHintData(hintData => {
     // 判斷之前的Hint是否結束
     if(hintData !== undefined){
       clearTimeout(hintData.timer)

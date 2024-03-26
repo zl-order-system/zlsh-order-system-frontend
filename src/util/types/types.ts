@@ -55,5 +55,5 @@ export type HintRef = {
 export type HintData = {
   text: string,
   hintType: HintType,
-  timer?: number
+  timer?: NodeJS.Timeout
 } | undefined

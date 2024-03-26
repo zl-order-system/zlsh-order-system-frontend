@@ -1,4 +1,4 @@
-import { AppConstants } from "../util/constants";
+import { AppConstants, getAppConstants } from "../util/constants";
 import { z } from "zod";
 import { formatDate } from "../util/util";
 import { useMutation, useQuery } from "react-query";
@@ -68,7 +68,7 @@ export async function fetchBackend(path: string, init: RequestInit = {}) {
     "Authorization": `Bearer ${getToken()}`,
     "Content-Type": "application/json"
   };
-  return fetch(`https://${AppConstants.BACKEND_HOST}${path}`, {...init, headers: {...headers, ...init.headers}});
+  return fetch(`https://${getAppConstants().BACKEND_HOST}${path}`, {...init, headers: {...headers, ...init.headers}});
 }
 
 export function fetchBackendWParams<T extends object>(path: string, request: T, init?: RequestInit) {

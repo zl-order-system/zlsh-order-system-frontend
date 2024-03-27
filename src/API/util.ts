@@ -2,7 +2,7 @@ import { getAppConstants } from "../util/constants";
 import { z } from "zod";
 import { formatDate } from "../util/util";
 import { useMutation, useQuery } from "react-query";
-import { getToken, redirectIfInvalidToken } from "../util/token";
+import { getToken } from "../util/token";
 
 export enum HttpMethod {
   GET = "GET",

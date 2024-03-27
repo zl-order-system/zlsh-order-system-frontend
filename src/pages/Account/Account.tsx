@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { fetchBackendCurry } from "../../API/util";
 import { GetAccountDataRes, zGetAccountDataRes } from "../../API/schema/account";
-import { clearToken } from "../../util/token";
+import { logout } from "../../util/token";
 import Loader from "../../components/Loader/Loader";
 
 // const data = {
@@ -51,7 +51,7 @@ function Account({data}: {data: GetAccountDataRes}) {
           <div className="pl-2 outline-none text-black text-2xl font-normal">{data.seatNumber}</div>
         </div>
         <div className="grid place-content-center pt-4">
-          <button className="text-center text-sky-400 text-2xl font-bold" onClick={clearToken}>登出</button>
+          <button className="text-center text-sky-400 text-2xl font-bold" onClick={logout}>登出</button>
         </div>
       </div>
     </div>

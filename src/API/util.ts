@@ -2,7 +2,7 @@ import { getAppConstants } from "../util/constants";
 import { z } from "zod";
 import { formatDate } from "../util/util";
 import { useMutation, useQuery } from "react-query";
-import { getToken } from "../util/token";
+import { getToken, redirectIfInvalidToken } from "../util/token";
 
 export enum HttpMethod {
   GET = "GET",
@@ -91,6 +91,10 @@ export async function fetchBackendWBodyShort<T extends object, R>(path: string, 
 export function fetchBackendCurry<R>(url: string, resSchema: z.Schema<R>) {
   return async (): Promise<R> => {
     const response = await fetchBackend(url);
+    if (response.status === 401) {
+      window.location.href = '#/login';
+      throw new Error();
+    }
     return zodParse(response, resSchema);
   }
 }

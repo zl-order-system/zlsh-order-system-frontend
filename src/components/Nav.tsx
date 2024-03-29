@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 export function Nav() {
+    console.log("NAV")
     return (
         <div className="w-full h-[4.3rem] bg-[#142C30F5] row-start-2 row-end-2">
             <div className="flex justify-center w-full h-full">

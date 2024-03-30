@@ -33,6 +33,7 @@ function EachMeal({meal, i}: {meal: MealOption, i: number}){
 
 function isThisWeek(mealData: MealWeeksData){
   const nowDate = new Date()
-  if(nowDate >= mealData.startData && nowDate <= mealData.endDate) return true
+  const endDate = new Date(mealData.endDate.setDate(mealData.endDate.getDate() + 1))
+  if(nowDate >= mealData.startData && nowDate <= endDate) return true
   return false
 }

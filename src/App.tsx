@@ -1,5 +1,5 @@
 import { HashRouter as Router, Route, Routes, useNavigate, useLocation} from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 // components
 import { Home } from './pages/Home/Home'
 import { Nav } from './components/Nav'

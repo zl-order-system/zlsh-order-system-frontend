@@ -28,7 +28,7 @@ export function ItemForm({item, refetch, setHintData}: {item: OrderItem, refetch
 function OrderInfo({item}: {item: OrderItemOrdered}) {
   return (
     <div className="text-[#565656] text-[1rem] font-[400] flex flex-row justify-start gap-[1.5rem]">
-      <div>{item.selectedMeal}</div>
+      <div>{item.mealOptions[item.selectedMeal].name}</div>
       <div>{item.lunchBox}</div>
       <div>{item.price}元</div>
     </div>

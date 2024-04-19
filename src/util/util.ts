@@ -34,7 +34,7 @@ export function getPrice(box: LunchBox) {
 export function formatDatePretty(date: Date) {
   const month = date.getMonth() + 1; // Months are 0-indexed
   const day = date.getDate();
-  const weekday = ["一", "二", "三", "四", "五", "六", "日"][date.getDay()]; // Weekday in Japanese
+  const weekday = ["日", "一", "二", "三", "四", "五", "六"][date.getDay()]; // Weekday in Japanese
 
   return `${month}/${day} 週${weekday}`;
 }

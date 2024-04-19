@@ -1,4 +1,4 @@
-import { AppConstants } from "./constants";
+import { getAppConstants } from "./constants";
 import { LunchBox } from "./types/types";
 
 export function parseLunchBox(s: string) {
@@ -41,6 +41,6 @@ export function formatDatePretty(date: Date) {
 
 export const formatDate = (date: Date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
 
-export const redirectToMainApp = (win: Window) => win.location = AppConstants.MAIN_APP_URL
+export const redirectToMainApp = (win: Window) => win.location = getAppConstants().MAIN_APP_URL
 
-export const redirectToLoginPage = (win: Window) => win.location = `${AppConstants.MAIN_APP_URL}#/login`
+export const redirectToLoginPage = (win: Window) => win.location = `${getAppConstants().MAIN_APP_URL}#/login`

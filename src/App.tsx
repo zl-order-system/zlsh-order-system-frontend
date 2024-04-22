@@ -29,7 +29,7 @@ function Main() {
 
   return (
     <>
-    {process.env.MODE === "staging" && <div className='bg-[#5e5e5e] fixed bottom-3 right-3 px-3 opacity-40 text-2xl rounded-md'>staging</div>}
+    {process.env.MODE === "staging" && <div className='bg-[#5e5e5e] fixed top-3 right-3 px-3 opacity-40 text-2xl rounded-md'>staging</div>}
     <div className='grid grid-cols-1 grid-rows-[1fr_4.3rem] w-[100dvw] h-[100dvh] min-w-[260px]'>
       <TokenManager/>
       <Routes>

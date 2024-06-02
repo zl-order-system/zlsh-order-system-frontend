@@ -26,7 +26,7 @@ function Account({data}: {data: GetAccountDataRes}) {
   return (
     <div className="w-full h-full overflow-scroll pb-16 flex flex-col items-center py-10 gap-10">
       <div className="flex flex-col items-center gap-8">
-        <img className="w-48 h-48 rounded-full border-4 border-teal-900" src={"https://upload.wikimedia.org/wikipedia/zh/4/4b/Zhonglun_High_School_flat.png"}></img>
+        <img className="w-48 h-48 object-cover rounded-full border-4 border-teal-900" src={"https://scontent.xx.fbcdn.net/v/t1.15752-9/440589611_2658993050943555_6095489798070735646_n.png?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=5zoquHk3oSQQ7kNvgEVxTe5&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QFi1_8hNTndk4iBZKWJLToJU7TqNCs7lhaJxzJ7ZfZMRQ&oe=666531A5"}></img>
         <h1 className="text-black text-4xl font-bold">{data.name}</h1>
       </div>
       <div className="flex flex-col text-left gap-2 w-fit">

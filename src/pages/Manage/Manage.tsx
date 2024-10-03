@@ -15,7 +15,7 @@ export function Manage() {
   const [data, setData] = useState();
 
   useEffect(() => {
-    const socket = new WebSocket(`ws://${getAppConstants().BACKEND_HOST}/api/order/realtime`);
+    const socket = new WebSocket(`wss://${getAppConstants().BACKEND_HOST}/api/order/realtime`);
     socket.onopen = () => socket.send(`AUTH\n${getToken()}`);
     socket.onmessage = ({data: sockData}) => {
       const subStrings = (sockData as string).split("\n");

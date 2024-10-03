@@ -15,20 +15,26 @@ export function Manage() {
   const [data, setData] = useState();
 
   useEffect(() => {
-    const socket = new WebSocket(`wss://${getAppConstants().BACKEND_HOST}/api/order/realtime`);
-    socket.onopen = () => socket.send(`AUTH\n${getToken()}`);
+    const socket = new WebSocket(`wss://${getAppConstants().BACKEND_HOST}/ws`);
+
+    socket.onopen = () => {
+      socket.send(`AUTH\n${getToken()}`);
+      socket.send(`GET\n-`);
+    };
     socket.onmessage = ({data: sockData}) => {
-      const subStrings = (sockData as string).split("\n");
+      const message = sockData as string;
+      console.log(message);
+      const subStrings = message.split("\n");
       if (subStrings.length < 2) {
         console.log("Websocket Format Error");
         return;
       }
       if (subStrings[0] === "ERROR") {
-        alert("Websocket Error: " + data)
+        console.log("Websocket Error: " + message)
         return;
       }
       if (subStrings[0] === "SUCCESS") {
-        console.log("Websocket Success: " + data)
+        console.log("Websocket Success: " + message)
         return;
       }
       if (subStrings[0] !== "UPDATE") {
@@ -37,10 +43,7 @@ export function Manage() {
       }
       setData(JSON.parse(subStrings[1]));
     }
-    socket.onopen = console.log
-    socket.onmessage = console.log
-    socket.onclose = console.log
-  });
+  }, []);
 
   function refetch() {}
 

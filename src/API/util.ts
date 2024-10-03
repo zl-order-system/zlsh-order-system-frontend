@@ -58,6 +58,10 @@ export async function zodParse<T>(response: Response, schema: z.Schema<T>) {
   return schema.parse(replaceStringWDate(await response.json()));
 }
 
+export async function zodParseStr<T>(text: string, schema: z.Schema<T>) {
+  return schema.parse(replaceStringWDate(JSON.parse(text)));
+}
+
 export function searchParamsBuilder<T extends object>(request: T) {
   const data = replaceDateWString(request);
   return (new URLSearchParams(Object.entries(data as object))).toString();

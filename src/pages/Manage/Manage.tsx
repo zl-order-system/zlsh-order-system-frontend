@@ -1,21 +1,23 @@
 import { Items } from "./conponents/Items"
 import { Preview } from "./conponents/Preview"
-import { GetOrderDataRes } from "../../API/schema/manage";
+import { GetOrderDataRes, zGetOrderDataRes } from "../../API/schema/manage";
 import { formatDatePretty } from "../../util/util";
 import Loader from "../../components/Loader/Loader";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getToken } from "../../util/token";
 import { getAppConstants } from "../../util/constants";
+import { zodParseStr } from "../../API/util";
 
 export function Manage() {
   // const {data, refetch} = useQuery({
   //   queryKey: ["fetchOrderData"],
   //   queryFn: fetchBackendCurry("/api/order", zGetOrderDataRes)
   // });
-  const [data, setData] = useState();
+  const [data, setData] = useState<any>(undefined);
+  const sock = useRef(new WebSocket(`wss://${getAppConstants().BACKEND_HOST}/ws`));
 
   useEffect(() => {
-    const socket = new WebSocket(`wss://${getAppConstants().BACKEND_HOST}/ws`);
+    const socket = sock.current;
 
     socket.onopen = () => {
       socket.send(`AUTH\n${getToken()}`);
@@ -41,13 +43,15 @@ export function Manage() {
         console.log("Websocket Client Bound Action Error");
         return;
       }
-      setData(JSON.parse(subStrings[1]));
+      (async () => setData(await zodParseStr(subStrings[1], zGetOrderDataRes)))();
     }
   }, []);
 
   function refetch() {}
 
   if (data === undefined) return <Loader/>;
+
+  console.log(data);
 
   const orderData = data as GetOrderDataRes;
 
